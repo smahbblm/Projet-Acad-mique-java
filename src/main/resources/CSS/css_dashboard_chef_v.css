@@ -1,0 +1,21 @@
+/* Définissez une classe CSS (ex: .sidebar) ou utilisez un ID (#sideBar) */
+.sidebar {
+    -fx-background-color: #0072EC;
+    -fx-pref-width: 300px;
+}
+.csstext {
+  -fx-pref-width: 95px;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+
+}
+
+.classsection {
+     -fx-font-weight: bold;
+     -fx-text-fill: #B3B3B3;
+
+}
+.classsoussection .label{
+     -fx-font-weight: bold;
+     -fx-text-fill: white;
+}

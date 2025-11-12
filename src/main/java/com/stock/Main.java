@@ -1,17 +1,37 @@
 package com.stock;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+//avand de crée  la classe qui va hérité de la classe Application on dois crée les  fichiers fxml
+public  class Main extends Application  {
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DashboardChef_vents.fxml"));
+        //charger le contenu du fichier dashboard.fxml
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        // 2. AJOUTER CETTE LIGNE pour lier le fichier CSS à la scène
+        scene.getStylesheets().add(getClass().getResource("/css/css_dashboard_chef_v.css").toExternalForm());
+
+        //les infos sur la fenetre
+        stage.setTitle("Tableau de bord des vents");
+        stage.setScene(scene);
+        stage.show();
     }
 }
