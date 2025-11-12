@@ -1,0 +1,1 @@
+mvn javafx:run : pour  exécutée l'application javafx
