@@ -5,13 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 //avand de crée  la classe qui va hérité de la classe Application on dois crée les  fichiers fxml
 public  class Main extends Application  {
@@ -21,7 +14,7 @@ public  class Main extends Application  {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DashboardChef_vents.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard_chef_vets/DashboardChef_vents.fxml"));
         //charger le contenu du fichier dashboard.fxml
         Parent root = loader.load();
         Scene scene = new Scene(root);
