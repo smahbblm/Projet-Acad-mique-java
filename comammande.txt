@@ -1,1 +1,3 @@
 mvn javafx:run : pour  exécutée l'application javafx
+git log -1 : pour voir la dernier commit on utilise
+git stash applypour  récuprer  le travail  apres  avoir fait  :  git add .  et  git stash  en utiisant la commande .

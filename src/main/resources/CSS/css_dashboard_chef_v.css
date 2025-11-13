@@ -1,21 +1,80 @@
-/* Définissez une classe CSS (ex: .sidebar) ou utilisez un ID (#sideBar) */
+/* 1. Base : Style principal de la barre latérale */
 .sidebar {
-    -fx-background-color: #0072EC;
+    -fx-background-color:  #2d1b4e; /* Couleur violet foncé  */
     -fx-pref-width: 300px;
 }
+/* style principale du titre (nom de l'application) */
+
+.style_Nom_Application {
+
+   -fx-text-fill: #B3B3B3 ;
+   -fx-font-size: 20px;
+}
+
+/* 2. Style des TitledPane (sections collapsibles) */
+.sidebar .titled-pane {
+    -fx-background-color: transparent;
+}
+.top-bar{
+   -fx-padding: /* top */ 15px /* right */ 20xp /* botton */ 15px  /*left*/ 20px ;
+   -fx-background-color: white;
+}
+
+.sidebar .titled-pane > .title {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Légèrement plus clair */
+    -fx-text-fill: #B3B3B3; /* Gris clair */
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 10px;
+    -fx-background-radius: 5px;
+}
+
+.sidebar .titled-pane > .title:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Contenu du TitledPane */
+.sidebar .titled-pane > .content {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 0px 10px 15px;
+    -fx-border-width: 0;
+}
+
+/* Flèche du TitledPane */
+.sidebar .titled-pane > .title > .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.sidebar .titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: white;
+    -fx-shape: "M 0 0 L 4 4 L 0 8 Z"; /* Flèche pointant vers la droite */
+}
+
+.sidebar .titled-pane:expanded > .title > .arrow-button > .arrow {
+    -fx-rotate: 90; /* Rotation quand ouvert */
+}
+
+/* 3. Style des liens de menu (Dashboard, Clients, etc.) */
+.menu-link {
+     -fx-text-fill: white;
+     -fx-font-size: 14px;
+     -fx-padding: 8px 0px 8px 15px;
+     -fx-cursor: hand;
+}
+
+.menu-link:hover {
+     -fx-background-color: rgba(255, 255, 255, 0.1);
+     -fx-background-radius: 5px;
+}
+
+/* 4. Style du titre de profil */
 .csstext {
-  -fx-pref-width: 95px;
   -fx-text-fill: white;
   -fx-font-weight: bold;
-
+  -fx-font-size: 15px;
 }
 
-.classsection {
-     -fx-font-weight: bold;
-     -fx-text-fill: #B3B3B3;
-
-}
-.classsoussection .label{
-     -fx-font-weight: bold;
-     -fx-text-fill: white;
+/* 5. Style pour le label "Déconnexion" */
+.sidebar .menu-link:last-child {
+    -fx-text-fill: white;
 }
