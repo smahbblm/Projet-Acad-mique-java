@@ -1,0 +1,29 @@
+.style-borderpane {
+    -fx-background-color: #f5f5f5;
+}
+
+.style-button-gestion {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-family: "System";
+    -fx-background-radius: 5px;
+    -fx-padding: 10 20;
+}
+
+.style-buttons {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 8 16;
+    -fx-border-radius: 5px;
+}
+
+.style-buttons:hover {
+    -fx-background-color: #0056b3;
+}
+
+.style-buttons:pressed {
+    -fx-background-color: #004085;
+}

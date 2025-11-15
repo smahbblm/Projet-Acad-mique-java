@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<BorderPane
+    xmlns="http://javafx.com/javafx/21.0.2"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.stock.ui.Controller.chef_vents.content_controller"
+     styleClass="style-borderpane">
+    <center>
+        <VBox alignment="CENTER" spacing="40" style="-fx-padding: 30;">
+            
+            <!-- Titre principal -->
+            <Label text="Dashboard Chef des Ventes" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+            
+            <!-- Boutons de période -->
+            <HBox alignment="CENTER" spacing="10">
+                <Button fx:id="aujourdhuit" text="Aujourd'hui" styleClass="style-buttons" onAction="#selectPeriod"/>
+                <Button fx:id="semaine" text="Semaine" styleClass="style-buttons" onAction="#selectPeriod"/>
+                <Button fx:id="mois" text="Mois" styleClass="style-buttons" onAction="#selectPeriod"/>
+                <Button fx:id="annee" text="Année" styleClass="style-buttons" onAction="#selectPeriod"/>
+            </HBox>
+            
+            <!-- Statistiques simples -->
+            <HBox alignment="CENTER" spacing="40">
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: lightblue; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label text="Factures" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <Label fx:id="facturesJour" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: blue;" />
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: lightgreen; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label text="Chiffre d'affaires" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <Label fx:id="chiffreAffaires" text="0 €" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: green;" />
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: lightyellow; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label text="Clients" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <Label fx:id="clientsActifs" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: orange;" />
+                </VBox>
+            </HBox>
+            
+            <!-- Actions simples -->
+            <VBox alignment="CENTER" spacing="15">
+                <Label text="Actions" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <HBox alignment="CENTER" spacing="20">
+                    <Button fx:id="nouvelleVente" text="Nouvelle Vente" styleClass="style-buttons" 
+                            style="-fx-background-color: green; -fx-text-fill: white; -fx-padding: 15 25;" 
+                            onAction="#nouvelleVente" />
+                    <Button fx:id="voirFactures" text="Voir Factures" styleClass="style-buttons" 
+                            style="-fx-background-color: blue; -fx-text-fill: white; -fx-padding: 15 25;" 
+                            onAction="#voirFactures" />
+                </HBox>
+            </VBox>
+            
+        </VBox>
+    </center>
+</BorderPane>

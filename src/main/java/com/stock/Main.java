@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.util.Objects;
+
 //avand de crée  la classe qui va hérité de la classe Application on dois crée les  fichiers fxml
 public  class Main extends Application  {
     public static void main(String[] args) {
@@ -14,17 +16,30 @@ public  class Main extends Application  {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard_chef_vets/DashboardChef_vents.fxml"));
+        /*//l'application 1
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/seidbar.fxml"));
         //charger le contenu du fichier dashboard.fxml
         Parent root = loader.load();
         Scene scene = new Scene(root);
-
         // 2. AJOUTER CETTE LIGNE pour lier le fichier CSS à la scène
-        scene.getStylesheets().add(getClass().getResource("/css/css_dashboard_chef_v.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/css-siedbar.css").toExternalForm());
 
         //les infos sur la fenetre
         stage.setTitle("Tableau de bord des vents");
         stage.setScene(scene);
         stage.show();
+        */
+         //test du  fichier : dashboard-content.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/Dashboard-content.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        //je dois normalment ajouter  la scene crée au stage
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/css-dashboard-content.css")).toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+
+
+
+
     }
 }
