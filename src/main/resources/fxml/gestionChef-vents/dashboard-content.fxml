@@ -23,7 +23,7 @@
             
             <!-- Boutons de période -->
             <HBox alignment="CENTER" spacing="10">
-                <Button fx:id="aujourdhuit" text="Aujourd'hui" styleClass="style-buttons" onAction="#selectPeriod"/>
+                <Button fx:id="aujourdhuit" text="Aujourd'hui" styleClass="style-buttons" onAction="#selectPeriod" />
                 <Button fx:id="semaine" text="Semaine" styleClass="style-buttons" onAction="#selectPeriod"/>
                 <Button fx:id="mois" text="Mois" styleClass="style-buttons" onAction="#selectPeriod"/>
                 <Button fx:id="annee" text="Année" styleClass="style-buttons" onAction="#selectPeriod"/>

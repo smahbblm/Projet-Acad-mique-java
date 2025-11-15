@@ -23,23 +23,22 @@ public class content_controller implements Initializable {
       @FXML private Button  semaine;
       @FXML private Button  mois ;
       @FXML private Button annee;
-    @FXML private Button nouvelleVente, voirFactures;
-    @FXML private Label facturesJour, chiffreAffaires, clientsActifs;
-    @FXML private PieChart diagrammeCategories;
-    @FXML private TableView<ProduitStock> tableStock;
-    @FXML private TableColumn<ProduitStock, String> colProduit;
-    @FXML private TableColumn<ProduitStock, Integer> colQuantite;
-    @FXML private TableColumn<ProduitStock, String> colStatut;
+      @FXML private Button nouvelleVente, voirFactures;
+      @FXML private Label facturesJour, chiffreAffaires, clientsActifs;
+      @FXML private PieChart diagrammeCategories;
+      @FXML private TableView<ProduitStock> tableStock;
+      @FXML private TableColumn<ProduitStock, String> colProduit;
+      @FXML private TableColumn<ProduitStock, Integer> colQuantite;
+      @FXML private TableColumn<ProduitStock, String> colStatut;
 
-      //maintenant je dois  définir la méthode
+
       // Méthode appelée au démarrage
       @Override
       public void initialize(URL location, ResourceBundle resources) {
           // Initialiser les données au démarrage
-          chargerStatistiques();
-          // chargerDonneesFrontend(); // Commenté temporairement
+          //chargerStatistiques();
+          chargerDonneesFrontend(); // Commenté temporairement
       }
-
     @FXML
     private void nouvelleVente() {
         System.out.println("Nouvelle vente cliquée");
@@ -50,23 +49,23 @@ public class content_controller implements Initializable {
         System.out.println("Voir factures cliqué");
     }
 
-
-
-    private void chargerStatistiques() {
+    // cette méthode à pour but de modifier les valeurs des cartes  mais ça sera faites au moment ou la base est crée
+    /*private void chargerStatistiques() {
         // Données simples pour test
-        facturesJour.setText("5");
+        facturesJour.setText("0");
         chiffreAffaires.setText("2,500 €");
         clientsActifs.setText("12");
-    }
+    }*/
     // c'est utilisé pour faire colorié le boton  clicqué en blue
       @FXML
       private void selectPeriod(ActionEvent event) {
-          // Logique pour changer la couleur
+          // lorsque je clic  un botton  touts les autres sont colorié par le blanc  et pres je procède le  traitement du button cliqué
           resetAllButtons();
           Button clickedButton = (Button) event.getSource();
+          System.out.println("button cliquée  :"+clickedButton.getId());
           clickedButton.setStyle("-fx-background-color: blue; -fx-text-fill: white; ");
           // Charger les statistiques pour la période sélectionnée
-          chargerStatistiques();
+          //chargerStatistiques();
       }
     private void resetAllButtons() {
         aujourdhuit.setStyle("-fx-background-color: white;");
