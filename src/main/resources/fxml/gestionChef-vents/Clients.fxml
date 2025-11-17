@@ -22,15 +22,10 @@
         <Label text="AppStock" styleClass="style-navbar-clients" />
         <Label text="System de  gestion de  stock" style="-fx-text-fill: #A9A9A9; -fx-font-size: 10px"/>
     </VBox>
-    
 
-    
     <Button fx:id="monbutton" text="   Gestion de clients " 
             style="-fx-font-size: 15px; -fx-background-color:#0000CD" 
             onAction="#monbutton" />
-    
-
-    
     <StackPane>
         <Circle radius="20" style="-fx-fill: #0000CD"/>
         <Label text="SB" style="-fx-text-fill:white;"/>
