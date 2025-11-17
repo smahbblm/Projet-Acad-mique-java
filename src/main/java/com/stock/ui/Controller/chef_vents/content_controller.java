@@ -119,5 +119,10 @@ public class content_controller implements Initializable {
         public Integer getQuantite() { return quantite; }
         public String getStatut() { return statut; }
     }
+    //la méthode  de  notication :afficherNotifications
+    @FXML
+    public void afficherNotifications() {
+          System.out.println("Afficher les notifications ");
+    }
 
 }

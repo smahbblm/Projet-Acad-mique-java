@@ -1,6 +1,6 @@
 /* 1. Base : Style principal de la barre latérale */
 .sidebar {
-    -fx-background-color:  #2d1b4e; /* Couleur violet foncé  */
+    -fx-background-color:  blue; /* Couleur violet foncé  */
     -fx-pref-width: 300px;
 }
 /* style principale du titre (nom de l'application) */
@@ -16,7 +16,7 @@
     -fx-background-color: transparent;
 }
 .top-bar{
-   -fx-padding: /* top */ 15px /* right */ 20xp /* botton */ 15px  /*left*/ 20px ;
+   -fx-padding: /* top */ 15px /* right */ 20px /* bottom */ 15px  /*left*/ 20px ;
    -fx-background-color: white;
 }
 
