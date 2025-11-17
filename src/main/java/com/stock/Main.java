@@ -41,16 +41,17 @@ public  class Main extends Application  {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/css-dashboard-content.css")).toExternalForm());
-        // LIGNE À AJOUTER (pour la sidebar)
+        //LIGNE À AJOUTER (pour la sidebar)
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/css-siedbar.css")).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/navbar.css")).toExternalForm());
         stage.setScene(scene);
 
+        /*
         FXMLLoader adress_monfichier_fxml =  new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/Clients.fxml"));
         Parent  root2 = adress_monfichier_fxml.load();
         Scene  scene_clients =  new Scene(root2);
         scene_clients.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/style-navbar-clients.css")).toExternalForm());
-        stage.setScene(scene_clients);
+        stage.setScene(scene_clients); */
         stage.show();
 
     }
