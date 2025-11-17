@@ -1,0 +1,79 @@
+/* Styles pour la navbar */
+.style-navbar {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 0, 1);
+}
+
+/* StackPane */
+.button-notification {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 15;
+     -fx-padding: 8 10;
+     -fx-font-size: 14px;
+}
+.stylenotification {
+     -fx-background-color: #ff4444;
+     -fx-text-fill: white;
+     -fx-font-size: 9px;
+     -fx-padding: 2 4;
+     -fx-background-radius: 8;
+     -fx-font-weight: bold;
+}
+
+.style-nomapplication {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196f3;
+    -fx-padding: 5 15;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+}
+
+
+.style-navbar .label {
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+    -fx-spacing: 5px;
+}
+
+.style-navbar .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #666;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.style-navbar .button:hover {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333;
+}
+
+.style-navbar .button:pressed {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Styles pour les cartes statistiques */
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Animations pour les boutons */
+.style-buttons:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Styles pour les boutons de période actifs */
+.period-button-active {
+    -fx-background-color: #2196f3 !important;
+    -fx-text-fill: white !important;
+    -fx-border-color: #1976d2 !important;
+}

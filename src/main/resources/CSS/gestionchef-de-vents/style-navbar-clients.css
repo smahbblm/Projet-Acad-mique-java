@@ -1,0 +1,8 @@
+.navbar-clients {
+    -fx-background-color: white;
+}
+.style-navbar-clients{
+    -fx-text-fill: #00008B;
+    -fx-font-size: 15px;
+
+}
