@@ -1,36 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <?import javafx.scene.layout.HBox?>
-
-
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Region?>
-
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 
-            <HBox xmlns="http://javafx.com/javafx/11.0.1"
-                  xmlns:fx="http://javafx.com/fxml/1"
-                  fx:controller="com.stock.ui.Controller.chef_vents.clientsController"
-                  styleClass="navbar-clients"
-                  prefHeight="60"
-                  alignment="TOP_RIGHT">
-                <VBox>
-                    <Label text="AppStock" styleClass="style-navbar-clients" />
-                    <Label text="System de  gestion de  stock" style="-fx-text-fill: #A9A9A9; -fx-font-size: 10px"/>
-                </VBox>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stock.ui.Controller.chef_vents.clientsController"
+      spacing="15"
+      styleClass="root">
 
-                <Region HBox.hgrow="ALWAYS" />
+    <!-- Navbar existant -->
+    <HBox styleClass="navbar-clients"
+          prefHeight="60"
+          alignment="TOP_RIGHT">
+        <VBox>
+            <Label text="AppStock" styleClass="style-navbar-clients" />
+            <Label text="System de  gestion de  stock" style="-fx-text-fill: #A9A9A9; -fx-font-size: 10px"/>
+        </VBox>
 
-                <Button fx:id="monbutton" text="   Gestion de clients "
-                        style="-fx-font-size: 15px; -fx-background-color:#0000CD"
-                        onAction="#monbutton" />
-                <Region HBox.hgrow="ALWAYS" />
+        <Region HBox.hgrow="ALWAYS" />
 
-                <StackPane>
-                    <Circle radius="20" style="-fx-fill: #0000CD"/>
-                    <Label text="SB" style="-fx-text-fill:white;"/>
-                </StackPane>
-            </HBox>
+        <Button fx:id="monbutton" text="   Gestion de clients "
+                style="-fx-font-size: 15px; -fx-background-color: linear-gradient(to bottom, #ea580c, #c2410c); -fx-text-fill: white; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);"
+                onAction="#monbutton" />
+        <Region HBox.hgrow="ALWAYS" />
+
+        <StackPane>
+            <Circle radius="20" style="-fx-fill: #ea580c"/>
+            <Label text="SB" style="-fx-text-fill:white;"/>
+        </StackPane>
+    </HBox>
+
+    <!-- Barre de recherche et bouton d'ajout -->
+    <HBox spacing="10" alignment="CENTER_LEFT" 
+          style="-fx-padding: 15; -fx-background-color: #fff7ed; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(234,88,12,0.08), 8, 0, 0, 2);">
+        <TextField fx:id="searchField" 
+                   promptText="Rechercher un client..." 
+                   prefWidth="300"
+                   style="-fx-background-color: white; -fx-border-color: #fed7aa; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12; -fx-font-size: 14px; -fx-effect: dropshadow(gaussian, rgba(234,88,12,0.1), 5, 0, 0, 1);"
+                   onAction="#searchClients" />
+
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button fx:id="addClientButton" 
+                text="Ajouter Client"
+                style="-fx-background-color: linear-gradient(to bottom, #f97316, #ea580c); -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(234,88,12,0.3), 6, 0, 0, 2);"
+                onAction="#addClient"/>
+    </HBox>
+
+    <!-- Espace -->
+    <Region prefHeight="20"/>
+
+    <!-- Table des clients -->
+    <TableView fx:id="clientsTable" 
+               style="-fx-background-color: white; -fx-border-color: #ffedd5; -fx-border-width: 1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(234,88,12,0.1), 10, 0, 0, 3); -fx-padding: 10;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="80"/>
+            <TableColumn fx:id="nomColumn" text="Nom" prefWidth="150"/>
+            <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="150"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="120"/>
+            <TableColumn fx:id="adresseColumn" text="Adresse" prefWidth="200"/>
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+</VBox>

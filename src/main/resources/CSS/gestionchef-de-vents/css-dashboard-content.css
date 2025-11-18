@@ -3,7 +3,7 @@
 }
 
 .style-button-gestion {
-    -fx-background-color: blue;
+    -fx-background-color: #00008B;
     -fx-text-fill: white;
     -fx-font-size: 15px;
     -fx-font-family: "System";
@@ -12,7 +12,7 @@
 }
 
 .style-buttons {
-    -fx-background-color: #007bff;
+    -fx-background-color: #00008B;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
@@ -21,9 +21,9 @@
 }
 
 .style-buttons:hover {
-    -fx-background-color: #0056b3;
+    -fx-background-color: #000070;
 }
 
 .style-buttons:pressed {
-    -fx-background-color: #004085;
+    -fx-background-color: #000050;
 }
