@@ -116,17 +116,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="150.0" promptText="Statut" styleClass="filter-combo">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Tous" />
-                     <String fx:value="En Attente" />
-                     <String fx:value="En Cours" />
-                     <String fx:value="Livré" />
-                     <String fx:value="Annulé" />
-                  </FXCollections>
-               </items>
-            </ComboBox>
+            <ComboBox prefWidth="150.0" promptText="Statut" styleClass="filter-combo" />
             <DatePicker promptText="Date début" styleClass="filter-date" />
             <DatePicker promptText="Date fin" styleClass="filter-date" />
             <ComboBox prefWidth="150.0" promptText="Client" styleClass="filter-combo" />
