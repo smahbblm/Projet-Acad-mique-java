@@ -128,13 +128,13 @@
 .stat-number {
     -fx-font-size: 32px;
     -fx-font-weight: bold;
-    -fx-fill: white;
+    -fx-fill: blue;
 }
 
 .stat-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-fill: white;
+    -fx-fill: blue;
 }
 
 /* === FILTRES === */

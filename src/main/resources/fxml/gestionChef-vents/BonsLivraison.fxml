@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.stock.ui.Controller.chef_vents.bonslivrController">
    <top>
       <VBox styleClass="header-section">
          <HBox alignment="CENTER_LEFT" spacing="20.0">
@@ -23,11 +24,17 @@
             <VBox.margin>
                <Insets bottom="20.0" left="30.0" right="30.0" />
             </VBox.margin>
-            <Button mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon">
+            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" onAction="#ajoutebon">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#supprission">
+                 <font>
+                     <Font name="System Bold" size="14.0" />
+                 </font>
+             </Button>
+
             <Button mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -57,12 +64,12 @@
          <!-- Statistiques rapides -->
          <HBox spacing="20.0" styleClass="stats-container">
             <VBox alignment="CENTER" styleClass="stat-card stat-total">
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="156" styleClass="stat-number">
+               <Text fx:id="totalBonsNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="156" styleClass="stat-number">
                   <font>
                      <Font name="System Bold" size="32.0" />
                   </font>
                </Text>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Bons" styleClass="stat-label">
+               <Text fx:id="totalBonsLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Bons" styleClass="stat-label" >
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>
@@ -70,12 +77,12 @@
             </VBox>
             
             <VBox alignment="CENTER" styleClass="stat-card stat-pending">
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="23" styleClass="stat-number">
+               <Text fx:id="enAttenteNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="23" styleClass="stat-number">
                   <font>
                      <Font name="System Bold" size="32.0" />
                   </font>
                </Text>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="En Attente" styleClass="stat-label">
+               <Text fx:id="enAttenteLabel" fill="Blue" strokeType="OUTSIDE" strokeWidth="0.0" text="En Attente" styleClass="stat-label">
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>
@@ -83,12 +90,12 @@
             </VBox>
             
             <VBox alignment="CENTER" styleClass="stat-card stat-delivered">
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="128" styleClass="stat-number">
+               <Text fx:id="livresNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="128" styleClass="stat-number">
                   <font>
                      <Font name="System Bold" size="32.0" />
                   </font>
                </Text>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Livrés" styleClass="stat-label">
+               <Text fx:id="livresLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Livrés" styleClass="stat-label">
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>
@@ -96,12 +103,12 @@
             </VBox>
             
             <VBox alignment="CENTER" styleClass="stat-card stat-cancelled">
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="5" styleClass="stat-number">
+               <Text fx:id="annulesNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="5" styleClass="stat-number">
                   <font>
                      <Font name="System Bold" size="32.0" />
                   </font>
                </Text>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Annulés" styleClass="stat-label">
+               <Text fx:id="annulesLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Annulés" styleClass="stat-label">
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>

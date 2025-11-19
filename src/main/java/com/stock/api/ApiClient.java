@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 public class ApiClient {
     
-    private final String BASE_URL = "http://localhost:8080/api"; // URL de votre backend
+    private final String BASE_URL = "http://localhost:8080/apis"; // URL de votre backend
     private final HttpClient httpClient;
-    
     public ApiClient() {
         this.httpClient = HttpClient.newHttpClient();
     }
