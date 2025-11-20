@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.stock.ui.Controller.chef_vents.bonslivrController">
+fx:controller="com.stock.ui.Controller.chef_vents.NouveauBonController">
    <top>
       <VBox styleClass="header-section">
          <HBox alignment="CENTER_LEFT" spacing="20.0">
@@ -24,7 +24,7 @@ fx:controller="com.stock.ui.Controller.chef_vents.bonslivrController">
             <VBox.margin>
                <Insets bottom="20.0" left="30.0" right="30.0" />
             </VBox.margin>
-            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" onAction="#ajoutebon">
+            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" onAction="#enregistrer">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -46,7 +46,7 @@ fx:controller="com.stock.ui.Controller.chef_vents.bonslivrController">
                </font>
             </Button>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField promptText="🔍 Rechercher un bon..." styleClass="search-field" prefWidth="250.0">
+            <TextField fx:id="recherchebon" promptText="🔍 Rechercher un bon..." styleClass="search-field" prefWidth="250.0" onAction="#supprission">
                <font>
                   <Font size="14.0" />
                </font>
@@ -54,7 +54,6 @@ fx:controller="com.stock.ui.Controller.chef_vents.bonslivrController">
          </HBox>
       </VBox>
    </top>
-   
    <center>
       <VBox spacing="20.0">
          <BorderPane.margin>

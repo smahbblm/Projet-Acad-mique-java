@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Observable;
 import  java.lang.String;
+import com.stock.api.ApisBons;
 
 public class NouveauBonController {
 
@@ -21,16 +22,26 @@ public class NouveauBonController {
     @FXML private ComboBox<String> fournisseurCombo;
     @FXML private ComboBox<String>  statutCombo;
     @FXML private TextField montantField;
+    @FXML private Button btnbonmoin;
     // pour  contoller le champ de text
     @FXML private TextArea observationsField;
     //pour le boitton  d'annulation d'ajoute de bon
     @FXML private Button annulerButton;
     @FXML private Button enregistrerBtn;
-    BonService servicebon =  new BonService();
+    ApisBons apisBons =  new ApisBons();
+
+    // cette objet est utilisé pour faire appele à  la fonction annuler dans les apis
+    BonService servicebon =  new BonService(apisBons);
 
      public NouveauBonController(){
          System.out.println("je suis exactement le controller du votre fenetre d'ajoute de bons de livraison . ");
-     };
+     }
+    public void initialize() {
+        System.out.println("je suis exactement le point d'entré  de voitre controller");
+        enregistrer();
+    }
+
+
     // la définition de  tous les éléments fxml dans notre projet
     @FXML
     public void enregistrer(){
@@ -45,17 +56,15 @@ public class NouveauBonController {
         String notes = observationsField.getText();
         servicebon.ajouterbons( nombons,   dateCommande,  dateLivraison ,  listefournisse, status ,  montant, notes );
     }
-    public void initialize() {
-        System.out.println("je suis exactement le point d'entré  de voitre controller");
-        enregistrer();
-    }
-
     @FXML
     public void annuler(){
-        System.out.println("la fonction annuler  et prete pour faire appel  aux apis  ");
-
+        System.out.println("je suis la fonction  annuler l'ajouter de  bon  dans la base de données");
     }
-
+    @FXML
+    public void supprission(int id){
+         System.out.println("la supprission de bon depuis la base de données");
+         servicebon.ssupprimebon(id);
+    }
 }
 
 
