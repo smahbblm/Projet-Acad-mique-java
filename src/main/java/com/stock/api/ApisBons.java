@@ -1,12 +1,15 @@
 package com.stock.api;
 
+import javafx.collections.ObservableList;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.EnumMap;
-
+import javafx.collections.ObservableList;
 public class ApisBons {
     public static void main(String[] args) {
         System.out.println("VOIlà  MAINTENANT TU FAITS   L'APPELLE AUX APIX  DE  BONS  VERS  LE  BACKEND ");
@@ -18,7 +21,7 @@ public class ApisBons {
     private final HttpClient https = HttpClient.newHttpClient();
 
     // la  méthode qui permet d'ajouter un bons dans  la base de données
-    public boolean gajouterbons(int idbon, String matricule, Date datecommande, Date datelivraison, Enum status, float montantTotal, String description, int idfournisseur ){
+    public boolean ajouterbons(String matricule, LocalDate datecommande, LocalDate datelivraison, ObservableList<String> listfournisseur, ObservableList<String> status, String montantTotal, String description ){
         System.out.println("la récupérartions  de  données  entre  par le chef de ventes dans le formulaire ");
         try {
 
@@ -28,14 +31,13 @@ public class ApisBons {
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(
                             "{" +
-                                    "\"idBonCommande\": " +idbon + "," +
                                     "\"numero\": " + matricule+ "," +
                                     "\"dateCommande\":" + datecommande + "," +
                                     "\"dateLivraisonPrevue\":" + datelivraison+"," +
                                     "\"statut\":"+ status +"," +
+                                    "\"idFournisseur\":"+ listfournisseur +"," +
                                     "\"montantTotal\":" + montantTotal +"," +
                                     "\"observations\": " + description +"," +
-                                    "\"idFournisseur\":"+  idfournisseur  +
                                     "}"
                     ))
                     .build();

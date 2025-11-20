@@ -54,13 +54,19 @@ public  class Main extends Application  {
         Scene  scene_clients =  new Scene(root2);
         scene_clients.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/style-navbar-clients.css")).toExternalForm());
         stage.setScene(scene_clients);
-         */
+
         //scene de  Bons de Livraison
         FXMLLoader adress_monfichier_fxml =  new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/BonsLivraison.fxml"));
         Parent  root2 = adress_monfichier_fxml.load();
         Scene  scene_clients =  new Scene(root2);
         scene_clients.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/bons-livraison.css")).toExternalForm());
         stage.setScene(scene_clients);
+          */
+        //scene de formulaire d'ajout  de bon par le chef de vent
+        FXMLLoader adress_monfichier_fxml = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/NouveauBon.fxml"));
+        Parent root2 = adress_monfichier_fxml.load();
+        Scene scene_bons = new Scene(root2);
+        stage.setScene(scene_bons);
         stage.show();
 
     }
