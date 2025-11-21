@@ -38,7 +38,6 @@ public class NouveauBonController {
      }
     public void initialize() {
         System.out.println("je suis exactement le point d'entré  de voitre controller");
-        enregistrer();
     }
 
 
@@ -56,14 +55,15 @@ public class NouveauBonController {
         String notes = observationsField.getText();
         servicebon.ajouterbons( nombons,   dateCommande,  dateLivraison ,  listefournisse, status ,  montant, notes );
     }
+
     @FXML
     public void annuler(){
         System.out.println("je suis la fonction  annuler l'ajouter de  bon  dans la base de données");
     }
     @FXML
-    public void supprission(int id){
+    public void ssupprimebon(){
          System.out.println("la supprission de bon depuis la base de données");
-         servicebon.ssupprimebon(id);
+         servicebon.ssupprimebon();
     }
 }
 

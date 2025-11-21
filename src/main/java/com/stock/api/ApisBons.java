@@ -62,19 +62,19 @@ public class ApisBons {
         //la méthode de supprission d'un bon
     }
 
-    public void supprimebon(int id) {
+    public void supprimebon() {
         try {
             System.out.println("j suis la méthode d'un bon de BD");
             //la  préparation de la méthode de supprission d'un bon de DB.
             HttpRequest request1 = HttpRequest.newBuilder()
-                    .uri(URI.create(url_back + "/Bons/" + id)).header("Content-Type", "application/json")
+                    .uri(URI.create(url_back + "/Bons/" )).header("Content-Type", "application/json")
                     .DELETE()
                     .build();
             //l'envoie de requette http vers  le backend  cette   méthode   peux lancé des exceptions de type vérifier
             HttpResponse reponse1 = https.send(request1, HttpResponse.BodyHandlers.ofString());
             // tester  selon la reponse1 qui  vient du backend
             if (reponse1.statusCode() == 201 || reponse1.statusCode() == 200) {
-                System.out.println(" le bons d'id " + id + "est supprimmer");
+                System.out.println(" le bons est supprimmer");
             } else {
                 System.out.println(" IL Y A UNE ERREUR QUELQUE PAR ");
             }

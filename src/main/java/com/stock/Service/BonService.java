@@ -20,9 +20,8 @@ public class BonService {
 
     }
     // la méthode de supprission d'un bon de  bon dans la base de données
-    public void ssupprimebon(int id){
+    public void ssupprimebon(){
         System.out.println("je suis la fonction de supprission ");
-        apisBons.supprimebon(id);
-
+        apisBons.supprimebon();
     }
 }

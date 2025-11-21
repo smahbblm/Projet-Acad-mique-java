@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- Conteneur de fenêtre générale -->
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stock.ui.Controller.chef_vents.Facture.FactureController"
+      style="-fx-background-color: #f8f9fa;">
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20;">
+        <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📋 Gestion des Factures"
+              style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button text="+ Nouvelle Facture" 
+                style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;"
+                fx:id="btnNouvelleFacture" />
+    </HBox>
+
+    <!-- Zone de contenu avec ScrollPane -->
+    <ScrollPane fitToWidth="true" fitToHeight="true" 
+                style="-fx-background-color: transparent; -fx-background: transparent;"
+                VBox.vgrow="ALWAYS">
+        
+        <!-- Container pour les cartes de factures -->
+        <FlowPane fx:id="facturesContainer" 
+                  hgap="20" vgap="20" 
+                  alignment="CENTER"
+                  style="-fx-background-color: #f8f9fa;">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- Les cartes seront créées dynamiquement depuis la base de données -->
+            
+        </FlowPane>
+    </ScrollPane>
+
+</VBox>

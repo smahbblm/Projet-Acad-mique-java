@@ -7,6 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
 fx:controller="com.stock.ui.Controller.chef_vents.NouveauBonController">
+
    <top>
       <VBox styleClass="header-section">
          <HBox alignment="CENTER_LEFT" spacing="20.0">
@@ -29,7 +30,7 @@ fx:controller="com.stock.ui.Controller.chef_vents.NouveauBonController">
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#supprission">
+             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#ssupprimebon">
                  <font>
                      <Font name="System Bold" size="14.0" />
                  </font>
@@ -46,7 +47,7 @@ fx:controller="com.stock.ui.Controller.chef_vents.NouveauBonController">
                </font>
             </Button>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField fx:id="recherchebon" promptText="🔍 Rechercher un bon..." styleClass="search-field" prefWidth="250.0" onAction="#supprission">
+            <TextField fx:id="recherchebon" promptText="🔍 Rechercher un bon..." styleClass="search-field" prefWidth="250.0" >
                <font>
                   <Font size="14.0" />
                </font>
