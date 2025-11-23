@@ -1,0 +1,31 @@
+Structure de base d’une application JavaFX contient:
+Stage → la fenêtre principale
+Scene → ce qu’il y a dans la fenêtre
+Nodes → les éléments graphiques : Boutons, textes, panneaux (Layout)
+
+Mise en page (Layouts) :
+VBox → disposition verticale
+HBox → horizontale
+BorderPane → zones haut/bas/gauche/droite/centre
+GridPane → grille (tableau)
+
+Ces lignes importent les classes JavaFX que tu utilises dans le fxml :
+layout.* : BorderPane, VBox, StackPane…
+control.* : Label, Button, TextField…
+image.* : Image, ImageView
+geometry.* : Alignements, positions (ex: Pos.TOP_LEFT)
+⚠️ Sans import, le fxml ne sait pas ce que signifie <VBox>, <Button>
+
+BorderPane :
+Layout principal en "5 zones" : top, bottom, left, right, center.
+Ici on a utilises left et right.
+
+<StackPane>
+Un conteneur qui empile ses éléments (ici seulement une image).
+Il sert à centrer automatiquement les contenus.
+➤ <ImageView>
+Permet d’afficher une image.
+Attributs :
+fitWidth="400" → largeur max = 400px
+preserveRatio="true" → garde les proportions de l’image (évite la déformation)
+
