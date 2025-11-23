@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.AjouterFournisseurController"
+      spacing="20" style="-fx-padding:24; -fx-background-color:white;">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Ajouter un fournisseur" style="-fx-font-size:20; -fx-font-weight:bold;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="✕" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-cursor:hand; -fx-font-size:18;"/>
+    </HBox>
+
+    <Label text="Remplissez les informations du nouveau fournisseur" style="-fx-text-fill:#666666;"/>
+
+    <VBox spacing="8">
+        <Label text="Nom de l'entreprise *"/>
+        <TextField fx:id="txtEntreprise" promptText="Ex: Fournitures Pro" style="-fx-padding:10;"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Personne de contact *"/>
+        <TextField fx:id="txtContact" promptText="Ex: Jean Dupont" style="-fx-padding:10;"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Email *"/>
+            <TextField fx:id="txtEmail" promptText="contact@entreprise.fr" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Téléphone *"/>
+            <TextField fx:id="txtTelephone" promptText="01 23 45 67 89" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Adresse complète *"/>
+        <TextArea fx:id="txtAdresse" promptText="Numéro, rue, code postal, ville" prefRowCount="3" style="-fx-padding:10;"/>
+    </VBox>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnAnnuler" text="Annuler" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-padding:10 20; -fx-cursor:hand;"/>
+        <Button fx:id="btnAjouter" text="Ajouter le fournisseur" onAction="#ajouterFournisseur" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:10 20; -fx-background-radius:6; -fx-cursor:hand;"/>
+    </HBox>
+</VBox>

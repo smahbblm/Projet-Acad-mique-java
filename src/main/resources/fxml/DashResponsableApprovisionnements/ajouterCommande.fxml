@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.AjouterCommandeController"
+      spacing="20" style="-fx-padding:24; -fx-background-color:white;">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Créer un bon de commande" style="-fx-font-size:20; -fx-font-weight:bold;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="✕" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-cursor:hand; -fx-font-size:18;"/>
+    </HBox>
+
+    <Label text="Sélectionnez le fournisseur et les produits à commander" style="-fx-text-fill:#666666;"/>
+
+    <VBox spacing="8">
+        <Label text="Fournisseur *"/>
+        <ComboBox fx:id="cmbFournisseur" promptText="Sélectionner un fournisseur" prefWidth="9999" style="-fx-padding:8;"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Livraison prévue"/>
+            <DatePicker fx:id="dateLivraison" promptText="jj/mm/aaaa" prefWidth="9999" style="-fx-padding:8;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Statut *"/>
+            <ComboBox fx:id="cmbStatut" promptText="En cours" prefWidth="9999" style="-fx-padding:8;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Notes"/>
+        <TextArea fx:id="txtNotes" promptText="Notes ou instructions spéciales..." prefRowCount="3" style="-fx-padding:10;"/>
+    </VBox>
+
+    <Label text="Après création, vous pourrez ajouter des produits à la commande" style="-fx-text-fill:#999999; -fx-font-size:12;"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnAnnuler" text="Annuler" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-padding:10 20; -fx-cursor:hand;"/>
+        <Button fx:id="btnCreer" text="Créer la commande" onAction="#creerCommande" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:10 20; -fx-background-radius:6; -fx-cursor:hand;"/>
+    </HBox>
+</VBox>

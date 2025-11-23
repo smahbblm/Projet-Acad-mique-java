@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.ModifierProduitController"
+      spacing="20" style="-fx-padding:24; -fx-background-color:white;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Modifier le produit" style="-fx-font-size:20; -fx-font-weight:bold;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="✕" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-cursor:hand; -fx-font-size:18;"/>
+    </HBox>
+
+    <Label text="Modifiez les informations du produit" style="-fx-text-fill:#666666;"/>
+
+    <!-- Form -->
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Nom du produit *"/>
+            <TextField fx:id="txtNom" promptText="Ex: Vis M6×20" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Référence *"/>
+            <TextField fx:id="txtReference" promptText="Ex: VIS-M6-20" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Catégorie *"/>
+        <ComboBox fx:id="cmbCategorie" promptText="Sélectionner une catégorie" prefWidth="9999" style="-fx-padding:8;"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Prix unitaire (€) *"/>
+            <TextField fx:id="txtPrix" promptText="0.00" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Stock actuel *"/>
+            <TextField fx:id="txtStock" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Seuil min *"/>
+            <TextField fx:id="txtSeuil" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Unité *"/>
+        <ComboBox fx:id="cmbUnite" promptText="Pièces" prefWidth="9999" style="-fx-padding:8;"/>
+    </VBox>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnAnnuler" text="Annuler" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-padding:10 20; -fx-cursor:hand;"/>
+        <Button fx:id="btnModifier" text="Modifier le produit" onAction="#modifierProduit" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:10 20; -fx-background-radius:6; -fx-cursor:hand;"/>
+    </HBox>
+</VBox>

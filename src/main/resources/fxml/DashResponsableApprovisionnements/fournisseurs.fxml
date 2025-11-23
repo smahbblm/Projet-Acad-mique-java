@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.FournisseursController"
+            prefWidth="1200.0" prefHeight="800.0">
+
+<!-- Sidebar -->
+<left>
+    <VBox spacing="20.0" alignment="TOP_LEFT" style="-fx-background-color: #f5f7fa; -fx-padding: 20;">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Gestion des stocks" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+        </HBox>
+
+        <VBox spacing="8">
+            <Label fx:id="lblDashboard" text="Tableau de bord" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblProduits" text="Produits" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+
+            <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding:6 10; -fx-background-color:#ffffff; -fx-border-radius:6; -fx-background-radius:6;">
+                <Label text="Fournisseurs" style="-fx-font-weight:bold;"/>
+            </HBox>
+
+            <Label fx:id="lblCommandes" text="Commandes" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblStock" text="Stock" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblRapports" text="Rapports" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding:10; -fx-background-color: #ffffff; -fx-background-radius:8;">
+            <Label text="👤" style="-fx-font-size: 24;"/>
+            <VBox>
+                <Label text="Responsable Appro" style="-fx-font-weight:bold;"/>
+                <Label text="admin@entreprise.fr" style="-fx-font-size:11; -fx-text-fill:gray;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</left>
+
+<!-- Top bar -->
+<top>
+    <HBox style="-fx-padding:10 20; -fx-background-color: #ffffff; -fx-border-color: transparent transparent #e6e6e6 transparent;"
+          alignment="CENTER_LEFT" spacing="10">
+        <Label text=" " />
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Responsable des Approvisionnements" style="-fx-text-fill: #777777;"/>
+    </HBox>
+</top>
+
+<!-- Main content -->
+<center>
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+        <VBox spacing="20" style="-fx-padding:24;">
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Fournisseurs" style="-fx-font-size:28; -fx-font-weight:bold;"/>
+                    <Label text="Gérez vos partenaires fournisseurs" style="-fx-text-fill:#666666;"/>
+                </VBox>
+                <Button fx:id="btnAddSupplier" text="+ Nouveau fournisseur" onAction="#openAddSupplierPopup"
+                        style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-background-radius:6; -fx-padding:10 20; -fx-cursor:hand;"/>
+            </HBox>
+
+            <!-- Search bar -->
+            <TextField fx:id="searchField" promptText="🔍 Rechercher par nom ou contact..."
+                       style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:12;"/>
+
+            <!-- Suppliers table -->
+            <VBox spacing="0" style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:0;">
+                <!-- Table header -->
+                <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #e6e6e6 transparent; -fx-border-width:0 0 1 0;">
+                    <Label text="Entreprise" style="-fx-text-fill:#999999; -fx-pref-width:180;"/>
+                    <Label text="Contact" style="-fx-text-fill:#999999; -fx-pref-width:150;"/>
+                    <Label text="Coordonnées" style="-fx-text-fill:#999999; -fx-pref-width:200;"/>
+                    <Label text="Adresse" style="-fx-text-fill:#999999; -fx-pref-width:280;"/>
+                    <Label text="Actions" style="-fx-text-fill:#999999; -fx-pref-width:100;"/>
+                </HBox>
+
+                <!-- Supplier rows -->
+                <VBox fx:id="suppliersContainer" spacing="0">
+                    <!-- Row 1 -->
+                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
+                        <Label text="Fournitures Pro" style="-fx-pref-width:180;"/>
+                        <Label text="Jean Dupont" style="-fx-pref-width:150;"/>
+                        <VBox spacing="4" style="-fx-pref-width:200;">
+                            <Label text="✉ contact@fournitures-pro.fr" style="-fx-font-size:11;"/>
+                            <Label text="📞 01 23 45 67 89" style="-fx-font-size:11;"/>
+                        </VBox>
+                        <Label text="15 rue du Commerce, 75001 Paris" style="-fx-pref-width:280;"/>
+                        <HBox spacing="8" style="-fx-pref-width:100;">
+                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
+                            <Button text="🗑️" style="-fx-cursor:hand;"/>
+                        </HBox>
+                    </HBox>
+
+                    <!-- Row 2 -->
+                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
+                        <Label text="Tech Supplies" style="-fx-pref-width:180;"/>
+                        <Label text="Marie Martin" style="-fx-pref-width:150;"/>
+                        <VBox spacing="4" style="-fx-pref-width:200;">
+                            <Label text="✉ info@tech-supplies.fr" style="-fx-font-size:11;"/>
+                            <Label text="📞 02 34 56 78 90" style="-fx-font-size:11;"/>
+                        </VBox>
+                        <Label text="8 avenue des Entreprises, 69002 Lyon" style="-fx-pref-width:280;"/>
+                        <HBox spacing="8" style="-fx-pref-width:100;">
+                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
+                            <Button text="🗑️" style="-fx-cursor:hand;"/>
+                        </HBox>
+                    </HBox>
+
+                    <!-- Row 3 -->
+                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
+                        <Label text="Industrie Plus" style="-fx-pref-width:180;"/>
+                        <Label text="Pierre Bernard" style="-fx-pref-width:150;"/>
+                        <VBox spacing="4" style="-fx-pref-width:200;">
+                            <Label text="✉ contact@industrie-plus.fr" style="-fx-font-size:11;"/>
+                            <Label text="📞 03 45 67 89 01" style="-fx-font-size:11;"/>
+                        </VBox>
+                        <Label text="22 boulevard Industriel, 13001 Marseille" style="-fx-pref-width:280;"/>
+                        <HBox spacing="8" style="-fx-pref-width:100;">
+                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
+                            <Button text="🗑️" style="-fx-cursor:hand;"/>
+                        </HBox>
+                    </HBox>
+
+                    <!-- Row 4 -->
+                    <HBox spacing="10" style="-fx-padding:16;">
+                        <Label text="Matériel Express" style="-fx-pref-width:180;"/>
+                        <Label text="Sophie Rousseau" style="-fx-pref-width:150;"/>
+                        <VBox spacing="4" style="-fx-pref-width:200;">
+                            <Label text="✉ service@materiel-express.fr" style="-fx-font-size:11;"/>
+                            <Label text="📞 04 56 78 90 12" style="-fx-font-size:11;"/>
+                        </VBox>
+                        <Label text="10 rue de la Logistique, 33000 Bordeaux" style="-fx-pref-width:280;"/>
+                        <HBox spacing="8" style="-fx-pref-width:100;">
+                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
+                            <Button text="🗑️" style="-fx-cursor:hand;"/>
+                        </HBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</center>
+</BorderPane>

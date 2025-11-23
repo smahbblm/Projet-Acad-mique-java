@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.dashboardController"
+            prefWidth="1200.0" prefHeight="800.0">
+
+<!-- Sidebar -->
+<left>
+    <VBox spacing="20.0" alignment="TOP_LEFT" style="-fx-background-color: #f5f7fa; -fx-padding: 20;">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Gestion des stocks" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+        </HBox>
+
+        <VBox spacing="8">
+            <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding:6 10; -fx-background-color:#ffffff; -fx-border-radius:6; -fx-background-radius:6;">
+                <Label text="Tableau de bord" style="-fx-font-weight:bold;"/>
+            </HBox>
+
+            <Label fx:id="lblProduits" text="Produits" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblFournisseurs" text="Fournisseurs" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblCommandes" text="Commandes" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblStock" text="Stock" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+            <Label fx:id="lblRapports" text="Rapports" style="-fx-cursor: hand; -fx-padding:6 10;"/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding:10; -fx-background-color: #ffffff; -fx-background-radius:8;">
+            <Label text="👤" style="-fx-font-size: 24;"/>
+            <VBox>
+                <Label text="Responsable Appro" style="-fx-font-weight:bold;"/>
+                <Label text="admin@entreprise.fr" style="-fx-font-size:11; -fx-text-fill:gray;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</left>
+
+    <!-- Top bar -->
+    <top>
+        <HBox style="-fx-padding:10 20; -fx-background-color: #ffffff; -fx-border-color: transparent transparent #e6e6e6 transparent;" alignment="CENTER_LEFT" spacing="10">
+            <Label text=" " />
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Responsable des Approvisionnements" style="-fx-text-fill: #777777;"/>
+        </HBox>
+    </top>
+
+    <!-- Main content -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="20" style="-fx-padding:24;">
+                <!-- Title -->
+                <VBox spacing="6">
+                    <Label text="Tableau de bord" style="-fx-font-size:28; -fx-font-weight:bold;"/>
+                    <Label text="Vue d'ensemble de vos approvisionnements et stocks" style="-fx-text-fill:#666666;"/>
+                </VBox>
+
+                <!-- Alert banner -->
+                <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color:#fdecea; -fx-border-radius:8; -fx-background-radius:8; -fx-padding:16;">
+                    <Label text="⚠️" style="-fx-font-size:18;"/>
+                    <VBox>
+                        <Label text="3 produits en rupture de stock" style="-fx-font-weight:bold;"/>
+                        <Label text="Vis M6×20, Écrous M8, Rondelles plates" style="-fx-text-fill:#6b6b6b;"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnVoirDetails" text="Voir les détails" style="-fx-background-radius:6; -fx-cursor:hand;"/>
+                </HBox>
+
+                <!-- Metric cards -->
+                <HBox spacing="16">
+                    <VBox spacing="8" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:220;">
+                        <Label text="Total Produits" style="-fx-text-fill:#777777;"/>
+                        <Label text="234" style="-fx-font-size:20; -fx-font-weight:bold;"/>
+                        <Label text="+12% vs mois dernier" style="-fx-text-fill:#2ecc71; -fx-font-size:11;"/>
+                    </VBox>
+
+                    <VBox spacing="8" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:220;">
+                        <Label text="Commandes en cours" style="-fx-text-fill:#777777;"/>
+                        <Label text="18" style="-fx-font-size:20; -fx-font-weight:bold;"/>
+                        <Label text="3 en attente de livraison" style="-fx-text-fill:#999999; -fx-font-size:11;"/>
+                    </VBox>
+
+                    <VBox spacing="8" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:220;">
+                        <Label text="Alertes Rupture" style="-fx-text-fill:#777777;"/>
+                        <Label text="3" style="-fx-font-size:20; -fx-font-weight:bold;"/>
+                        <Label text="+20% vs mois dernier" style="-fx-text-fill:#2ecc71; -fx-font-size:11;"/>
+                    </VBox>
+
+                    <VBox spacing="8" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:220;">
+                        <Label text="Valeur Stock" style="-fx-text-fill:#777777;"/>
+                        <Label text="125 450 €" style="-fx-font-size:20; -fx-font-weight:bold;"/>
+                        <Label text="+8% vs mois dernier" style="-fx-text-fill:#2ecc71; -fx-font-size:11;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Lower panels -->
+                <HBox spacing="16" alignment="TOP_LEFT">
+                    <!-- Recent orders -->
+                    <VBox spacing="12" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:720;">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Commandes récentes" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblVoirToutCommandes" text="Voir tout" style="-fx-text-fill:#2e86de; -fx-cursor:hand;"/>
+                        </HBox>
+
+                        <VBox spacing="10">
+                            <HBox spacing="20">
+                                <Label text="N° Commande" style="-fx-text-fill:#999999; -fx-pref-width:200;"/>
+                                <Label text="Fournisseur" style="-fx-text-fill:#999999; -fx-pref-width:300;"/>
+                                <Label text="Statut" style="-fx-text-fill:#999999; -fx-pref-width:120;"/>
+                                <Label text="Montant" style="-fx-text-fill:#999999; -fx-pref-width:100;"/>
+                            </HBox>
+
+                            <!-- Static rows -->
+                            <HBox spacing="20">
+                                <Label text="CMD-2024-001" style="-fx-pref-width:200;"/>
+                                <Label text="Fournitures Pro" style="-fx-pref-width:300;"/>
+                                <Label text="En cours" style="-fx-background-color:#eef2ff; -fx-padding:4 8; -fx-background-radius:6;"/>
+                                <Label text="2 450 €" style="-fx-pref-width:100;"/>
+                            </HBox>
+
+                            <HBox spacing="20">
+                                <Label text="CMD-2024-002" style="-fx-pref-width:200;"/>
+                                <Label text="Tech Supplies" style="-fx-pref-width:300;"/>
+                                <Label text="Livrée" style="-fx-background-color:#e8f7ff; -fx-padding:4 8; -fx-background-radius:6;"/>
+                                <Label text="1 280 €" style="-fx-pref-width:100;"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Alerts list -->
+                    <VBox spacing="12" style="-fx-background-color:#ffffff; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:360;">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Produits en alerte" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblVoirTout" text="Voir tout" style="-fx-text-fill:#2e86de; -fx-cursor:hand;"/>
+                        </HBox>
+
+                        <VBox spacing="10">
+                            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-border-color:#f0f0f0; -fx-border-width:0 0 1 0; -fx-padding:8 0;">
+                                <VBox>
+                                    <Label text="Vis M6×20" style="-fx-font-weight:bold;"/>
+                                    <Label text="Stock actuel: 5 / Seuil: 50" style="-fx-text-fill:#777777; -fx-font-size:11;"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="Rupture" style="-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-background-radius:6;"/>
+                            </HBox>
+
+                            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-border-color:#f0f0f0; -fx-border-width:0 0 1 0; -fx-padding:8 0;">
+                                <VBox>
+                                    <Label text="Écrous M8" style="-fx-font-weight:bold;"/>
+                                    <Label text="Stock actuel: 12 / Seuil: 100" style="-fx-text-fill:#777777; -fx-font-size:11;"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="Rupture" style="-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-background-radius:6;"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
