@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controler.inventor"
+            stylesheets="@/CSS/StyleMagsinier.css"
+            prefWidth="1600" prefHeight="700"
+            style="-fx-background-color: white;">
+
+    <fx:include source="menu.fxml"
+                AnchorPane.topAnchor="0"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0" />
+
+    <HBox spacing="15" alignment="CENTER_LEFT"
+          AnchorPane.topAnchor="20"
+          AnchorPane.leftAnchor="290"
+          AnchorPane.rightAnchor="30">
+
+        <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
+            <Image url="@Img/innovation.png" />
+        </ImageView>
+
+        <VBox spacing="5">
+            <Label text="Gestion des inventaires" styleClass="titre"/>
+            <Label text="Gérez vos inventaires de manière efficace et professionelle"
+                   styleClass="sous-titre"/>
+        </VBox>
+    </HBox>
+
+    <Separator AnchorPane.topAnchor="100"
+               AnchorPane.leftAnchor="266"
+               AnchorPane.rightAnchor="0"
+               styleClass="separateur-custom"/>
+
+    <ScrollPane fitToWidth="true"
+                AnchorPane.leftAnchor="280"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="110"
+                style="-fx-background-color:transparent;-fx-border-color:transparent">
+        <content>
+            <AnchorPane prefHeight="900" AnchorPane.topAnchor="200"
+                        AnchorPane.leftAnchor="266"
+                        AnchorPane.rightAnchor="0"
+                        style="-fx-background-color:white" >
+                <HBox spacing="10"  styleClass="Button-container">
+                    <Button fx:id="affiche_Inventor" text="créer un inventaire" styleClass="btn-create" onAction="#AfficheInventor">
+                        <graphic>
+                            <HBox>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <Image url="@Img/plus.png" />
+                                </ImageView>
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    <Button text="Démarrer l'inventaire" styleClass="btn-start" onAction="#Démarrage_inventor">
+                        <graphic>
+                            <HBox>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <Image url="@Img/play.png" />
+                                </ImageView>
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    <Button text="Valider l'inventaire" styleClass="btn-validate">
+                         <graphic>
+                             <HBox>
+                                 <ImageView fitWidth="20" fitHeight="20">
+                                     <Image url="@Img/check.png" />
+                                 </ImageView>
+                             </HBox>
+                         </graphic>
+                    </Button>
+                    <Button text="générer rapport" styleClass="btn-generate">
+                        <graphic>
+                            <HBox>
+                                <ImageView fitWidth="20" fitHeight="20">
+                                    <Image url="@Img/seo-report.png" />
+                                </ImageView>
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+
+                </HBox>
+
+                <VBox  fx:id="affichage" styleClass="Creation" spacing="10">
+                    <VBox spacing="8" alignment="CENTER">
+                    <Label text="Créer un nouvel inventaire"  style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#009FBD;alignment=CENTER "/>
+                    </VBox>
+                    <Label text="Date de l'inventaire :" style="-fx-font-size:15px" />
+
+                    <DatePicker fx:id="date_inventor" styleClass="form-field" />
+                    <Label text="status:" style="-fx-font-size:15px" />
+                    <MenuButton text="status" styleClass="form-field">
+                        <items>
+                           <MenuItem text="En cours" />
+                            <MenuItem text="En attente" />
+                            <MenuItem text="Terminé" />
+                            <MenuItem text="planifiée" />
+                        </items>
+                    </MenuButton>
+                    <Label text="Observation:" style="-fx-font-size:15px"/>
+                    <TextArea text="saisir" styleClass="form-field" />
+                    <HBox spacing="8" styleClass="btn-inventor" alignment="CENTER">
+                        <Button  text="Valider" style="-fx-background-color:#132440;-fx-text-fill:white" />
+                        <Button text="Annuler" style="-fx-background-color:#3B9797;-fx-text-fill:white" onAction="#AnnuelForm"/>
+                    </HBox>
+
+                </VBox>
+                <VBox fx:id="listInventor" spacing="15" alignment="CENTER_LEFT" AnchorPane.topAnchor="300"
+                      styleClass="inventor-carts">
+
+                    <Label text="Liste des Inventaires"  style="-fx-font-size:20px ;-fx-font-weight:bold;-fx-text-fill:#1A3D64"/>
+                    <HBox spacing="5" styleClass="inventor-cart">
+                        <Region styleClass="color_gauche" />
+                       <VBox spacing="5" >
+
+                          <Label text="Inventaire 001" style="-fx-font-size:16px;-fx-font-weight:blod;-fx-text-fill:#1D546C"  />
+                          <Label text="Date:12-11-2025" style="-fx-font-size:13px;-fx-text-fill:#000000" />
+                          <Text text="Description:Inventaire annuel effectuée avec succées" style="-fx-font-size:13px;-fx-text-fill:#000000 " />
+                       </VBox>
+                    </HBox>
+                    <HBox  spacing="5" styleClass="inventor-cart">
+                        <Region styleClass="color_gauche" />
+                        <VBox spacing="5" >
+                            <Label text="Inventaire 002" style="-fx-font-size:16px;-fx-font-weight:blod;-fx-text-fill:#1D546C" />
+                            <Label text="Date:21-11-2025" style="-fx-font-size:13px;-fx-text-fill:#000000" />
+                            <Text text="Description:Inventaire annuel effectuée avec succées " style="-fx-font-size:13px;-fx-text-fill:#000000" />
+                        </VBox>
+                    </HBox>
+
+
+                </VBox>
+                <VBox fx:id="Visible" alignment="CENTER_LEFT"
+                      AnchorPane.topAnchor="100"
+                      AnchorPane.leftAnchor="0"
+                      AnchorPane.rightAnchor="0"
+                      AnchorPane.bottomAnchor="0">
+                       <HBox>
+                           <ImageView fitWidth="35" fitHeight="35" >
+                               <Image url="@Img/accuracy.png" />
+                           </ImageView>
+                           <Label text="Inventaire VI123455" />
+                           <TextField fx:id="RechecheProd" text="Rechercher un produit"  onAction="#RechercheProd"/>
+                       </HBox>
+                       <HBox>
+                               <ImageView fitHeight="15" fitWidth="15">
+                                   <Image url="@Img/calendar.png" />
+                               </ImageView>
+                               <Label fx:id="date"  text="" />
+
+
+                       </HBox>
+                       <VBox >
+                           <TableView fx:id="TableProduit" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+                               <columns>
+                                   <TableColumn fx:id="colProduit" text="Produit" />
+                                   <TableColumn fx:id="colRef" text="Référence" />
+                                   <TableColumn fx:id="colQtéSys" text="QTé Système" />
+                                   <TableColumn fx:id="colQtéRel" text="Qté Réelle" />
+                                   <TableColumn fx:id="colEcart" text="Ecart" />
+                               </columns>
+                           </TableView>
+                           <Button text="Annuler"  styleClass="btnNot" onAction="#displayTable"  />
+                       </VBox>
+
+
+
+
+
+
+
+
+                </VBox>
+
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+</AnchorPane>

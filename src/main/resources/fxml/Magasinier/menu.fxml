@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ScrollPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@/CSS/StyleMagsinier.css"
+            prefWidth="260" >
+
+    <VBox spacing="20" alignment="TOP_CENTER"  styleClass="sidebar"
+          AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0"
+          prefWidth="260">
+
+
+
+
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="sidebar-header" >
+            <ImageView fitHeight="32" fitWidth="32">
+                <image><Image url="@Img/in-stock.png"/></image>
+            </ImageView>
+            <Label text="STOCK MANAGER" styleClass="app-title"/>
+        </HBox>
+
+        <!-- Profil -->
+        <VBox spacing="8" alignment="CENTER" styleClass="profile-box">
+            <ImageView fitHeight="80" fitWidth="80">
+                <image><Image url="@Img/profile.png"/></image>
+            </ImageView>
+            <Label text="Ahmed Bennani" styleClass="profile-name"/>
+            <Label text="Magasinier" styleClass="profile-role"/>
+        </VBox>
+        <Separator prefWidth="40" />
+        <!-- Menu -->
+        <VBox spacing="6" alignment="TOP_LEFT" styleClass="menu-box">
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#allerPageTableauBord">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/dashboard.png"/></image>
+                        </ImageView>
+                        <Label text="Tableau de Bord"/>
+                    </HBox>
+                </graphic>
+
+            </Button>
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/mobility.png"/></image>
+                        </ImageView>
+                        <Label text="Mouvements Stock" />
+                    </HBox>
+                </graphic>
+
+            </Button>
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/product-management.png"/></image>
+                        </ImageView>
+                        <Label text="Inventaire" />
+                    </HBox>
+
+                </graphic>
+
+            </Button>
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/audit.png"/></image>
+                        </ImageView>
+                        <Label text="Consultation" />
+                    </HBox>
+                </graphic>
+
+            </Button>
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/bell.png"/></image>
+                        </ImageView>
+                        <Label text="Alertes" styleClass="menu-label" />
+                    </HBox>
+                </graphic>
+
+            </Button>
+
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/seo-report.png"/></image>
+                        </ImageView>
+                        <Label text="Rapports" styleClass="menu-label"/>
+                    </HBox>
+                </graphic>
+
+            </Button>
+
+        </VBox>
+
+        <Separator prefWidth="40" />
+
+        <Button  styleClass="lagout" alignment="CENTER_LEFT">
+            <graphic>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <ImageView fitWidth="22" fitHeight="22">
+                        <Image url="@Img/shutdown.png"/>
+                    </ImageView>
+                    <Label text="Déconnexion"/>
+                </HBox>
+            </graphic>
+
+        </Button>
+
+    </VBox>
+</AnchorPane>
