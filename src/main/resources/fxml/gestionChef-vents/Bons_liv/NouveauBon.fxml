@@ -9,7 +9,7 @@
 <?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.stock.ui.Controller.chef_vents.NouveauBonController">
+            fx:controller="com.stock.ui.Controller.chef_vents.Bons.NouveauBonController">
    <top>
       <VBox styleClass="header-section">
          <HBox alignment="CENTER_LEFT" spacing="20.0">

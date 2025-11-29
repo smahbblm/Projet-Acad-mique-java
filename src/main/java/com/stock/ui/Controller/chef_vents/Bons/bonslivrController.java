@@ -1,7 +1,6 @@
-package com.stock.ui.Controller.chef_vents;
+package com.stock.ui.Controller.chef_vents.Bons;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class bonslivrController {

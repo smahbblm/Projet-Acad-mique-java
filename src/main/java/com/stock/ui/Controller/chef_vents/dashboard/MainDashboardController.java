@@ -1,4 +1,4 @@
-package com.stock.ui.Controller.chef_vents;
+package com.stock.ui.Controller.chef_vents.dashboard;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

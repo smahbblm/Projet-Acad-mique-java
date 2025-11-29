@@ -12,7 +12,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.stock.ui.Controller.chef_vents.clientsController"
+      fx:controller="com.stock.ui.Controller.chef_vents.Clients.clientsController"
       spacing="15"
       styleClass="root">
 

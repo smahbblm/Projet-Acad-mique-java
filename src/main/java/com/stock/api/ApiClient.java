@@ -1,6 +1,6 @@
 package com.stock.api;
 
-import com.stock.ui.Controller.chef_vents.clientsController.Client;
+import com.stock.ui.Controller.chef_vents.Clients.clientsController.Client;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;

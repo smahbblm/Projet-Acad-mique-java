@@ -1,4 +1,4 @@
-package com.stock.ui.Controller.chef_vents;
+package com.stock.ui.Controller.chef_vents.Clients;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

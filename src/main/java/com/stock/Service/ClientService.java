@@ -1,6 +1,6 @@
 package com.stock.Service;
 
-import com.stock.ui.Controller.chef_vents.clientsController.Client;
+import com.stock.ui.Controller.chef_vents.Clients.clientsController.Client;
 import com.stock.api.ApiClient;
 import java.util.List;
 

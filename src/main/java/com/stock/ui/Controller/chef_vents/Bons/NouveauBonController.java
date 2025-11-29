@@ -1,4 +1,4 @@
-package com.stock.ui.Controller.chef_vents;
+package com.stock.ui.Controller.chef_vents.Bons;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,8 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 import com.stock.Service.BonService;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Observable;
 import  java.lang.String;
 import com.stock.api.ApisBons;
 

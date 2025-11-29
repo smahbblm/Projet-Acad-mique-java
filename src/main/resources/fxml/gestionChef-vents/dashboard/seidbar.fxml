@@ -30,7 +30,7 @@
                 <!-- VBox principal pour la sidebar -->
                 <VBox xmlns="http://javafx.com/javafx/21.0.2"
                       xmlns:fx="http://javafx.com/fxml"
-                      fx:controller="com.stock.ui.Controller.chef_vents.siedbarcontroller"
+                      fx:controller="com.stock.ui.Controller.chef_vents.dashboard.siedbarcontroller"
                       alignment="TOP_CENTER" spacing="5" styleClass="sidebar" >
                     <padding>
                         <Insets top="30" right="20" bottom="10" left="20"/>
