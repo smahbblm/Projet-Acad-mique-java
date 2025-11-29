@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stock.ui.Controller.chef_vents.Clients.AjouterClientController"
+            prefHeight="700.0" prefWidth="600.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);">
+
+    <VBox spacing="0" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="50"
+          AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="20"
+          style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 10);">
+
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Titre avec icône -->
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="📋" style="-fx-font-size: 32px;"/>
+            <Label text="Ajouter un nouveau client" style="-fx-font-weight: bold; -fx-text-fill: #333333;">
+                <font>
+                    <Font size="28"/>
+                </font>
+            </Label>
+        </HBox>
+
+        <VBox.margin>
+            <Insets bottom="15"/>
+        </VBox.margin>
+
+        <!-- Séparateur -->
+        <Separator prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, transparent, #667eea, transparent);">
+            <VBox.margin>
+                <Insets top="10" bottom="25"/>
+            </VBox.margin>
+        </Separator>
+
+        <!-- Formulaire -->
+        <VBox spacing="20" prefWidth="500">
+
+            <!-- Nom -->
+            <VBox spacing="8">
+                <Label text="Nom *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <TextField fx:id="txtNom" promptText="Nom du client"
+                           style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                           maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- Prénom -->
+            <VBox spacing="8">
+                <Label text="Prénom *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <TextField fx:id="txtPrenom" promptText="Prénom du client"
+                           style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                           maxWidth="Infinity"/>
+            </VBox>
+
+<!--            &lt;!&ndash; Raison Sociale &ndash;&gt;-->
+<!--            <VBox spacing="8">-->
+<!--                <Label text="Raison Sociale" style="-fx-text-fill: #555555; -fx-font-weight: 600;">-->
+<!--                    <font><Font size="14"/></font>-->
+<!--                </Label>-->
+<!--                <TextField fx:id="txtRaisonSociale" promptText="Nom de l'entreprise (optionnel)"-->
+<!--                           style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"-->
+<!--                           maxWidth="Infinity"/>-->
+<!--            </VBox>-->
+
+            <!-- Adresse -->
+            <VBox spacing="8">
+                <Label text="Adresse *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <TextArea fx:id="txtAdresse" promptText="Adresse complète du client"
+                          prefRowCount="3" wrapText="true"
+                          style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                          maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- Téléphone -->
+            <VBox spacing="8">
+                <Label text="Téléphone *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <TextField fx:id="txtTelephone" promptText="Ex: 0612345678"
+                           style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                           maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- Email -->
+            <VBox spacing="8">
+                <Label text="Email *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <TextField fx:id="txtEmail" promptText="email@exemple.com"
+                           style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                           maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- Date d'inscription -->
+            <VBox spacing="8">
+                <Label text="Date d'inscription *" style="-fx-text-fill: #555555; -fx-font-weight: 600;">
+                    <font><Font size="14"/></font>
+                </Label>
+                <DatePicker fx:id="dateInscription" prefWidth="500"
+                            style="-fx-padding: 12 15; -fx-border-color: #e0e0e0; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;"
+                            maxWidth="Infinity"/>
+            </VBox>
+
+        </VBox>
+
+        <!-- Note -->
+        <Label text="* Champs obligatoires" style="-fx-text-fill: #888888; -fx-font-style: italic;">
+            <font><Font size="12"/></font>
+            <VBox.margin>
+                <Insets top="15" bottom="10"/>
+            </VBox.margin>
+        </Label>
+
+        <!-- Message d'erreur/succès -->
+        <Label fx:id="lblMessage" wrapText="true" visible="false"
+               style="-fx-padding: 12; -fx-background-radius: 8; -fx-border-radius: 8;"
+               maxWidth="500">
+            <font><Font size="14"/></font>
+            <VBox.margin>
+                <Insets top="10" bottom="10"/>
+            </VBox.margin>
+        </Label>
+
+        <!-- Séparateur -->
+        <Separator prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, transparent, #667eea, transparent);">
+            <VBox.margin>
+                <Insets top="15" bottom="25"/>
+            </VBox.margin>
+        </Separator>
+
+        <!-- Boutons -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnAjouter" text="✓ Ajouter le client"
+                    onAction="#ajouterClient" prefWidth="200" prefHeight="45"
+                    style="-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2); -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;">
+                <font><Font size="16"/></font>
+            </Button>
+            <Button fx:id="btnAnnuler" text="✕ Annuler"
+                    onAction="#annuler" prefWidth="200" prefHeight="45"
+                    style="-fx-background-color: #f0f0f0; -fx-text-fill: #555555; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;">
+                <font><Font size="16"/></font>
+            </Button>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

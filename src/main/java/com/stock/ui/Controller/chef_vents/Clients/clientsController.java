@@ -24,8 +24,7 @@ public class clientsController implements Initializable {
     @FXML private TableColumn<Client, String> telephoneColumn;
     @FXML private TableColumn<Client, String> adresseColumn;
     @FXML private TableColumn<Client, Void> actionsColumn;
-
-    private ObservableList<Client> clientsList = FXCollections.observableArrayList();
+    @FXML private ObservableList<Client> clientsList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

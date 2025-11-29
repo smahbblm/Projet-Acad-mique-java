@@ -33,12 +33,23 @@ public  class Main extends Application  {
         Scene scene_content = new Scene(root1);
         scene_content.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/css-dashboard-content.css").toExternalForm());
         stage.setScene(scene_content);
-        stage.show();
-        // Gestion
+        // la scene qui contient de sidbar et le contenu de chaque section
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml"));
+        Parent root2 = loader1.load();
+        Scene scene = new Scene(root2);
+        stage.setScene(scene);
 
-        /* scene de contenu
-        // scene de gestion de clients
-        FXMLLoader adress_monfichier_fxml = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/Clients.fxml"));
+
+        // Gestion
+        // scene de contenu  gestion de clients
+        FXMLLoader path_fenetre_clients = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/clients/Clients.fxml"));
+        Parent  lirefeneFxml_clients = path_fenetre_clients.load();
+        Scene s_client= new Scene(lirefeneFxml_clients);
+        s_client.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/navbar_fenetre_clients.css").toExternalForm());
+        //System.out.println("je suis au moment de configuration de scene");
+        stage.setScene(s_client);
+        stage.show();
+
         /* la scene de gestions de factures
         System.out.println("je suis au moment de configuration de scene");
         FXMLLoader adress = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/factures/Facture.fxml"));
@@ -46,15 +57,12 @@ public  class Main extends Application  {
         Scene scene_facture = new Scene(lireFXML);
         stage.setScene(scene_facture) ;
          stage.show();
-         */
 
-        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/main-dashboard.fxml"));
-        Parent root2 = loader.load();
-        Scene scene = new Scene(root);
+
         scene.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/css-dashboard-content.css").toExternalForm());
         //LIGNE À AJOUTER (pour la sidebar)
         scene.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/css-siedbar.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/css/gestionchef-de-vents/navbar.css").toExternalForm());
+
         stage.setScene(scene);
 
 
@@ -76,7 +84,7 @@ public  class Main extends Application  {
         Scene  scene_clients =  new Scene(root);
         scene_clients.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/gestionchef-de-vents/bons-livraison.css")).toExternalForm());
         stage.setScene(scene_clients);*/
-        stage.show();
+        //stage.show();
 
     }
 }
