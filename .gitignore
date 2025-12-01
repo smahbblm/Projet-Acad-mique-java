@@ -1,38 +1,63 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# IDE et configuration
+.idea/
 *.iml
+*.iws
 *.ipr
+out/
 
-### Eclipse ###
-.apt_generated
+# Compilation
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+
+# Dépendances
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+.settings/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
+# OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Logs
+*.log
+logs/
+
+# Éditeur
+*.swp
+*.swo
+*~
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Runtime
+bin/
+.gradle/
+
+# Base de données
+*.db
+*.sqlite
+*.bak
+
+# Fichiers temporaires
+temp/
+tmp/
+*.tmp
+
+# Configuration locale
+src/main/resources/config/database.properties.local
+local.properties
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+

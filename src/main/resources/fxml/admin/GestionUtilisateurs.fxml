@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.controller.GestionUtilisateursController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- En-tête -->
+    <top>
+        <VBox style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Label text="👥 Gestion des Utilisateurs"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+
+            <!-- Barre de filtres -->
+            <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-color: #ddd;">
+                <TextField fx:id="txtRecherche" promptText="Rechercher utilisateur..." HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="comboRole" promptText="Rôle" prefWidth="200"/>
+                <Button text="🔍 Chercher" onAction="#handleRecherche"
+                        style="-fx-padding: 8 15; -fx-font-size: 12;"/>
+            </HBox>
+
+            <!-- Tableau des utilisateurs -->
+            <TableView fx:id="tableUtilisateurs" VBox.vgrow="ALWAYS" style="-fx-font-size: 11;">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colNom" text="Nom" prefWidth="120"/>
+                    <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="120"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                    <TableColumn fx:id="colRole" text="Rôle" prefWidth="150"/>
+                    <TableColumn fx:id="colActif" text="Actif" prefWidth="80"/>
+                </columns>
+            </TableView>
+
+            <!-- Boutons d'action -->
+            <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-color: #ddd;">
+                <Label fx:id="lblTotal" text="Total: 0" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnAjouter" text="➕ Ajouter" onAction="#handleAjouter"
+                        style="-fx-padding: 8 15; -fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                <Button fx:id="btnModifier" text="✏️ Modifier" onAction="#handleModifier"
+                        style="-fx-padding: 8 15; -fx-background-color: #3498db; -fx-text-fill: white;"/>
+                <Button fx:id="btnSupprimer" text="🗑️ Supprimer" onAction="#handleSupprimer"
+                        style="-fx-padding: 8 15; -fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                <Button fx:id="btnRetour" text="↩️ Retour" onAction="#handleRetour"
+                        style="-fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

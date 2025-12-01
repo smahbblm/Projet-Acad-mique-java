@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.controller.MagasinierController"
+            style="-fx-background-color:#f5f7fa;">
+    <top>
+        <HBox style="-fx-background-color:#2c3e50; -fx-padding:15;" spacing="20" alignment="CENTER_LEFT">
+            <Label text="🏬 Dashboard Magasinier" style="-fx-text-fill:white; -fx-font-size:22px; -fx-font-weight:bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUser" text="Utilisateur" style="-fx-text-fill:#ecf0f1;"/>
+            <Button text="Déconnexion" onAction="#handleDeconnexion" style="-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-font-weight:bold;"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background:#f5f7fa; -fx-padding:0; -fx-border-color:transparent;">
+            <VBox spacing="18" style="-fx-padding:18;">
+                <!-- Statistiques -->
+                <HBox spacing="15">
+                    <VBox spacing="5" style="-fx-background-color:white; -fx-padding:15; -fx-border-color:#ddd; -fx-border-radius:6;" HBox.hgrow="ALWAYS">
+                        <Label text="📦 Stock total" style="-fx-text-fill:#777; -fx-font-size:11;"/>
+                        <Label fx:id="lblStockTotal" text="0" style="-fx-font-size:26; -fx-font-weight:bold; -fx-text-fill:#3498db;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color:white; -fx-padding:15; -fx-border-color:#ddd; -fx-border-radius:6;" HBox.hgrow="ALWAYS">
+                        <Label text="⚠️ Produits en alerte" style="-fx-text-fill:#777; -fx-font-size:11;"/>
+                        <Label fx:id="lblProduitsAlerte" text="0" style="-fx-font-size:26; -fx-font-weight:bold; -fx-text-fill:#f39c12;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color:white; -fx-padding:15; -fx-border-color:#ddd; -fx-border-radius:6;" HBox.hgrow="ALWAYS">
+                        <Label text="🔄 Mouvements aujourd'hui" style="-fx-text-fill:#777; -fx-font-size:11;"/>
+                        <Label fx:id="lblMouvementsJour" text="0" style="-fx-font-size:26; -fx-font-weight:bold; -fx-text-fill:#8e44ad;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color:white; -fx-padding:15; -fx-border-color:#ddd; -fx-border-radius:6;" HBox.hgrow="ALWAYS">
+                        <Label text="📋 Inventaires en cours" style="-fx-text-fill:#777; -fx-font-size:11;"/>
+                        <Label fx:id="lblInventairesCours" text="0" style="-fx-font-size:26; -fx-font-weight:bold; -fx-text-fill:#27ae60;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Actions principales -->
+                <TitledPane text="Actions Stock" expanded="true">
+                    <FlowPane vgap="10" hgap="10">
+                        <Button text="Valider Bon Livraison" onAction="#handleValiderBonLivraison" style="-fx-background-color:#8e44ad; -fx-text-fill:white;"/>
+                        <Button text="Générer BS depuis BL" onAction="#handleGenererBonSortieDepuisBL" style="-fx-background-color:#9b59b6; -fx-text-fill:white;"/>
+                        <Button text="Enregistrer Sortie" onAction="#handleEnregistrerSortieBonSortie" style="-fx-background-color:#e67e22; -fx-text-fill:white;"/>
+                        <Button text="Réaliser Inventaire" onAction="#handleRealiserInventaire" style="-fx-background-color:#16a085; -fx-text-fill:white;"/>
+                        <Button text="Contrôler Quantités" onAction="#handleControlerQuantites" style="-fx-background-color:#34495e; -fx-text-fill:white;"/>
+                    </FlowPane>
+                </TitledPane>
+
+                <!-- Tables -->
+                <HBox spacing="15">
+                    <VBox spacing="8" style="-fx-background-color:white; -fx-padding:12; -fx-border-color:#ddd; -fx-border-radius:6;" VBox.vgrow="ALWAYS">
+                        <Label text="📥 Dernières réceptions (bons livraisons en attente)" style="-fx-font-weight:bold;"/>
+                        <TableView fx:id="tableReceptions" prefHeight="220" style="-fx-font-size:11;">
+                            <columns>
+                                <TableColumn fx:id="colRecNumero" text="Numéro" prefWidth="110"/>
+                                <TableColumn fx:id="colRecDate" text="Date" prefWidth="90"/>
+                                <TableColumn fx:id="colRecClient" text="Client" prefWidth="140"/>
+                                <TableColumn fx:id="colRecStatut" text="Statut" prefWidth="90"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                    <VBox spacing="8" style="-fx-background-color:white; -fx-padding:12; -fx-border-color:#ddd; -fx-border-radius:6;" VBox.vgrow="ALWAYS">
+                        <Label text="📤 Dernières sorties (bons sortie)" style="-fx-font-weight:bold;"/>
+                        <TableView fx:id="tableSorties" prefHeight="220" style="-fx-font-size:11;">
+                            <columns>
+                                <TableColumn fx:id="colSortNumero" text="Numéro" prefWidth="110"/>
+                                <TableColumn fx:id="colSortDate" text="Date" prefWidth="90"/>
+                                <TableColumn fx:id="colSortStatut" text="Statut" prefWidth="90"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-background-color:white; -fx-padding:12; -fx-border-color:#ddd; -fx-border-radius:6;">
+                    <Label text="🔄 Mouvements stock récents" style="-fx-font-weight:bold;"/>
+                    <TableView fx:id="tableMouvements" prefHeight="240" style="-fx-font-size:11;">
+                        <columns>
+                            <TableColumn fx:id="colMouvDate" text="Date" prefWidth="90"/>
+                            <TableColumn fx:id="colMouvType" text="Type" prefWidth="90"/>
+                            <TableColumn fx:id="colMouvRef" text="Référence" prefWidth="120"/>
+                            <TableColumn fx:id="colMouvQuantite" text="Quantité" prefWidth="80"/>
+                            <TableColumn fx:id="colMouvAvant" text="Avant" prefWidth="70"/>
+                            <TableColumn fx:id="colMouvApres" text="Après" prefWidth="70"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox style="-fx-background-color:#34495e; -fx-padding:8;" alignment="CENTER_LEFT" spacing="8">
+            <Label fx:id="lblHorloge" text="" style="-fx-text-fill:white; -fx-font-size:11;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="↩️ Retour Accueil" onAction="#handleRetourAccueil" style="-fx-background-color:#95a5a6; -fx-text-fill:white;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
