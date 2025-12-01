@@ -1,0 +1,47 @@
+/* Thème personnalisé */
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12;
+    -fx-base: #ececec;
+}
+
+/* Couleurs principales */
+.primary-color {
+    -fx-text-fill: #0078d4;
+}
+
+.success-color {
+    -fx-text-fill: #107c10;
+}
+
+.warning-color {
+    -fx-text-fill: #ffc107;
+}
+
+.danger-color {
+    -fx-text-fill: #d13438;
+}
+
+/* Boutons thématisés */
+.button-primary {
+    -fx-background-color: #0078d4;
+    -fx-text-fill: white;
+}
+
+.button-success {
+    -fx-background-color: #107c10;
+    -fx-text-fill: white;
+}
+
+.button-danger {
+    -fx-background-color: #d13438;
+    -fx-text-fill: white;
+}
+
+/* Header */
+.header {
+    -fx-background-color: #0078d4;
+    -fx-text-fill: white;
+    -fx-padding: 20;
+}
+
