@@ -21,6 +21,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stock.Controler.menu"
             stylesheets="@/CSS/StyleMagsinier.css"
             prefWidth="260" >
 
@@ -52,7 +53,7 @@
         <!-- Menu -->
         <VBox spacing="6" alignment="TOP_LEFT" styleClass="menu-box">
 
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#allerPageTableauBord">
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#pageDashboard">
                 <graphic>
                     <HBox spacing="10" alignment="CENTER_LEFT">
                         <ImageView fitWidth="22" fitHeight="22">
@@ -64,7 +65,7 @@
 
             </Button>
 
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#pageMouvement">
                 <graphic>
                     <HBox spacing="10" alignment="CENTER_LEFT">
                         <ImageView fitWidth="22" fitHeight="22">
@@ -76,7 +77,7 @@
 
             </Button>
 
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#pageInventaire">
                 <graphic>
                     <HBox spacing="10" alignment="CENTER_LEFT">
                         <ImageView fitWidth="22" fitHeight="22">
@@ -89,31 +90,10 @@
 
             </Button>
 
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
-                <graphic>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <ImageView fitWidth="22" fitHeight="22">
-                            <image><Image url="@Img/audit.png"/></image>
-                        </ImageView>
-                        <Label text="Consultation" />
-                    </HBox>
-                </graphic>
 
-            </Button>
 
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
-                <graphic>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <ImageView fitWidth="22" fitHeight="22">
-                            <image><Image url="@Img/bell.png"/></image>
-                        </ImageView>
-                        <Label text="Alertes" styleClass="menu-label" />
-                    </HBox>
-                </graphic>
 
-            </Button>
-
-            <Button  styleClass="menu-item" alignment="CENTER_LEFT">
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#pageRapport">
                 <graphic>
                     <HBox spacing="10" alignment="CENTER_LEFT">
                         <ImageView fitWidth="22" fitHeight="22">

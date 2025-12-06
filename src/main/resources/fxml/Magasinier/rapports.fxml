@@ -11,114 +11,123 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.stock.Controler.Rapport"
-            stylesheets="@/CSS/StyleMagsinier.css"
+            stylesheets="@/CSS/rapport.css"
             prefHeight="700.0" prefWidth="800.0"
             styleClass="rapport-container">
 
-    <VBox styleClass="rapport-main-vbox">
+    <ScrollPane fitToWidth="true"
+                AnchorPane.topAnchor="0.0"
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0"
+                styleClass="rapport-scrollpane">
 
-        <!-- En-tête -->
-        <HBox styleClass="rapport-header-box">
-            <Label text="Rapport d'inventaire" styleClass="rapport-titre-principal"/>
-        </HBox>
+        <VBox styleClass="rapport-main-vbox">
 
-        <Separator styleClass="rapport-separateur"/>
-
-        <!-- Section informations -->
-        <VBox styleClass="rapport-info-section">
-            <Label text="Type: Inventaire Complet" styleClass="rapport-info-label"/>
-            <Label text="Date de génération: 23/12/2025" styleClass="rapport-info-label"/>
-            <Label text="Période: Du 01/11/2025 - AU 23/11/2025" styleClass="rapport-info-label"/>
-            <Label text="Status: Validé" styleClass="rapport-info-label"/>
-        </VBox>
-
-        <!-- Section tableau produits -->
-        <VBox styleClass="rapport-section-produits">
-            <HBox styleClass="rapport-section-header">
-                <ImageView styleClass="rapport-section-icon" preserveRatio="true">
-                    <Image url="@Img/ready-stock.png"/>
-                </ImageView>
-                <Label text="Liste des produits inventoriés" styleClass="rapport-section-titre"/>
+            <!-- En-tête -->
+            <HBox styleClass="rapport-header-box">
+                <Label text="Rapport d'inventaire" styleClass="rapport-titre-principal"/>
             </HBox>
 
-            <TableView fx:id="TableProduit" styleClass="rapport-table-produits" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="colProduit" text="Produit" prefWidth="150"/>
-                    <TableColumn fx:id="colRef" text="Référence" prefWidth="120"/>
-                    <TableColumn fx:id="colQtéSys" text="Qté Système" prefWidth="120"/>
-                    <TableColumn fx:id="colQtéRel" text="Qté Réelle" prefWidth="120"/>
-                    <TableColumn fx:id="colEcart" text="Écart" prefWidth="100"/>
-                </columns>
-            </TableView>
-        </VBox>
+            <Separator styleClass="rapport-separateur"/>
 
-        <!-- Section observations -->
-        <VBox styleClass="rapport-section-observations">
-            <HBox styleClass="rapport-observations-header">
-                <ImageView styleClass="rapport-section-icon" preserveRatio="true">
-                    <Image url="@Img/chat.png"/>
-                </ImageView>
-                <Label text="Observations du Magasinier" styleClass="rapport-section-titre"/>
-            </HBox>
-            <TextArea styleClass="rapport-observations-textarea" wrapText="true"
-                      text="Les écarts sur le riz et la farine sont probablement dus à des erreurs de saisie lors des dernières sorties. Je recommande de renforcer les contrôles sur les bons de sortie et de réorganiser la zone de stockage des produits fragiles."/>
-        </VBox>
-
-        <!-- Statistiques -->
-        <VBox styleClass="rapport-stats-container">
-            <HBox styleClass="rapport-stats-icon-box">
-                <ImageView styleClass="rapport-stats-icon" preserveRatio="true">
-                    <Image url="@Img/rising.png"/>
-                </ImageView>
-            </HBox>
-
-            <HBox styleClass="rapport-stats-row">
-                <VBox styleClass="rapport-stat-box">
-                    <Label text="3" styleClass="rapport-stat-nombre, rapport-stat-nombre-manquants"/>
-                    <Label text="Manquants" styleClass="rapport-stat-label"/>
-                </VBox>
-
-                <VBox styleClass="rapport-stat-box">
-                    <Label text="8" styleClass="rapport-stat-nombre, rapport-stat-nombre-excedents"/>
-                    <Label text="Excédents" styleClass="rapport-stat-label"/>
-                </VBox>
-
-                <VBox styleClass="rapport-stat-box">
-                    <Label text="12" styleClass="rapport-stat-nombre, rapport-stat-nombre-conformes"/>
-                    <Label text="Conformes" styleClass="rapport-stat-label"/>
-                </VBox>
-            </HBox>
-        </VBox>
-
-        <Separator styleClass="rapport-separateur"/>
-
-        <!-- Section signatures -->
-        <HBox styleClass="rapport-signatures-section">
-            <VBox styleClass="rapport-signature-box">
-                <Label text="Réalisée par :" styleClass="rapport-signature-titre"/>
-                <Separator styleClass="rapport-signature-separateur"/>
-                <Label text="Date et Signature" styleClass="rapport-signature-label"/>
+            <!-- Section informations -->
+            <VBox styleClass="rapport-info-section">
+                <Label text="Type: Inventaire Complet" styleClass="rapport-info-label"/>
+                <Label text="Date de génération: 23/12/2025" styleClass="rapport-info-label"/>
+                <Label text="Période: Du 01/11/2025 - AU 23/11/2025" styleClass="rapport-info-label"/>
+                <Label text="Status: Validé" styleClass="rapport-info-label"/>
             </VBox>
 
-            <VBox styleClass="rapport-signature-box">
-                <Label text="Validé par :" styleClass="rapport-signature-titre"/>
-                <Separator styleClass="rapport-signature-separateur"/>
-                <Label text="Date et Signature" styleClass="rapport-signature-label"/>
-            </VBox>
-        </HBox>
+            <!-- Section tableau produits -->
+            <VBox styleClass="rapport-section-produits">
+                <HBox styleClass="rapport-section-header">
+                    <ImageView styleClass="rapport-section-icon" preserveRatio="true" fitWidth="20" fitHeight="20">
+                        <Image url="@Img/ready-stock.png"/>
+                    </ImageView>
+                    <Label text="Liste des produits inventoriés" styleClass="rapport-section-titre"/>
+                </HBox>
 
-        <!-- Boutons -->
-        <HBox styleClass="rapport-boutons-section">
-            <Button text="Imprimer" styleClass="rapport-btn-imprimer">
-                <graphic>
-                    <HBox>
-                        <ImageView styleClass="rapport-btn-icon" preserveRatio="true">
-                            <Image url="@Img/printer.png"/>
-                        </ImageView>
-                    </HBox>
-                </graphic>
-            </Button>
-            <Button text="Annuler" styleClass="rapport-btn-annuler"/>
-        </HBox>
-    </VBox>
+                <TableView fx:id="TableProduit" styleClass="rapport-table-produits" prefHeight="250">
+                    <columns>
+                        <TableColumn fx:id="colProduit" text="Produit" prefWidth="150"/>
+                        <TableColumn fx:id="colRef" text="Référence" prefWidth="120"/>
+                        <TableColumn fx:id="colQtéSys" text="Qté Système" prefWidth="120"/>
+                        <TableColumn fx:id="colQtéRel" text="Qté Réelle" prefWidth="120"/>
+                        <TableColumn fx:id="colEcart" text="Écart" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Section observations -->
+            <VBox styleClass="rapport-section-observations">
+                <HBox styleClass="rapport-observations-header">
+                    <ImageView styleClass="rapport-section-icon" preserveRatio="true" fitHeight="15" fitWidth="15">
+                        <Image url="@Img/chat.png"/>
+                    </ImageView>
+                    <Label text="Observations du Magasinier" styleClass="rapport-section-titre"/>
+                </HBox>
+                <TextArea styleClass="rapport-observations-textarea" wrapText="true"
+                          text="Les écarts sur le riz et la farine sont probablement dus à des erreurs de saisie lors des dernières sorties. Je recommande de renforcer les contrôles sur les bons de sortie et de réorganiser la zone de stockage des produits fragiles."/>
+            </VBox>
+
+            <!-- Statistiques -->
+            <VBox styleClass="rapport-stats-container">
+                <HBox styleClass="rapport-stats-icon-box" spacing="10">
+                    <ImageView styleClass="rapport-stats-icon" preserveRatio="true" fitHeight="25" fitWidth="25">
+                        <Image url="@Img/rising.png"/>
+                    </ImageView>
+                    <Label text="Statistique" style="-fx-font-size:20;-fx-font-weight:bold;-fx-text-fill:#1B3C53"/>
+                </HBox>
+
+                <HBox styleClass="rapport-stats-row">
+                    <VBox styleClass="rapport-stat-box ">
+                        <Label text="3" styleClass="rapport-stat-nombre rapport-stat-nombre-manquants"/>
+                        <Label text="Manquants" styleClass="rapport-stat-label"/>
+                    </VBox>
+
+                    <VBox styleClass="rapport-stat-box ">
+                        <Label text="8" styleClass="rapport-stat-nombre rapport-stat-nombre-excedents"/>
+                        <Label text="Excédents" styleClass="rapport-stat-label"/>
+                    </VBox>
+
+                    <VBox styleClass="rapport-stat-box ">
+                        <Label text="12" styleClass="rapport-stat-nombre rapport-stat-nombre-conformes" />
+                        <Label text="Conformes" styleClass="rapport-stat-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Separator styleClass="rapport-separateur"/>
+
+            <!-- Section signatures -->
+            <HBox styleClass="rapport-signatures-section">
+                <VBox styleClass="rapport-signature-box">
+                    <Label text="Réalisée par :" styleClass="rapport-signature-titre"/>
+                    <Separator styleClass="rapport-signature-separateur"/>
+                    <Label text="Date et Signature" styleClass="rapport-signature-label"/>
+                </VBox>
+
+                <VBox styleClass="rapport-signature-box">
+                    <Label text="Validé par :" styleClass="rapport-signature-titre"/>
+                    <Separator styleClass="rapport-signature-separateur"/>
+                    <Label text="Date et Signature" styleClass="rapport-signature-label"/>
+                </VBox>
+            </HBox>
+
+            <!-- Boutons -->
+            <HBox styleClass="rapport-boutons-section">
+                <Button text="Imprimer" styleClass="rapport-btn-imprimer">
+                    <graphic>
+                        <HBox>
+                            <ImageView styleClass="rapport-btn-icon" preserveRatio="true" fitHeight="15" fitWidth="15">
+                                <Image url="@Img/printer.png"/>
+                            </ImageView>
+                        </HBox>
+                    </graphic>
+                </Button>
+                <Button text="Annuler" styleClass="rapport-btn-annuler"/>
+            </HBox>
+        </VBox>
+    </ScrollPane>
 </AnchorPane>
