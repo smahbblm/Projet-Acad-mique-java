@@ -18,13 +18,25 @@ public class TableuController {
     private Label quantitProduits;
     @FXML
     private Label nbrMouvements;
-    
+     private ProduitService produitService;
+     private StockService stockService;
+     public TableuController(){
+         try{
+            produitService=new ProduitService();
+            stockService=new  StockService();
+         }catch(Exception e){
+             e.printStackTrace();
+         }
+     }
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
         String formattedDate = LocalDate.now().format(formatter);
         dateLabel.setText(formattedDate);
+        quantitProduits.setText( produitService.getNbombreproduit);
+        nbrMouvements.setText(stockService.getNombreMouvements);
 
     }
 
