@@ -36,7 +36,7 @@ public class Form_controller {
         }
 
         try {
-            authService.login(email, pass); // 🔥 appel réel à la base de données
+            authService.login(email, pass); // appel réel à la base de données
             showSuccess("Connexion réussie !");
             // TODO: redirection vers dashboard ici
         } catch (AuthenticationException e) {
