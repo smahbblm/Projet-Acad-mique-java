@@ -47,5 +47,9 @@ public class ProduitService {
     public Produit consulterProduitParReference(String reference) throws Exception {
         return produitDAO.findByReference(reference);
     }
+    public int getNombreProduit() throws Exception{
+        return produitDAO.readAll().size();
+    }
+
 }
 
