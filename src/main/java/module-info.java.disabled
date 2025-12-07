@@ -3,7 +3,7 @@ module com.stock.projetacadmiquejava {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
-
+    requires spark.core;
     // Permettre la découverte automatique des drivers JDBC
     uses java.sql.Driver;
 
@@ -18,4 +18,5 @@ module com.stock.projetacadmiquejava {
     exports com.stock.model.document;
     exports com.stock.model.stock;
     exports com.stock.model.systeme;
+    exports com.stock.util;
 }
