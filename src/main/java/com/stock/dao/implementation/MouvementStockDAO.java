@@ -4,6 +4,9 @@ import com.stock.dao.interfaces.IMouvementStockDAO;
 import com.stock.model.stock.MouvementStock;
 import com.stock.util.DatabaseConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,36 @@ public class MouvementStockDAO implements IMouvementStockDAO {
 
     @Override
     public List<MouvementStock> readAll() throws Exception {
-        return new ArrayList<>();
+        List<MouvementStock> list_mouvements=new ArrayList<>();
+        String sql = "SELECT m.*, " +
+                "p.idProduit, p.nom AS produitNom, p.prix AS produitPrix, " +
+                "u.idUtilisateur, u.nom AS utilisateurNom, u.email AS utilisateurEmail " +
+                "FROM mouvement_stock m " +
+                "JOIN produit p ON m.produit_id = p.idProduit " +
+                "JOIN utilisateur u ON m.utilisateur_id = u.idUtilisateur";
+
+        try(PreparedStatement  stmt=Connection.prepareStatement(sql);
+            ResultSet rs =stmt.executeQuery()){
+            while(rs.next()) {
+                MouvementStock mv=new MouvementStock(
+                       rs.getInt("idMouvement"),
+                       rs.getDate("dateMouvement"),
+                       rs.getString("typeMouvements"),
+                       rs.getInt("quantite"),
+                        rs.getInt("stockAvant"),
+                        rs.getInt("stockApres"),
+                      rs.getString("reference"),
+                      rs.getObject("produit"),
+                      rs.getObject("utilisateur"););
+
+                list_mouvements.add(mv;
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.stock.service;
 import com.stock.dao.interfaces.IMouvementStockDAO;
 import com.stock.dao.implementation.MouvementStockDAO;
 import com.stock.model.stock.MouvementStock;
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -35,6 +37,15 @@ public class StockService {
 
     public List<MouvementStock> consulterTousMouvements() throws Exception {
         return mouvementStockDAO.readAll();
+    }
+    public int getNombre_mouvement(){
+        int  nbrMouvements=0;
+        List<MouvementStock> list_mouvements=mouvementStockDAO.readAll();
+                for(MouvementStock M:list_mouvements){
+                    if(M.getDateMouvement()!=null &&  M.getDateMouvement().isEqual(LocalDate.now()))
+                         nbrMouvements++;
+                }
+        return nbrMouvements;
     }
 }
 
