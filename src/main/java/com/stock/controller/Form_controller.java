@@ -1,15 +1,27 @@
 package com.stock.controller;
 
+import com.stock.service.AuthService;
+import com.stock.exception.AuthenticationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class Form_controller {
+
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private CheckBox rememberMe;
     @FXML private Button loginBtn;
 
+    private AuthService authService;
+
     public void initialize() {
+        try {
+            authService = new AuthService(); // liaison avec le backend
+        } catch (Exception e) {
+            showError("Erreur système", "Impossible d'initialiser le service d'authentification.");
+            e.printStackTrace();
+        }
+
         loginBtn.setOnAction(event -> handleLogin());
         passwordField.setOnAction(event -> handleLogin());
     }
@@ -19,27 +31,35 @@ public class Form_controller {
         String pass = passwordField.getText();
 
         if (email.isEmpty() || pass.isEmpty()) {
-            showAlert("Erreur!", "Veillez remplir tous les champs.");
+            showError("Erreur !", "Veuillez remplir tous les champs.");
             return;
         }
 
-        if (email.equals("admin@stock.com") && pass.equals("1234")) {
-            showAlert("Succès", "Connexion réussie !");
-        } else {
-            showAlert("Erreur!", "Email ou mot de passe incorrect.");
+        try {
+            authService.login(email, pass); // 🔥 appel réel à la base de données
+            showSuccess("Connexion réussie !");
+            // TODO: redirection vers dashboard ici
+        } catch (AuthenticationException e) {
+            showError("Erreur", e.getMessage());
+        } catch (Exception e) {
+            showError("Erreur système", "Une erreur inattendue est survenue.");
+            e.printStackTrace();
         }
     }
 
-    private void showAlert(String title, String msg) {
-        Alert alert;
-        if (title.equals("Succès")) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("✓ " + title);
-        } else {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("✕ " + title);
-        }
+    // Petits helpers
+    private void showSuccess(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText("✓ Succès");
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+    private void showError(String title, String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
+        alert.setHeaderText("✕ " + title);
         alert.setContentText(msg);
         alert.showAndWait();
     }
