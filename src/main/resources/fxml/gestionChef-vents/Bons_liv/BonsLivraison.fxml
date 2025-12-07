@@ -25,12 +25,12 @@ fx:controller="com.stock.ui.Controller.chef_vents.Bons.NouveauBonController">
             <VBox.margin>
                <Insets bottom="20.0" left="30.0" right="30.0" />
             </VBox.margin>
-            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" onAction="#enregistrer">
+            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" >
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#ssupprimebon">
+             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#supprimebon">
                  <font>
                      <Font name="System Bold" size="14.0" />
                  </font>

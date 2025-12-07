@@ -1,27 +1,21 @@
 package com.stock.Service;
-
-import com.stock.api.ApisBons;
+import com.stock.model.DaoBon;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
 import java.util.List;
+import com.stock.Service.BonService;
 
 public class BonService {
-    // je dois connaitre l'aobjet  apis que je dois lui  faire l'appel pour  envoié la requette vers le backend
-    private ApisBons apisBons;
 
-    public BonService(ApisBons apisBons) {
-        this.apisBons = apisBons;
-    }
-
-    public void ajouterbons(String nombons, LocalDate dateCommande, LocalDate dateLivraison , ObservableList<String> listefournisse, ObservableList<String> status , String montant, String notes){
-        System.out.println("l'appel de la méthode ajouterbons de BonService ");
-        apisBons.ajouterbons(nombons, dateCommande,  dateLivraison, listefournisse, status, montant,notes );
+    public int ajouterbons(String nombons , LocalDate dateLivraison, String status  , String notes){
+        System.out.println("l'appel de la méthode ajouterbons avec  paramètres du formulaire ");
+        DaoBon daoBon = new DaoBon();
+        int res = daoBon.ajouterbon(nombons, dateLivraison,status, notes);
+        return res;
 
     }
     // la méthode de supprission d'un bon de  bon dans la base de données
-    public void ssupprimebon(){
+    public void supprimebon(){
         System.out.println("je suis la fonction de supprission ");
-        apisBons.supprimebon();
     }
 }

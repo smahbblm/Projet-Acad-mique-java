@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+
+<AnchorPane prefHeight="750.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stock.ui.Controller.chef_vents.Facture.ajoute_facture">
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="730.0" prefWidth="930.0" spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Text fill="#3e6396" strokeType="OUTSIDE" strokeWidth="0.0" text="Création de Facture Client" style="-fx-font-size: 24pt; -fx-font-weight: bold;" />
+                <Separator prefWidth="200.0" />
+
+                <Label text="1. Informations Générales de la Facture" style="-fx-font-weight: bold; -fx-font-size: 14pt;" />
+                <GridPane hgap="15.0" vgap="15.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 15;">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="300.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="300.0" />
+                    </columnConstraints>
+
+                    <Label text="Client (*):" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="clientComboBox" promptText="Sélectionner le client..." GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="300" onAction="#chargerBonsLivraisonClient" />
+
+                    <Label text="Numéro Facture:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <TextField fx:id="numeroFactureField" editable="false" promptText="Généré ou Saisi..." GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <Label text="Date Facture (*):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <DatePicker fx:id="dateFacturePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Date Échéance:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <DatePicker fx:id="dateEcheancePicker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="Statut Initial:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="statutFactureField" editable="false" text="BROUILLON" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </GridPane>
+
+                <Separator prefWidth="200.0" />
+
+                <Label text="2. Bons de Livraison (BL) à Inclure dans la Facture" style="-fx-font-weight: bold; -fx-font-size: 14pt;" />
+
+                <TableView fx:id="blTableView" prefHeight="250.0" VBox.vgrow="SOMETIMES" editable="true">
+                    <columns>
+                        <TableColumn fx:id="selectColumn" text="Facturer ?" prefWidth="70"/>
+                        <TableColumn fx:id="numeroBLColumn" text="Numéro BL" prefWidth="120" />
+                        <TableColumn fx:id="dateLivraisonColumn" text="Date Livraison" prefWidth="150" />
+                        <TableColumn fx:id="adresseColumn" text="Adresse Livraison" prefWidth="250" />
+                        <TableColumn fx:id="montantEstimeColumn" text="Montant Estimé" prefWidth="150" />
+                        <TableColumn fx:id="statutBLColumn" text="Statut BL" prefWidth="150" />
+                    </columns>
+                </TableView>
+
+                <Button fx:id="calculerFactureButton" text="1. Calculer les Totaux de la Facture" onAction="#calculerTotauxFacture" style="-fx-font-weight: bold; -fx-background-color: #007bff; -fx-text-fill: white;" />
+
+                <Separator prefWidth="200.0" />
+
+                <Label text="3. Récapitulatif des Montants" style="-fx-font-weight: bold; -fx-font-size: 14pt;" />
+                <GridPane hgap="15.0" vgap="10.0" style="-fx-padding: 15; -fx-background-color: #f0f0f0;">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="250.0" />
+                    </columnConstraints>
+
+                    <Label text="Montant Total HT :" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="finalMontantHTField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Montant Total TVA (Ex: 20%) :" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="finalMontantTVAField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Montant Total TTC :" style="-fx-font-weight: extra-bold; -fx-font-size: 16pt;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="finalMontantTTCField" editable="false" style="-fx-font-size: 16pt;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </GridPane>
+
+
+                <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
+                    <Button fx:id="genererFactureButton" text="2. ENREGISTRER et Générer la Facture" onAction="#genererEtEnregistrerFacture" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10 20;" />
+                    <Button fx:id="annulerButton" text="Annuler" />
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

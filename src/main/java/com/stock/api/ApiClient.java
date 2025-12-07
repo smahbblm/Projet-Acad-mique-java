@@ -19,7 +19,7 @@ public class ApiClient {
     // GET - Récupérer tous les clients
     public List<Client> getAllClients() {
         try {
-            // C'EST   la préparation  de requette HTTP qui va transport notre requette GET()  n'est ce pas
+            // C'EST la préparation  de requette HTTP qui va transport notre requette GET() n'est ce pas
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/clients"))
                 .header("Content-Type", "application/json")

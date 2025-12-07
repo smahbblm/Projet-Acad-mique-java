@@ -16,7 +16,7 @@
             <VBox.margin>
                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
             </VBox.margin>
-            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📝 Nouveau Bon de Commande" styleClass="form-title">
+            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📦 Nouveau Bon de Livraison" styleClass="form-title">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -52,10 +52,19 @@
                            <Font name="System Bold" size="12.0" />
                         </font>
                      </Label>
-                     <TextField fx:id="numeroidbon" promptText="Ex: BC-2024-001" styleClass="form-field" />
+                     <TextField fx:id="numeroidbon" promptText="Ex: BL-2024-001" styleClass="form-field" />
                   </VBox>
                   
                   <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label text="Date de livraison *" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <DatePicker fx:id="dateLivraisonBon" promptText="Sélectionner une date" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                      <Label text="Statut *" styleClass="field-label">
                         <font>
                            <Font name="System Bold" size="12.0" />
@@ -68,36 +77,27 @@
                               <String fx:value="EN_ATTENTE" />
                               <String fx:value="VALIDEE" />
                               <String fx:value="TRANSMISE" />
-                              <String fx:value="RECU" />
+                              <String fx:value="LIVREE" />
                               <String fx:value="ANNULEE" />
                            </FXCollections>
                         </items>
                      </ComboBox>
                   </VBox>
                   
-                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <Label text="Date de commande *" styleClass="field-label">
-                        <font>
-                           <Font name="System Bold" size="12.0" />
-                        </font>
-                     </Label>
-                     <DatePicker fx:id="dateCommandeBon" promptText="Sélectionner une date" styleClass="form-field" />
-                  </VBox>
-                  
                   <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <Label text="Date de livraison prévue" styleClass="field-label">
+                     <Label text="Adresse de livraison" styleClass="field-label">
                         <font>
                            <Font name="System Bold" size="12.0" />
                         </font>
                      </Label>
-                     <DatePicker fx:id="dateLivraisonBon" promptText="Sélectionner une date" styleClass="form-field" />
+                     <TextField fx:id="adresseLivraisonField" promptText="Adresse complète" styleClass="form-field" />
                   </VBox>
                </GridPane>
             </VBox>
             
-            <!-- Section Fournisseur et montant -->
+            <!-- Section Client et références -->
             <VBox spacing="15.0" styleClass="form-section">
-               <Label text="Fournisseur et montant" styleClass="section-title">
+               <Label text="Client et références" styleClass="section-title">
                   <font>
                      <Font name="System Bold" size="16.0" />
                   </font>
@@ -110,21 +110,30 @@
                   </columnConstraints>
                   
                   <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                     <Label text="Fournisseur *" styleClass="field-label">
+                     <Label text="Client *" styleClass="field-label">
                         <font>
                            <Font name="System Bold" size="12.0" />
                         </font>
                      </Label>
-                     <ComboBox fx:id="fournisseurCombo" prefWidth="200.0" promptText="Sélectionner un fournisseur" styleClass="form-field" />
+                     <ComboBox fx:id="clientCombo" prefWidth="200.0" promptText="Sélectionner un client" styleClass="form-field" />
                   </VBox>
                   
                   <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                     <Label text="Montant total" styleClass="field-label">
+                     <Label text="Bon de sortie" styleClass="field-label">
                         <font>
                            <Font name="System Bold" size="12.0" />
                         </font>
                      </Label>
-                     <TextField fx:id="montantField" promptText="0.00" styleClass="form-field" />
+                     <ComboBox fx:id="bonSortieCombo" prefWidth="200.0" promptText="Sélectionner un bon de sortie" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label text="Facture " styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="factureCombo" prefWidth="200.0" promptText="Sélectionner une facture" styleClass="form-field" />
                   </VBox>
                </GridPane>
             </VBox>

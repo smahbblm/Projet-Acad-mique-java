@@ -11,13 +11,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.chart.PieChart;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 public class content_controller implements Initializable {
       // je dois obligatoirement définire les composantes  que je dois définir leur logique
-
 
       @FXML private Button  aujourdhuit;
       @FXML private Button  semaine;
@@ -37,8 +34,9 @@ public class content_controller implements Initializable {
       public void initialize(URL location, ResourceBundle resources) {
           // Initialiser les données au démarrage
           //chargerStatistiques();
-          chargerDonneesFrontend(); // Commenté temporairement
+          chargerDonneesFrontend();
       }
+    //pour les buttons
     @FXML
     private void nouvelleVente() {
         System.out.println("Nouvelle vente cliquée");

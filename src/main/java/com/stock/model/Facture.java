@@ -2,6 +2,7 @@ package com.stock.model;
 
 import java.time.LocalDate;
 
+
 public class Facture {
     
     // Attributs correspondant aux colonnes de la table SQL

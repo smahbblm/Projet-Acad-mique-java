@@ -53,7 +53,7 @@
                         style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
                         onAction="#selectPeriod" />
                 <Button fx:id="semaine" text="Semaine" styleClass="style-buttons" 
-                        style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
+                        style="-fx-background-color: blue; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
                         onAction="#selectPeriod"/>
                 <Button fx:id="mois" text="Mois" styleClass="style-buttons" 
                         style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"

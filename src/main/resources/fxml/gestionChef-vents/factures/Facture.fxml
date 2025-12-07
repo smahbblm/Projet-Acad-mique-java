@@ -21,6 +21,9 @@
         <Button text="+ Nouvelle Facture" 
                 style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;"
                 fx:id="btnNouvelleFacture" />
+        <Button fx:id="AfficheFcatures" text="Voir Factures"
+                onAction="#affiche_factures"
+                style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;" />
     </HBox>
 
     <!-- Zone de contenu avec ScrollPane -->
@@ -29,6 +32,7 @@
                 VBox.vgrow="ALWAYS">
         
         <!-- Container pour les cartes de factures -->
+
         <FlowPane fx:id="facturesContainer" 
                   hgap="20" vgap="20" 
                   alignment="CENTER"

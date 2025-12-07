@@ -12,6 +12,7 @@ public class bonslivrController {
 
     public void initialize() {
         System.out.println("je suis exactement le controller du votre  fenetre de gestion de Clients . ");
+
     }
 
 }
