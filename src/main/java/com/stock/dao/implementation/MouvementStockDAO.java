@@ -1,12 +1,16 @@
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IMouvementStockDAO;
+import com.stock.model.produit.Produit;
 import com.stock.model.stock.MouvementStock;
+import com.stock.model.utilisateur.Magasinier;
+import com.stock.model.utilisateur.Utilisateur;
 import com.stock.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,36 +31,36 @@ public class MouvementStockDAO implements IMouvementStockDAO {
 
     @Override
     public List<MouvementStock> readAll() throws Exception {
-        List<MouvementStock> list_mouvements=new ArrayList<>();
-        String sql = "SELECT m.*, " +
-                "p.idProduit, p.nom AS produitNom, p.prix AS produitPrix, " +
-                "u.idUtilisateur, u.nom AS utilisateurNom, u.email AS utilisateurEmail " +
-                "FROM mouvement_stock m " +
-                "JOIN produit p ON m.produit_id = p.idProduit " +
-                "JOIN utilisateur u ON m.utilisateur_id = u.idUtilisateur";
+        List<MouvementStock> list_mouvements = new ArrayList<>();
 
-        try(PreparedStatement  stmt=Connection.prepareStatement(sql);
-            ResultSet rs =stmt.executeQuery()){
-            while(rs.next()) {
-                MouvementStock mv=new MouvementStock(
-                       rs.getInt("idMouvement"),
-                       rs.getDate("dateMouvement"),
-                       rs.getString("typeMouvements"),
-                       rs.getInt("quantite"),
-                        rs.getInt("stockAvant"),
-                        rs.getInt("stockApres"),
-                      rs.getString("reference"),
-                      rs.getObject("produit"),
-                      rs.getObject("utilisateur"););
+        String sql = "SELECT * FROM mouvement_stock";
 
-                list_mouvements.add(mv;
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
+            while (rs.next()) {
+
+                // Constructeur existant
+                MouvementStock mv = new MouvementStock(
+                        rs.getString("typeMouvements"),
+                        rs.getInt("quantite"),
+                        rs.getString("reference")
+                );
+
+                // Champs supplémentaires
+                mv.setIdMouvement(rs.getInt("idMouvement"));
+                mv.setDateMouvement(rs.getDate("dateMouvement").toLocalDate());
+                mv.setStockAvant(rs.getInt("stockAvant"));
+                mv.setStockApres(rs.getInt("stockApres"));
+
+                list_mouvements.add(mv);
             }
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        return list_mouvements;
     }
 
     @Override

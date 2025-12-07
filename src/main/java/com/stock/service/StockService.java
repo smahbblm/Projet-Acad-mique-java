@@ -40,11 +40,15 @@ public class StockService {
     }
     public int getNombre_mouvement(){
         int  nbrMouvements=0;
-        List<MouvementStock> list_mouvements=mouvementStockDAO.readAll();
-                for(MouvementStock M:list_mouvements){
-                    if(M.getDateMouvement()!=null &&  M.getDateMouvement().isEqual(LocalDate.now()))
-                         nbrMouvements++;
-                }
+        try {
+            List<MouvementStock> list_mouvements = mouvementStockDAO.readAll();
+            for (MouvementStock M : list_mouvements) {
+                if (M.getDateMouvement() != null && M.getDateMouvement().isEqual(LocalDate.now()))
+                    nbrMouvements++;
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
         return nbrMouvements;
     }
 }
