@@ -1,122 +1,189 @@
 package com.stock.Controller.controllerResponsableApprovisionnements;
 
-import javafx.event.ActionEvent;
+import com.stock.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileWriter;
+import java.time.format.DateTimeFormatter;
 
 public class RapportsController {
 
-    @FXML private Button btnDashboard;
+    @FXML private Label lblDashboard;
     @FXML private Label lblProduits;
     @FXML private Label lblFournisseurs;
     @FXML private Label lblCommandes;
     @FXML private Label lblStock;
-    @FXML private ComboBox<String> reportTypeCombo;
-    @FXML private DatePicker startDatePicker;
-    @FXML private DatePicker endDatePicker;
-    @FXML private Button btnGenerateReport;
-    @FXML private Button btnDownloadPDF;
-    @FXML private Label lblTotalCommandes;
-    @FXML private Label lblMontantTotal;
-    @FXML private Label lblProduitsActifs;
-    @FXML private Label lblNbFournisseurs;
+
+    private ProduitService produitService;
+    private FournisseurService fournisseurService;
+    private CommandeService commandeService;
+    private MouvementStockService mouvementStockService;
 
     @FXML
     public void initialize() {
-        System.out.println("Page Rapports chargée !");
-        
-        setupNavigation();
-        if (reportTypeCombo != null) {
-            reportTypeCombo.getItems().addAll(
-                "Achats et commandes",
-                "Mouvements de stock", 
-                "Analyse fournisseurs"
-            );
-            reportTypeCombo.getSelectionModel().selectFirst();
+        try {
+            produitService = new ProduitService();
+            fournisseurService = new FournisseurService();
+            commandeService = new CommandeService();
+            mouvementStockService = new MouvementStockService();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        if (lblDashboard != null) lblDashboard.setOnMouseClicked(e -> goToDashboard());
+        if (lblProduits != null) lblProduits.setOnMouseClicked(e -> goToProduits());
+        if (lblFournisseurs != null) lblFournisseurs.setOnMouseClicked(e -> goToFournisseurs());
+        if (lblCommandes != null) lblCommandes.setOnMouseClicked(e -> goToCommandes());
+        if (lblStock != null) lblStock.setOnMouseClicked(e -> goToStock());
     }
 
-    private void setupNavigation() {
-        if (lblProduits != null) {
-            lblProduits.setOnMouseClicked(event -> goToProduits());
-        }
-        if (lblFournisseurs != null) {
-            lblFournisseurs.setOnMouseClicked(event -> goToFournisseurs());
-        }
-        if (lblCommandes != null) {
-            lblCommandes.setOnMouseClicked(event -> goToCommandes());
-        }
-        if (lblStock != null) {
-            lblStock.setOnMouseClicked(event -> goToStock());
+    @FXML
+    public void exportProduits() {
+        try {
+            File file = chooseFile("produits");
+            if (file != null) {
+                var produits = produitService.consulterTousProduits();
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("Référence,Désignation,Catégorie,Prix Achat,Prix Vente,Stock,Seuil Min,Seuil Max\n");
+                    for (var p : produits) {
+                        writer.write(String.format("%s,%s,%s,%.2f,%.2f,%d,%d,%d\n",
+                            p.getReference(), p.getDesignation(), p.getCategorie(),
+                            p.getPrixAchat(), p.getPrixVente(), p.getQuantiteStock(),
+                            p.getSeuilMin(), p.getSeuilMax()));
+                    }
+                }
+                showSuccess("Rapport produits exporté avec succès");
+            }
+        } catch (Exception e) {
+            showError("Erreur lors de l'export: " + e.getMessage());
         }
     }
 
     @FXML
-    public void goToDashboard(ActionEvent event) {
+    public void exportFournisseurs() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashResponsableApprovisionnements/dashboardResApprov.fxml"));
-            Stage stage = (Stage) btnDashboard.getScene().getWindow();
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+            File file = chooseFile("fournisseurs");
+            if (file != null) {
+                var fournisseurs = fournisseurService.consulterTousFournisseurs();
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("Raison Sociale,Adresse,Téléphone,Email,Contact\n");
+                    for (var f : fournisseurs) {
+                        writer.write(String.format("%s,%s,%s,%s,%s\n",
+                            f.getRaisonSociale(), f.getAdresse(), f.getTelephone(),
+                            f.getEmail(), f.getContact()));
+                    }
+                }
+                showSuccess("Rapport fournisseurs exporté avec succès");
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            showError("Erreur lors de l'export: " + e.getMessage());
         }
+    }
+
+    @FXML
+    public void exportCommandes() {
+        try {
+            File file = chooseFile("commandes");
+            if (file != null) {
+                var commandes = commandeService.consulterTousLesBonsCommande();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("Numéro,Date Commande,Date Livraison,Fournisseur,Montant Total,Statut\n");
+                    for (var c : commandes) {
+                        writer.write(String.format("%s,%s,%s,%s,%.2f,%s\n",
+                            c.getNumero(), c.getDateCommande().format(formatter),
+                            c.getDateLivraisonPrevue() != null ? c.getDateLivraisonPrevue().format(formatter) : "",
+                            c.getFournisseur().getRaisonSociale(), c.getMontantTotal(), c.getStatut()));
+                    }
+                }
+                showSuccess("Rapport commandes exporté avec succès");
+            }
+        } catch (Exception e) {
+            showError("Erreur lors de l'export: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void exportMouvements() {
+        try {
+            File file = chooseFile("mouvements_stock");
+            if (file != null) {
+                var mouvements = mouvementStockService.consulterTousMouvements();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("Date,Type,Produit,Référence,Quantité,Stock Avant,Stock Après\n");
+                    for (var m : mouvements) {
+                        writer.write(String.format("%s,%s,%s,%s,%d,%d,%d\n",
+                            m.getDateMouvement().format(formatter), m.getTypeMouvement(),
+                            m.getProduit().getDesignation(), m.getReference(),
+                            m.getQuantite(), m.getStockAvant(), m.getStockApres()));
+                    }
+                }
+                showSuccess("Rapport mouvements exporté avec succès");
+            }
+        } catch (Exception e) {
+            showError("Erreur lors de l'export: " + e.getMessage());
+        }
+    }
+
+    private File chooseFile(String defaultName) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Enregistrer le rapport");
+        fileChooser.setInitialFileName(defaultName + ".csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        return fileChooser.showSaveDialog(lblDashboard.getScene().getWindow());
+    }
+
+    private void showSuccess(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void goToDashboard() {
+        navigate("/fxml/DashResponsableApprovisionnements/dashboardResApprov.fxml");
     }
 
     private void goToProduits() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashResponsableApprovisionnements/produits.fxml"));
-            Stage stage = (Stage) lblProduits.getScene().getWindow();
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        navigate("/fxml/DashResponsableApprovisionnements/produits.fxml");
     }
 
     private void goToFournisseurs() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashResponsableApprovisionnements/fournisseurs.fxml"));
-            Stage stage = (Stage) lblFournisseurs.getScene().getWindow();
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        navigate("/fxml/DashResponsableApprovisionnements/fournisseurs.fxml");
     }
 
     private void goToCommandes() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashResponsableApprovisionnements/bonCommandes.fxml"));
-            Stage stage = (Stage) lblCommandes.getScene().getWindow();
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        navigate("/fxml/DashResponsableApprovisionnements/bonCommandes.fxml");
     }
 
     private void goToStock() {
+        navigate("/fxml/DashResponsableApprovisionnements/gestionStock.fxml");
+    }
+
+    private void navigate(String fxmlPath) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashResponsableApprovisionnements/gestionStock.fxml"));
-            Stage stage = (Stage) lblStock.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage stage = (Stage) lblDashboard.getScene().getWindow();
             stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    public void generateReport() {
-        System.out.println("Génération du rapport: " + reportTypeCombo.getValue());
-        System.out.println("Période: " + startDatePicker.getValue() + " - " + endDatePicker.getValue());
-    }
-
-    @FXML
-    public void downloadPDF() {
-        System.out.println("Téléchargement PDF du rapport");
     }
 }

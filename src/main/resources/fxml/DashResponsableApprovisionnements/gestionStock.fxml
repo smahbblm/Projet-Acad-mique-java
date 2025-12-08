@@ -71,7 +71,7 @@
             <HBox spacing="10">
                 <TextField fx:id="searchField" promptText="🔍 Rechercher un produit..."
                            style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:12;" HBox.hgrow="ALWAYS"/>
-                <ComboBox promptText="Tous les statuts" style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:8 12;"/>
+                <ComboBox fx:id="cmbStatut" promptText="Tous les statuts" style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:8 12;"/>
             </HBox>
 
             <!-- Stock table -->
@@ -89,75 +89,6 @@
 
                 <!-- Stock rows -->
                 <VBox fx:id="stockContainer" spacing="0">
-                    <!-- Row 1 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="VIS-M6-20" style="-fx-pref-width:110;"/>
-                        <Label text="Vis M6×20" style="-fx-pref-width:150;"/>
-                        <Label text="Visserie" style="-fx-pref-width:100;"/>
-                        <Label text="450 pcs" style="-fx-pref-width:100;"/>
-                        <Label text="100 pcs" style="-fx-pref-width:110;"/>
-                        <Label text="En stock" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;"/>
-                        <HBox spacing="5" style="-fx-pref-width:150;">
-                            <ProgressBar progress="0.45" prefWidth="100" style="-fx-accent: green;"/>
-                            <Label text="450%"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 2 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="ECR-M8" style="-fx-pref-width:110;"/>
-                        <Label text="Écrous M8" style="-fx-pref-width:150;"/>
-                        <Label text="Visserie" style="-fx-pref-width:100;"/>
-                        <Label text="12 pcs" style="-fx-pref-width:100;"/>
-                        <Label text="100 pcs" style="-fx-pref-width:110;"/>
-                        <Label text="Rupture" style="-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;"/>
-                        <HBox spacing="5" style="-fx-pref-width:150;">
-                            <ProgressBar progress="0.12" prefWidth="100" style="-fx-accent: red;"/>
-                            <Label text="12%"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 3 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="RON-PLAT-10" style="-fx-pref-width:110;"/>
-                        <Label text="Rondelles plates" style="-fx-pref-width:150;"/>
-                        <Label text="Visserie" style="-fx-pref-width:100;"/>
-                        <Label text="75 pcs" style="-fx-pref-width:100;"/>
-                        <Label text="150 pcs" style="-fx-pref-width:110;"/>
-                        <Label text="Stock faible" style="-fx-background-color:#e8e8e8; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;"/>
-                        <HBox spacing="5" style="-fx-pref-width:150;">
-                            <ProgressBar progress="0.5" prefWidth="100" style="-fx-accent: orange;"/>
-                            <Label text="50%"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 4 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="BOU-M10-50" style="-fx-pref-width:110;"/>
-                        <Label text="Boulon M10×50" style="-fx-pref-width:150;"/>
-                        <Label text="Visserie" style="-fx-pref-width:100;"/>
-                        <Label text="280 pcs" style="-fx-pref-width:100;"/>
-                        <Label text="80 pcs" style="-fx-pref-width:110;"/>
-                        <Label text="En stock" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;"/>
-                        <HBox spacing="5" style="-fx-pref-width:150;">
-                            <ProgressBar progress="0.35" prefWidth="100" style="-fx-accent: green;"/>
-                            <Label text="350%"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 5 -->
-                    <HBox spacing="10" style="-fx-padding:16;">
-                        <Label text="JNT-TOR-20" style="-fx-pref-width:110;"/>
-                        <Label text="Joint torique 20mm" style="-fx-pref-width:150;"/>
-                        <Label text="Joints" style="-fx-pref-width:100;"/>
-                        <Label text="15 pcs" style="-fx-pref-width:100;"/>
-                        <Label text="50 pcs" style="-fx-pref-width:110;"/>
-                        <Label text="Rupture" style="-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;"/>
-                        <HBox spacing="5" style="-fx-pref-width:150;">
-                            <ProgressBar progress="0.3" prefWidth="100" style="-fx-accent: red;"/>
-                            <Label text="30%"/>
-                        </HBox>
-                    </HBox>
                 </VBox>
             </VBox>
         </VBox>

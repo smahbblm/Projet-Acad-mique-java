@@ -180,13 +180,13 @@ public class ProduitsController {
                 String statutStyle;
                 if (p.getQuantiteStock() < p.getSeuilMin()) {
                     statut = "Rupture";
-                    statutStyle = "-fx-background-color:#fdecea; -fx-text-fill:#e74c3c; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
-                } else if (p.getQuantiteStock() < p.getSeuilMin() * 1.5) {
-                    statut = "Stock faible";
-                    statutStyle = "-fx-background-color:#fff3cd; -fx-text-fill:#856404; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                    statutStyle = "-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                } else if (p.getQuantiteStock() > p.getSeuilMax()) {
+                    statut = "Overflow";
+                    statutStyle = "-fx-background-color:#f39c12; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
                 } else {
                     statut = "En stock";
-                    statutStyle = "-fx-background-color:#e8f7ff; -fx-text-fill:#2e86de; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                    statutStyle = "-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
                 }
                 
                 Label lblStatut = new Label(statut);
@@ -243,13 +243,13 @@ public class ProduitsController {
                     String statutStyle;
                     if (p.getQuantiteStock() < p.getSeuilMin()) {
                         statut = "Rupture";
-                        statutStyle = "-fx-background-color:#fdecea; -fx-text-fill:#e74c3c; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
-                    } else if (p.getQuantiteStock() < p.getSeuilMin() * 1.5) {
-                        statut = "Stock faible";
-                        statutStyle = "-fx-background-color:#fff3cd; -fx-text-fill:#856404; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                        statutStyle = "-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                    } else if (p.getQuantiteStock() > p.getSeuilMax()) {
+                        statut = "Overflow";
+                        statutStyle = "-fx-background-color:#f39c12; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
                     } else {
                         statut = "En stock";
-                        statutStyle = "-fx-background-color:#e8f7ff; -fx-text-fill:#2e86de; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
+                        statutStyle = "-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;";
                     }
                     
                     Label lblStatut = new Label(statut);

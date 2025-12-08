@@ -73,6 +73,13 @@
             <TextField fx:id="searchField" promptText="🔍 Rechercher par nom ou référence..."
                        style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:12;"/>
 
+            <!-- Légende des actions -->
+            <HBox spacing="15" style="-fx-background-color:#f9f9f9; -fx-padding:10; -fx-border-radius:6; -fx-background-radius:6;">
+                <Label text="Actions:" style="-fx-font-weight:bold;"/>
+                <Label text="✏️ Modifier" style="-fx-text-fill:#666;"/>
+                <Label text="🗑️ Supprimer" style="-fx-text-fill:#666;"/>
+            </HBox>
+
             <!-- Products table -->
             <VBox spacing="0" style="-fx-background-color:#ffffff; -fx-background-radius:8; -fx-padding:0;">
                 <!-- Table header -->

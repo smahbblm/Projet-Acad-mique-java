@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileWriter;
 import java.time.format.DateTimeFormatter;
 
 public class BonCommandesController {
@@ -182,32 +185,52 @@ public class BonCommandesController {
                 
                 String statutStyle;
                 switch (c.getStatut()) {
+                    case "BROUILLON":
+                        statutStyle = "-fx-background-color:#6c757d; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        break;
+                    case "EN_ATTENTE":
+                        statutStyle = "-fx-background-color:#ffc107; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        break;
                     case "VALIDEE":
+                        statutStyle = "-fx-background-color:#17a2b8; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        break;
                     case "TRANSMISE":
-                        statutStyle = "-fx-background-color:#e8e8e8; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        statutStyle = "-fx-background-color:#007bff; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                         break;
                     case "RECU":
-                        statutStyle = "-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        statutStyle = "-fx-background-color:#28a745; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                         break;
                     case "ANNULEE":
                         statutStyle = "-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                         break;
                     default:
-                        statutStyle = "-fx-background-color:#fff3cd; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                        statutStyle = "-fx-background-color:#e8e8e8; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                 }
                 
                 Label lblStatut = new Label(c.getStatut());
                 lblStatut.setStyle(statutStyle);
                 
                 HBox actions = new HBox(8);
-                actions.setStyle("-fx-pref-width:120;");
+                actions.setStyle("-fx-pref-width:200;");
+                
+                Button btnDownload = new Button("📥");
+                btnDownload.setStyle("-fx-cursor:hand;");
+                btnDownload.setOnAction(e -> downloadCommande(c));
+                
+                if (c.getStatut().equals("BROUILLON")) {
+                    Button btnSend = new Button("📤");
+                    btnSend.setStyle("-fx-cursor:hand; -fx-background-color:#28a745; -fx-text-fill:white;");
+                    btnSend.setOnAction(e -> envoyerPourValidation(c));
+                    actions.getChildren().add(btnSend);
+                }
+                
                 Button btnEdit = new Button("✏️");
                 btnEdit.setStyle("-fx-cursor:hand;");
                 btnEdit.setOnAction(e -> openEditOrderPopup(c));
                 Button btnDelete = new Button("🗑️");
                 btnDelete.setStyle("-fx-cursor:hand;");
                 btnDelete.setOnAction(e -> deleteCommande(c.getIdBonCommande()));
-                actions.getChildren().addAll(btnEdit, btnDelete);
+                actions.getChildren().addAll(btnDownload, btnEdit, btnDelete);
                 
                 int nbArticles = c.getLignes() != null ? c.getLignes().size() : 0;
                 
@@ -251,32 +274,52 @@ public class BonCommandesController {
                     
                     String statutStyle;
                     switch (c.getStatut()) {
+                        case "BROUILLON":
+                            statutStyle = "-fx-background-color:#6c757d; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            break;
+                        case "EN_ATTENTE":
+                            statutStyle = "-fx-background-color:#ffc107; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            break;
                         case "VALIDEE":
+                            statutStyle = "-fx-background-color:#17a2b8; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            break;
                         case "TRANSMISE":
-                            statutStyle = "-fx-background-color:#e8e8e8; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            statutStyle = "-fx-background-color:#007bff; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                             break;
                         case "RECU":
-                            statutStyle = "-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            statutStyle = "-fx-background-color:#28a745; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                             break;
                         case "ANNULEE":
                             statutStyle = "-fx-background-color:#e74c3c; -fx-text-fill:white; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                             break;
                         default:
-                            statutStyle = "-fx-background-color:#fff3cd; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
+                            statutStyle = "-fx-background-color:#e8e8e8; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:100;";
                     }
                     
                     Label lblStatut = new Label(c.getStatut());
                     lblStatut.setStyle(statutStyle);
                     
                     HBox actions = new HBox(8);
-                    actions.setStyle("-fx-pref-width:120;");
+                    actions.setStyle("-fx-pref-width:200;");
+                    
+                    Button btnDownload = new Button("📥");
+                    btnDownload.setStyle("-fx-cursor:hand;");
+                    btnDownload.setOnAction(e -> downloadCommande(c));
+                    
+                    if (c.getStatut().equals("BROUILLON")) {
+                        Button btnSend = new Button("📤");
+                        btnSend.setStyle("-fx-cursor:hand; -fx-background-color:#28a745; -fx-text-fill:white;");
+                        btnSend.setOnAction(e -> envoyerPourValidation(c));
+                        actions.getChildren().add(btnSend);
+                    }
+                    
                     Button btnEdit = new Button("✏️");
                     btnEdit.setStyle("-fx-cursor:hand;");
                     btnEdit.setOnAction(e -> openEditOrderPopup(c));
                     Button btnDelete = new Button("🗑️");
                     btnDelete.setStyle("-fx-cursor:hand;");
                     btnDelete.setOnAction(e -> deleteCommande(c.getIdBonCommande()));
-                    actions.getChildren().addAll(btnEdit, btnDelete);
+                    actions.getChildren().addAll(btnDownload, btnEdit, btnDelete);
                     
                     int nbArticles = c.getLignes() != null ? c.getLignes().size() : 0;
                     
@@ -318,5 +361,86 @@ public class BonCommandesController {
                 }
             }
         });
+    }
+
+    private void envoyerPourValidation(BonCommande commande) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Envoyer pour validation");
+        alert.setContentText("Êtes-vous sûr de vouloir envoyer cette commande au magasinier pour validation ?");
+        
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    commande.setStatut("EN_ATTENTE");
+                    commandeService.modifierBonCommande(commande);
+                    loadCommandes();
+                    
+                    Alert success = new Alert(Alert.AlertType.INFORMATION);
+                    success.setTitle("Succès");
+                    success.setHeaderText(null);
+                    success.setContentText("Commande envoyée pour validation au magasinier");
+                    success.showAndWait();
+                } catch (Exception e) {
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setTitle("Erreur");
+                    error.setHeaderText("Erreur lors de l'envoi");
+                    error.setContentText(e.getMessage());
+                    error.showAndWait();
+                }
+            }
+        });
+    }
+
+    private void downloadCommande(BonCommande commande) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer le bon de commande");
+            fileChooser.setInitialFileName("BC_" + commande.getNumero() + ".csv");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            File file = fileChooser.showSaveDialog(ordersContainer.getScene().getWindow());
+
+            if (file != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("BON DE COMMANDE\n");
+                    writer.write("Numéro:," + commande.getNumero() + "\n");
+                    writer.write("Date:," + commande.getDateCommande().format(formatter) + "\n");
+                    writer.write("Fournisseur:," + commande.getFournisseur().getRaisonSociale() + "\n");
+                    writer.write("Date livraison prévue:," + (commande.getDateLivraisonPrevue() != null ? commande.getDateLivraisonPrevue().format(formatter) : "") + "\n");
+                    writer.write("Statut:," + commande.getStatut() + "\n\n");
+                    
+                    writer.write("PRODUITS COMMANDÉS\n");
+                    writer.write("Référence,Désignation,Quantité,Prix Unitaire,Sous-total\n");
+                    
+                    for (var ligne : commande.getLignes()) {
+                        writer.write(String.format("%s,%s,%d,%.2f,%.2f\n",
+                            ligne.getProduit().getReference(),
+                            ligne.getProduit().getDesignation(),
+                            ligne.getQuantite(),
+                            ligne.getPrixUnitaire(),
+                            ligne.getSousTotal()));
+                    }
+                    
+                    writer.write("\nMONTANT TOTAL:," + String.format("%.2f €", commande.getMontantTotal()) + "\n");
+                    
+                    if (commande.getObservations() != null && !commande.getObservations().isEmpty()) {
+                        writer.write("\nOBSERVATIONS:\n" + commande.getObservations() + "\n");
+                    }
+                }
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succès");
+                alert.setHeaderText(null);
+                alert.setContentText("Bon de commande téléchargé avec succès");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur lors du téléchargement");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 }
