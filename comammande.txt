@@ -3,3 +3,4 @@ mvn clean javafx:run :  c'est  aussi  une  autre commande pour  exécuter l'appl
 git log -1 : pour voir la dernier commit on utilise
 git stash applypour  récuprer  le travail  apres  avoir fait  :  git add .  et  git stash  en utiisant la commande .
 
+mvn clean install -U  : pour que mvn télégerer les dépendances qui existe dans le pom.xml
