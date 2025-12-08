@@ -82,65 +82,6 @@
 
                 <!-- Supplier rows -->
                 <VBox fx:id="suppliersContainer" spacing="0">
-                    <!-- Row 1 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="Fournitures Pro" style="-fx-pref-width:180;"/>
-                        <Label text="Jean Dupont" style="-fx-pref-width:150;"/>
-                        <VBox spacing="4" style="-fx-pref-width:200;">
-                            <Label text="✉ contact@fournitures-pro.fr" style="-fx-font-size:11;"/>
-                            <Label text="📞 01 23 45 67 89" style="-fx-font-size:11;"/>
-                        </VBox>
-                        <Label text="15 rue du Commerce, 75001 Paris" style="-fx-pref-width:280;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 2 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="Tech Supplies" style="-fx-pref-width:180;"/>
-                        <Label text="Marie Martin" style="-fx-pref-width:150;"/>
-                        <VBox spacing="4" style="-fx-pref-width:200;">
-                            <Label text="✉ info@tech-supplies.fr" style="-fx-font-size:11;"/>
-                            <Label text="📞 02 34 56 78 90" style="-fx-font-size:11;"/>
-                        </VBox>
-                        <Label text="8 avenue des Entreprises, 69002 Lyon" style="-fx-pref-width:280;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 3 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="Industrie Plus" style="-fx-pref-width:180;"/>
-                        <Label text="Pierre Bernard" style="-fx-pref-width:150;"/>
-                        <VBox spacing="4" style="-fx-pref-width:200;">
-                            <Label text="✉ contact@industrie-plus.fr" style="-fx-font-size:11;"/>
-                            <Label text="📞 03 45 67 89 01" style="-fx-font-size:11;"/>
-                        </VBox>
-                        <Label text="22 boulevard Industriel, 13001 Marseille" style="-fx-pref-width:280;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 4 -->
-                    <HBox spacing="10" style="-fx-padding:16;">
-                        <Label text="Matériel Express" style="-fx-pref-width:180;"/>
-                        <Label text="Sophie Rousseau" style="-fx-pref-width:150;"/>
-                        <VBox spacing="4" style="-fx-pref-width:200;">
-                            <Label text="✉ service@materiel-express.fr" style="-fx-font-size:11;"/>
-                            <Label text="📞 04 56 78 90 12" style="-fx-font-size:11;"/>
-                        </VBox>
-                        <Label text="10 rue de la Logistique, 33000 Bordeaux" style="-fx-pref-width:280;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditSupplierPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
                 </VBox>
             </VBox>
         </VBox>

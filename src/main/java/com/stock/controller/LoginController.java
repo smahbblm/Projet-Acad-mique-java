@@ -1,4 +1,4 @@
-package com.stock.controller;
+package com.stock.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -29,7 +29,7 @@ public class LoginController {
     @FXML
     public void initialize() throws Exception {
         this.authService = new AuthService();
-        loginButton.setOnAction(_ -> handleLogin());
+        loginButton.setOnAction(event -> handleLogin());
     }
 
     @FXML

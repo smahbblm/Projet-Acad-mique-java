@@ -1,11 +1,20 @@
 package com.stock.Controller.controllerResponsableApprovisionnements;
 
+import com.stock.model.document.BonCommande;
+import com.stock.model.document.LigneCommande;
+import com.stock.model.partenaire.Fournisseur;
+import com.stock.model.produit.Produit;
+import com.stock.service.CommandeService;
+import com.stock.service.FournisseurService;
+import com.stock.service.ProduitService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AjouterCommandeController {
 
@@ -13,16 +22,31 @@ public class AjouterCommandeController {
     private Button btnClose;
 
     @FXML
-    private ComboBox<String> cmbFournisseur;
+    private ComboBox<Fournisseur> cmbFournisseur;
 
     @FXML
     private DatePicker dateLivraison;
 
     @FXML
-    private ComboBox<String> cmbStatut;
+    private TextArea txtObservations;
 
     @FXML
-    private TextArea txtNotes;
+    private ComboBox<Produit> cmbProduit;
+
+    @FXML
+    private TextField txtQuantite;
+
+    @FXML
+    private TextField txtPrixUnitaire;
+
+    @FXML
+    private Button btnAjouterLigne;
+
+    @FXML
+    private VBox lignesContainer;
+
+    @FXML
+    private Label lblTotal;
 
     @FXML
     private Button btnAnnuler;
@@ -30,10 +54,129 @@ public class AjouterCommandeController {
     @FXML
     private Button btnCreer;
 
+    private CommandeService commandeService;
+    private FournisseurService fournisseurService;
+    private ProduitService produitService;
+    private Runnable onCommandeAdded;
+    private List<LigneCommande> lignes = new ArrayList<>();
+    private float montantTotal = 0;
+
     @FXML
     public void initialize() {
-        cmbFournisseur.getItems().addAll("Fournitures Pro", "Tech Supplies", "Industrie Plus", "Matériel Express");
-        cmbStatut.getItems().addAll("En cours", "Livrée", "Annulée");
+        try {
+            commandeService = new CommandeService();
+            fournisseurService = new FournisseurService();
+            produitService = new ProduitService();
+            loadFournisseurs();
+            loadProduits();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadFournisseurs() {
+        try {
+            var fournisseurs = fournisseurService.consulterTousFournisseurs();
+            cmbFournisseur.getItems().addAll(fournisseurs);
+            cmbFournisseur.setConverter(new javafx.util.StringConverter<Fournisseur>() {
+                @Override
+                public String toString(Fournisseur f) {
+                    return f != null ? f.getRaisonSociale() : "";
+                }
+                @Override
+                public Fournisseur fromString(String string) {
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadProduits() {
+        try {
+            var produits = produitService.consulterTousProduits();
+            cmbProduit.getItems().addAll(produits);
+            cmbProduit.setConverter(new javafx.util.StringConverter<Produit>() {
+                @Override
+                public String toString(Produit p) {
+                    return p != null ? p.getDesignation() + " (" + p.getReference() + ")" : "";
+                }
+                @Override
+                public Produit fromString(String string) {
+                    return null;
+                }
+            });
+            cmbProduit.valueProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal != null) {
+                    txtPrixUnitaire.setText(String.valueOf(newVal.getPrixAchat()));
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void ajouterLigne() {
+        try {
+            if (cmbProduit.getValue() == null || txtQuantite.getText().isEmpty() || txtPrixUnitaire.getText().isEmpty()) {
+                showAlert("Erreur", "Veuillez remplir tous les champs de la ligne");
+                return;
+            }
+
+            int quantite = Integer.parseInt(txtQuantite.getText());
+            float prixUnitaire = Float.parseFloat(txtPrixUnitaire.getText());
+            float sousTotal = quantite * prixUnitaire;
+
+            LigneCommande ligne = new LigneCommande(cmbProduit.getValue(), quantite, prixUnitaire);
+            lignes.add(ligne);
+
+            montantTotal += sousTotal;
+            updateLignesDisplay();
+            
+            cmbProduit.setValue(null);
+            txtQuantite.clear();
+            txtPrixUnitaire.clear();
+        } catch (NumberFormatException e) {
+            showAlert("Erreur", "Veuillez entrer des valeurs numériques valides");
+        }
+    }
+
+    private void updateLignesDisplay() {
+        lignesContainer.getChildren().clear();
+        if (lignes.isEmpty()) {
+            lignesContainer.getChildren().add(new Label("Aucun produit ajouté"));
+        } else {
+            lignes.forEach(l -> {
+                HBox row = new HBox(10);
+                row.setStyle("-fx-padding:5; -fx-border-color:#e0e0e0; -fx-border-width:0 0 1 0;");
+                Label lblProduit = new Label(l.getProduit().getDesignation());
+                lblProduit.setPrefWidth(200);
+                Label lblQte = new Label("x" + l.getQuantite());
+                lblQte.setPrefWidth(50);
+                Label lblPrix = new Label(String.format("%.2f €", l.getPrixUnitaire()));
+                lblPrix.setPrefWidth(80);
+                Label lblSousTotal = new Label(String.format("%.2f €", l.getSousTotal()));
+                lblSousTotal.setPrefWidth(80);
+                Button btnSuppr = new Button("❌");
+                btnSuppr.setStyle("-fx-cursor:hand;");
+                btnSuppr.setOnAction(e -> supprimerLigne(l));
+                row.getChildren().addAll(lblProduit, lblQte, lblPrix, lblSousTotal, btnSuppr);
+                lignesContainer.getChildren().add(row);
+            });
+        }
+        lblTotal.setText(String.format("Total: %.2f €", montantTotal));
+    }
+
+    private void supprimerLigne(LigneCommande ligne) {
+        montantTotal -= ligne.getSousTotal();
+        lignes.remove(ligne);
+        updateLignesDisplay();
+    }
+
+    public void setOnCommandeAdded(Runnable callback) {
+        this.onCommandeAdded = callback;
     }
 
     @FXML
@@ -44,7 +187,42 @@ public class AjouterCommandeController {
 
     @FXML
     public void creerCommande() {
-        System.out.println("Commande créée pour: " + cmbFournisseur.getValue());
-        closeWindow();
+        try {
+            if (cmbFournisseur.getValue() == null) {
+                showAlert("Erreur", "Veuillez sélectionner un fournisseur");
+                return;
+            }
+            if (lignes.isEmpty()) {
+                showAlert("Erreur", "Veuillez ajouter au moins un produit");
+                return;
+            }
+
+            BonCommande commande = new BonCommande();
+            commande.setNumero("CMD-" + System.currentTimeMillis());
+            commande.setDateCommande(LocalDate.now());
+            commande.setDateLivraisonPrevue(dateLivraison.getValue());
+            commande.setStatut("BROUILLON");
+            commande.setMontantTotal(montantTotal);
+            commande.setObservations(txtObservations.getText());
+            commande.setFournisseur(cmbFournisseur.getValue());
+            commande.setLignes(lignes);
+
+            commandeService.creerBonCommande(commande);
+            if (onCommandeAdded != null) {
+                onCommandeAdded.run();
+            }
+            showAlert("Succès", "Bon de commande créé avec succès");
+            closeWindow();
+        } catch (Exception e) {
+            showAlert("Erreur", "Erreur lors de la création: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(title.equals("Succès") ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

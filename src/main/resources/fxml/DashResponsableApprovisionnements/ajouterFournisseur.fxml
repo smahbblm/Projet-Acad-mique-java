@@ -16,29 +16,34 @@
     <Label text="Remplissez les informations du nouveau fournisseur" style="-fx-text-fill:#666666;"/>
 
     <VBox spacing="8">
-        <Label text="Nom de l'entreprise *"/>
-        <TextField fx:id="txtEntreprise" promptText="Ex: Fournitures Pro" style="-fx-padding:10;"/>
+        <Label text="Raison sociale *"/>
+        <TextField fx:id="txtRaisonSociale" promptText="Ex: Fournitures Pro" style="-fx-padding:10;"/>
     </VBox>
 
     <VBox spacing="8">
-        <Label text="Personne de contact *"/>
+        <Label text="Personne de contact"/>
         <TextField fx:id="txtContact" promptText="Ex: Jean Dupont" style="-fx-padding:10;"/>
     </VBox>
 
     <HBox spacing="10">
         <VBox spacing="8" HBox.hgrow="ALWAYS">
-            <Label text="Email *"/>
+            <Label text="Email"/>
             <TextField fx:id="txtEmail" promptText="contact@entreprise.fr" style="-fx-padding:10;"/>
         </VBox>
         <VBox spacing="8" HBox.hgrow="ALWAYS">
-            <Label text="Téléphone *"/>
+            <Label text="Téléphone"/>
             <TextField fx:id="txtTelephone" promptText="01 23 45 67 89" style="-fx-padding:10;"/>
         </VBox>
     </HBox>
 
     <VBox spacing="8">
-        <Label text="Adresse complète *"/>
-        <TextArea fx:id="txtAdresse" promptText="Numéro, rue, code postal, ville" prefRowCount="3" style="-fx-padding:10;"/>
+        <Label text="Adresse"/>
+        <TextArea fx:id="txtAdresse" promptText="Numéro, rue, code postal, ville" prefRowCount="2" style="-fx-padding:10;"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Conditions"/>
+        <TextArea fx:id="txtConditions" promptText="Conditions commerciales" prefRowCount="2" style="-fx-padding:10;"/>
     </VBox>
 
     <HBox spacing="10" alignment="CENTER_RIGHT">

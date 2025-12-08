@@ -47,5 +47,25 @@ public class ProduitService {
     public Produit consulterProduitParReference(String reference) throws Exception {
         return produitDAO.findByReference(reference);
     }
+
+    public int compterProduits() throws Exception {
+        List<Produit> produits = produitDAO.readAll();
+        System.out.println("Nombre de produits trouvés: " + produits.size());
+        return produits.size();
+    }
+
+    public int compterProduitsEnRupture() throws Exception {
+        List<Produit> produits = produitDAO.readAll();
+        return (int) produits.stream()
+                .filter(p -> p.getQuantiteStock() < p.getSeuilMin())
+                .count();
+    }
+
+    public double calculerValeurStock() throws Exception {
+        List<Produit> produits = produitDAO.readAll();
+        return produits.stream()
+                .mapToDouble(p -> p.getQuantiteStock() * p.getPrixAchat())
+                .sum();
+    }
 }
 

@@ -42,5 +42,10 @@ public class CommandeService {
     public List<BonCommande> consulterBonsCommandeParFournisseur(int idFournisseur) throws Exception {
         return bonCommandeDAO.findByFournisseur(idFournisseur);
     }
+
+    public int compterCommandesParStatut(String statut) throws Exception {
+        List<BonCommande> commandes = bonCommandeDAO.findByStatut(statut);
+        return commandes.size();
+    }
 }
 

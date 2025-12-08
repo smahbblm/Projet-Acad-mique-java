@@ -33,6 +33,7 @@
 
         <Region VBox.vgrow="ALWAYS"/>
 
+        <!-- User Info --> <!-- STATIQUE -->
         <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding:10; -fx-background-color: #ffffff; -fx-background-radius:8;">
             <Label text="👤" style="-fx-font-size: 24;"/>
             <VBox>
@@ -86,82 +87,7 @@
                     <Label text="Actions" style="-fx-text-fill:#999999; -fx-pref-width:100;"/>
                 </HBox>
 
-                <!-- Product rows (static for now) -->
                 <VBox fx:id="productsContainer" spacing="0">
-                    <!-- Row 1 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="VIS-M6-20" style="-fx-pref-width:120;"/>
-                        <Label text="Vis M6×20" style="-fx-pref-width:180;"/>
-                        <Label text="Visserie" style="-fx-pref-width:120;"/>
-                        <Label text="0.15 €" style="-fx-pref-width:100;"/>
-                        <Label text="450 pcs" style="-fx-pref-width:80;"/>
-                        <Label text="100" style="-fx-pref-width:80;"/>
-                        <Label text="En stock" style="-fx-background-color:#e8f7ff; -fx-text-fill:#2e86de; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditProductPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 2 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="ECR-M8" style="-fx-pref-width:120;"/>
-                        <Label text="Écrous M8" style="-fx-pref-width:180;"/>
-                        <Label text="Visserie" style="-fx-pref-width:120;"/>
-                        <Label text="0.12 €" style="-fx-pref-width:100;"/>
-                        <Label text="12 pcs" style="-fx-pref-width:80;"/>
-                        <Label text="100" style="-fx-pref-width:80;"/>
-                        <Label text="Rupture" style="-fx-background-color:#fdecea; -fx-text-fill:#e74c3c; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditProductPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 3 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="RON-PLAT-10" style="-fx-pref-width:120;"/>
-                        <Label text="Rondelles plates" style="-fx-pref-width:180;"/>
-                        <Label text="Visserie" style="-fx-pref-width:120;"/>
-                        <Label text="0.08 €" style="-fx-pref-width:100;"/>
-                        <Label text="75 pcs" style="-fx-pref-width:80;"/>
-                        <Label text="150" style="-fx-pref-width:80;"/>
-                        <Label text="Stock faible" style="-fx-background-color:#fff3cd; -fx-text-fill:#856404; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditProductPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 4 -->
-                    <HBox spacing="10" style="-fx-padding:16; -fx-border-color: transparent transparent #f0f0f0 transparent; -fx-border-width:0 0 1 0;">
-                        <Label text="BOU-M10-50" style="-fx-pref-width:120;"/>
-                        <Label text="Boulon M10×50" style="-fx-pref-width:180;"/>
-                        <Label text="Visserie" style="-fx-pref-width:120;"/>
-                        <Label text="0.35 €" style="-fx-pref-width:100;"/>
-                        <Label text="280 pcs" style="-fx-pref-width:80;"/>
-                        <Label text="80" style="-fx-pref-width:80;"/>
-                        <Label text="En stock" style="-fx-background-color:#e8f7ff; -fx-text-fill:#2e86de; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditProductPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
-
-                    <!-- Row 5 -->
-                    <HBox spacing="10" style="-fx-padding:16;">
-                        <Label text="JNT-TOR-20" style="-fx-pref-width:120;"/>
-                        <Label text="Joint torique 20mm" style="-fx-pref-width:180;"/>
-                        <Label text="Joints" style="-fx-pref-width:120;"/>
-                        <Label text="1.20 €" style="-fx-pref-width:100;"/>
-                        <Label text="15 pcs" style="-fx-pref-width:80;"/>
-                        <Label text="50" style="-fx-pref-width:80;"/>
-                        <Label text="Rupture" style="-fx-background-color:#fdecea; -fx-text-fill:#e74c3c; -fx-padding:4 8; -fx-background-radius:6; -fx-pref-width:120;"/>
-                        <HBox spacing="8" style="-fx-pref-width:100;">
-                            <Button text="✏️" onAction="#openEditProductPopup" style="-fx-cursor:hand;"/>
-                            <Button text="🗑️" style="-fx-cursor:hand;"/>
-                        </HBox>
-                    </HBox>
                 </VBox>
             </VBox>
         </VBox>

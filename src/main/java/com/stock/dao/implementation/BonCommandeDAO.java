@@ -22,7 +22,7 @@ public class BonCommandeDAO implements IBonCommandeDAO {
     public void create(BonCommande bonCommande) throws Exception {
         String sql = "INSERT INTO bon_commande (numero, dateCommande, dateLivraisonPrevue, statut, montantTotal, observations, idFournisseur) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, bonCommande.getNumero());
             stmt.setObject(2, bonCommande.getDateCommande());
             stmt.setObject(3, bonCommande.getDateLivraisonPrevue());
@@ -31,6 +31,27 @@ public class BonCommandeDAO implements IBonCommandeDAO {
             stmt.setString(6, bonCommande.getObservations());
             stmt.setInt(7, bonCommande.getFournisseur().getIdFournisseur());
             stmt.executeUpdate();
+            
+            try (var rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    int idBonCommande = rs.getInt(1);
+                    bonCommande.setIdBonCommande(idBonCommande);
+                    
+                    if (bonCommande.getLignes() != null && !bonCommande.getLignes().isEmpty()) {
+                        String sqlLigne = "INSERT INTO ligne_commande (idBonCommande, idProduit, quantite, prixUnitaire, sousTotal) VALUES (?, ?, ?, ?, ?)";
+                        try (PreparedStatement stmtLigne = connection.prepareStatement(sqlLigne)) {
+                            for (var ligne : bonCommande.getLignes()) {
+                                stmtLigne.setInt(1, idBonCommande);
+                                stmtLigne.setInt(2, ligne.getProduit().getIdProduit());
+                                stmtLigne.setInt(3, ligne.getQuantite());
+                                stmtLigne.setFloat(4, ligne.getPrixUnitaire());
+                                stmtLigne.setFloat(5, ligne.getSousTotal());
+                                stmtLigne.executeUpdate();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

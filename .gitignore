@@ -37,3 +37,10 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Configuration locale ###
+src/main/resources/config/database.properties
+
+### Logs ###
+*.log
+logs/
