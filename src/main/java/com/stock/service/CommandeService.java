@@ -3,6 +3,8 @@ package com.stock.service;
 import com.stock.dao.interfaces.IBonCommandeDAO;
 import com.stock.dao.implementation.BonCommandeDAO;
 import com.stock.model.document.BonCommande;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,5 +44,16 @@ public class CommandeService {
     public List<BonCommande> consulterBonsCommandeParFournisseur(int idFournisseur) throws Exception {
         return bonCommandeDAO.findByFournisseur(idFournisseur);
     }
+    public List<BonCommande>  getBonsEntreeEnAttenteValidation() throws Exception{
+        List<BonCommande> allBons=bonCommandeDAO.readAll();
+        List<BonCommande> enAttente=new ArrayList<>();
+        for (BonCommande C: allBons){
+            if(C.getStatut().equals("EN_ATTENTE")){
+                enAttente.add(C);
+            }
+        }
+        return  enAttente;
+    }
+
 }
 

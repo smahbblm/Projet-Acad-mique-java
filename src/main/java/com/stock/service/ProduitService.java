@@ -50,6 +50,21 @@ public class ProduitService {
     public int getNombreProduit() throws Exception{
         return produitDAO.readAll().size();
     }
+    public List<Produit> getProduitsStockCritique() throws Exception {
+          List<Produit> list_produit=produitDAO.readAll();
+          List<Produit> list_produitMin=new ArrayList<>();
+          for(Produit P: list_produit) {
+              if (P.getQuantiteStock() <= P.getSeuilMin()) {
+                  list_produitMin.add(P);
+
+              }
+
+          }
+          return list_produitMin;
+
+    }
+
+
 
 }
 

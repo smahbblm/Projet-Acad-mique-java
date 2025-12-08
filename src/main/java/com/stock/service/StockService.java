@@ -51,5 +51,6 @@ public class StockService {
         }
         return nbrMouvements;
     }
+
 }
 

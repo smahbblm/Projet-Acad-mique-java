@@ -3,6 +3,9 @@ package com.stock.service;
 import com.stock.dao.interfaces.IInventaireDAO;
 import com.stock.dao.implementation.InventaireDAO;
 import com.stock.model.stock.Inventaire;
+import com.stock.model.stock.LigneInventaire;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +40,19 @@ public class InventaireService {
 
     public List<Inventaire> consulterInventairesParStatut(String statut) throws Exception {
         return inventaireDAO.findByStatut(statut);
+    }
+    public List<Inventaire> getEcartsInventaire() throws Exception {
+        List<Inventaire> list_inventaires=inventaireDAO.readAll();
+        List<Inventaire> inventaires=new ArrayList<>();
+        for( Inventaire I : list_inventaires){
+            for(LigneInventaire ligne:I.getLignes()) {
+                if (ligne.getQuantiteTheorique() != ligne.getQuantiteReelle()) {
+                    inventaires.add(I);
+                    break;
+                }
+            }
+        }
+        return inventaires;
     }
 }
 

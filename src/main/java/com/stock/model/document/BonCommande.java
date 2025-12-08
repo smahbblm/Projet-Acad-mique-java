@@ -29,7 +29,7 @@ public class BonCommande {
         this.lignes = new ArrayList<>();
     }
 
-    public BonCommande() {
+    public BonCommande(){
         this.dateCommande = LocalDate.now();
         this.statut = "BROUILLON";
         this.lignes = new ArrayList<>();
