@@ -12,6 +12,7 @@
 <!-- Sidebar -->
 <left>
     <VBox spacing="20.0" alignment="TOP_LEFT" style="-fx-background-color: #f5f7fa; -fx-padding: 20;">
+
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Gestion des stocks" style="-fx-font-weight:bold; -fx-font-size:14;"/>
         </HBox>
@@ -56,6 +57,7 @@
 <center>
     <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
         <VBox spacing="20" style="-fx-padding:24;">
+
             <!-- Header -->
             <HBox alignment="CENTER_LEFT">
                 <VBox spacing="6" HBox.hgrow="ALWAYS">
