@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/21.0.0"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stock.Controller.Dashboard_Administrateur.DashboardController"
+            style="-fx-background-color:#f4f6f8;"
+            prefHeight="500.0" prefWidth="800.0">
+
+    <!-- Menu vertical à gauche -->
+    <left>
+        <VBox spacing="0" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 0 0;" prefWidth="240">
+
+            <!-- Logo / En-tête -->
+            <HBox style="-fx-background-color: #4361ee; -fx-padding: 20 15;" alignment="CENTER_LEFT">
+                <Label text="Administrateur" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Menu principal -->
+            <VBox spacing="0" style="-fx-padding: 15 0;" VBox.vgrow="ALWAYS">
+
+                <!-- Boutons principaux -->
+                <Button text="Tableau de bord" onAction="#handleDashboardHome"
+                        style="-fx-background-color: transparent; -fx-text-fill: #2d3748; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"
+                        maxWidth="Infinity"/>
+                <Button text="Gestion des utilisateurs" onMouseClicked="#handleUserList"
+                        style="-fx-background-color: transparent; -fx-text-fill: #2d3748; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"
+                        maxWidth="Infinity"/>
+
+                <!-- Statistiques & Analyses -->
+                <VBox spacing="0">
+                    <Button text="Statistiques et Analyses" onMouseEntered="#showStatsSubMenu"
+                            style="-fx-background-color: transparent; -fx-text-fill: #2d3748; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"
+                            maxWidth="Infinity"/>
+                    <VBox fx:id="statsSubMenu" spacing="0" visible="false" managed="false"
+                          onMouseEntered="#keepStatsSubMenu" onMouseExited="#hideStatsSubMenu"
+                          style="-fx-background-color: #f7fafc; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0;">
+                        <Button text="  Statistiques globales" onAction="#openGlobalStatisticsPage" maxWidth="Infinity"
+                                style="-fx-background-color: transparent; -fx-text-fill: #4a5568; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 15 8 30;"/>
+                        <Button text="  Mouvements de stock" onAction="#handleStockMovements" maxWidth="Infinity"
+                                style="-fx-background-color: transparent; -fx-text-fill: #4a5568; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 15 8 30;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Rapports -->
+                <VBox spacing="0">
+                    <Button text="Rapports" onMouseEntered="#showReportsSubMenu"
+                            style="-fx-background-color: transparent; -fx-text-fill: #2d3748; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"
+                            maxWidth="Infinity"/>
+                    <VBox fx:id="reportsSubMenu" spacing="0" visible="false" managed="false"
+                          onMouseEntered="#keepReportsSubMenu" onMouseExited="#hideReportsSubMenu"
+                          style="-fx-background-color: #f7fafc; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0;">
+                        <Button text="  Générer un rapport" onAction="#handleGenerateReport" maxWidth="Infinity"
+                                style="-fx-background-color: transparent; -fx-text-fill: #4a5568; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 15 8 30;"/>
+                        <Button text="  Voir les rapports" onAction="#handleReports" maxWidth="Infinity"
+                                style="-fx-background-color: transparent; -fx-text-fill: #4a5568; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 15 8 30;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Système -->
+                <VBox spacing="0">
+                    <Button text="Système" onMouseEntered="#showSystemSubMenu"
+                            style="-fx-background-color: transparent; -fx-text-fill: #2d3748; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"
+                            maxWidth="Infinity"/>
+                    <VBox fx:id="systemSubMenu" spacing="0" visible="false" managed="false"
+                          onMouseEntered="#keepSystemSubMenu" onMouseExited="#hideSystemSubMenu"
+                          style="-fx-background-color: #f7fafc; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0;">
+                        <Button text="Gestion de la Base de Données" onAction="#handleDatabase" maxWidth="Infinity"
+                                style="-fx-background-color: transparent; -fx-text-fill: #4a5568; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 8 15 8 30;"/>
+                    </VBox>
+                </VBox>
+
+            </VBox>
+
+            <!-- Profil utilisateur -->
+            <VBox spacing="8" style="-fx-padding: 20 15; -fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                <Label text="Administrateur" style="-fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="aclam@aero.gro.au.fr" style="-fx-text-fill: #718096; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <!-- Déconnexion -->
+            <Button text="Déconnexion" onAction="#handleLogout"
+                    style="-fx-background-color: transparent; -fx-text-fill: #e53e3e; -fx-border-color: #e53e3e; -fx-border-width: 1; -fx-font-size: 13px; -fx-padding: 10 15;"
+                    maxWidth="Infinity" VBox.vgrow="NEVER"/>
+
+        </VBox>
+    </left>
+
+    <!-- Top bar -->
+    <top>
+        <HBox style="-fx-padding:10 20; -fx-background-color: #ffffff; -fx-border-color: transparent transparent #e6e6e6 transparent;"
+              alignment="CENTER_LEFT" spacing="10">
+            <Label text=" " />
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Administrateur" style="-fx-text-fill: #777777;"/>
+        </HBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <AnchorPane fx:id="contentPane" style="-fx-background-color: #f4f6f8;">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: #f4f6f8;">
+                <VBox spacing="24" style="-fx-padding:30 ;-fx-background-color: #f4f6f8;">
+
+                    <VBox spacing="6">
+                        <Label text="Tableau de bord Administrateur" style="-fx-font-size:28; -fx-font-weight:bold;"/>
+                        <Label text="Surveillance des utilisateurs et indicateurs système clés" style="-fx-text-fill:#666666;"/>
+                    </VBox>
+
+                    <!-- Section KPI Cards -->
+                    <HBox spacing="16">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                            <Label text="Total utilisateurs" style="-fx-text-fill:#777;"/>
+                            <Label fx:id="totalUsersLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
+                            <Label text="Comptes enregistrés" style="-fx-text-fill:#999; -fx-font-size:11;"/>
+                        </VBox>
+
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                            <Label text="Comptes actifs" style="-fx-text-fill:#777;"/>
+                            <Label fx:id="activeAccountsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
+                            <Label text="Aujourd'hui" style="-fx-text-fill:#999; -fx-font-size:11;"/>
+                        </VBox>
+
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                            <Label text="Comptes inactifs" style="-fx-text-fill:#777;"/>
+                            <Label fx:id="inactiveAccountsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
+                            <Label text="Vérification nécessaire" style="-fx-text-fill:#999; -fx-font-size:11;"/>
+                        </VBox>
+
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                            <Label text="Alertes critiques" style="-fx-text-fill:#777;"/>
+                            <Label fx:id="criticalAlertsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
+                            <Label text="Actions requises" style="-fx-text-fill:#e53e3e; -fx-font-size:11;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Section Graphiques -->
+                    <HBox spacing="16">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:400; -fx-pref-height:250;">
+                            <Label text="Évolution des utilisateurs" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+                            <LineChart fx:id="userEvolutionChart" prefWidth="400" prefHeight="200">
+                                <xAxis>
+                                    <CategoryAxis label="Jour"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Nombre d'utilisateurs"/>
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:400; -fx-pref-height:250;">
+                            <Label text="Répartition des rôles" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+                            <PieChart fx:id="rolesDistributionChart" prefWidth="400" prefHeight="200"
+                                      legendSide="RIGHT" labelsVisible="true"/>
+                        </VBox>
+                    </HBox>
+
+                </VBox>
+            </ScrollPane>
+        </AnchorPane>
+    </center>
+</BorderPane>

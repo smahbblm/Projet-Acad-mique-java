@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.Dashboard_Administrateur.GlobalStatisticsController"
+            prefHeight="800" prefWidth="1000">
+
+    <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          style="-fx-padding:20;">
+
+        <!-- TITRE  -->
+        <Label text="Statistiques globales"
+               style="-fx-font-size:28; -fx-font-weight:bold; -fx-text-fill:#2d3748;" />
+
+        <!-- CONTENU SCROLLABLE -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                    style="-fx-background-color:transparent;">
+            <VBox spacing="25">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <!--   STATISTIQUES USERS    -->
+                <TitledPane text="Statistiques des utilisateurs" expanded="true">
+                    <HBox spacing="25">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+                        <PieChart fx:id="pieUsersRoles" prefWidth="400" prefHeight="300"
+                                  title="Utilisateurs par rôle"/>
+                        <PieChart fx:id="pieUsersStatus" prefWidth="400" prefHeight="300"
+                                  title="Actifs vs Inactifs"/>
+                    </HBox>
+                </TitledPane>
+
+                <!--     PRODUITS / STOCK     -->
+                <TitledPane text="Produits et Stock" expanded="true">
+                    <VBox spacing="20">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+
+                        <Label text="Liste des produits et stock restant"
+                               style="-fx-font-size:16; -fx-font-weight:bold;"/>
+
+                        <TableView fx:id="tableProduits" prefHeight="300">
+                            <columns>
+                                <TableColumn fx:id="colNomProduit" text="Nom du produit" prefWidth="200"/>
+                                <TableColumn fx:id="colCategorie" text="Catégorie" prefWidth="150"/>
+                                <TableColumn fx:id="colStock" text="Quantité en stock" prefWidth="150"/>
+                                <TableColumn fx:id="colValeur" text="Valeur totale (€)" prefWidth="150"/>
+                            </columns>
+                        </TableView>
+
+                        <Label fx:id="labelValeurStock"
+                               text="Valeur totale du stock : 0 €"
+                               style="-fx-font-size:16; -fx-text-fill:#2d3748;"/>
+
+                        <BarChart fx:id="barStockProduits" prefHeight="300">
+                            <xAxis><CategoryAxis label="Produit"/></xAxis>
+                            <yAxis><NumberAxis label="Quantité"/></yAxis>
+                        </BarChart>
+
+                    </VBox>
+                </TitledPane>
+
+                <!--    PERFORMANCES VENTES  -->
+                <TitledPane text="Performances commerciales" expanded="true">
+                    <VBox spacing="20">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+
+                        <Label fx:id="labelCA"
+                               text="Chiffre d’affaires total : 0 €"
+                               style="-fx-font-size:18; -fx-font-weight:bold;"/>
+
+                        <LineChart fx:id="lineCA" prefHeight="300">
+                            <xAxis><CategoryAxis label="Période"/></xAxis>
+                            <yAxis><NumberAxis label="Montant (€)"/></yAxis>
+                        </LineChart>
+
+                        <Label text="Top 5 produits les plus vendus"
+                               style="-fx-font-size:16; -fx-font-weight:bold;"/>
+
+                        <BarChart fx:id="barTopVentes" prefHeight="300">
+                            <xAxis><CategoryAxis label="Produits"/></xAxis>
+                            <yAxis><NumberAxis label="Quantité vendue"/></yAxis>
+                        </BarChart>
+
+                    </VBox>
+                </TitledPane>
+
+                <!--     ACTIVITÉ COMMANDES   -->
+                <TitledPane text="Activité des commandes" expanded="true">
+                    <VBox spacing="20">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+
+                        <Label text="Nombre de commandes par période"
+                               style="-fx-font-size:16; -fx-font-weight:bold;"/>
+
+                        <LineChart fx:id="lineCommandes" prefHeight="300">
+                            <xAxis><CategoryAxis label="Date"/></xAxis>
+                            <yAxis><NumberAxis label="Nombre de commandes"/></yAxis>
+                        </LineChart>
+
+                    </VBox>
+                </TitledPane>
+
+            </VBox>
+        </ScrollPane>
+    </VBox>
+
+</AnchorPane>
