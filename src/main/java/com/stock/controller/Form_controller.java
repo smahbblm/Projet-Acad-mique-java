@@ -2,11 +2,13 @@ package com.stock.controller;
 
 import com.stock.service.AuthService;
 import com.stock.exception.AuthenticationException;
+import com.stock.model.utilisateur.Utilisateur;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import com.stock.dao.interfaces.IUtilisateurDAO;
-import com.stock.dao.implementation.UtilisateurDAO;
-
+import javafx.stage.Stage;
 
 public class Form_controller {
 
@@ -39,13 +41,54 @@ public class Form_controller {
         }
 
         try {
-            authService.login(email, pass); // appel réel à la base de données
+            authService.login(email, pass); // Crée la session
+
+            // Récupération de l'utilisateur depuis la session
+            Utilisateur user = authService.getCurrentUser();
             showSuccess("Connexion réussie !");
-            // TODO: redirection vers dashboard ici
+
+            // Redirection selon le rôle
+            switch (user.getRole()) {
+                case "ADMINISTRATEUR":
+                    openDashboard("/fxml/DashboardAdmin.fxml", "Dashboard Admin");
+                    break;
+                case "RESPONSABLE_VENTES":
+                    openDashboard("/fxml/DashboardVentes.fxml", "Dashboard Ventes");
+                    break;
+                case "RESPONSABLE_APPROVISIONNEMENT":
+                    openDashboard("/fxml/DashboardAppro.fxml", "Dashboard Approvisionnement");
+                    break;
+                case "MAGASINIER":
+                    openDashboard("/fxml/DashboardMagasinier.fxml", "Dashboard Magasinier");
+                    break;
+                default:
+                    showError("Erreur", "Rôle inconnu.");
+                    break;
+            }
+
         } catch (AuthenticationException e) {
             showError("Erreur", e.getMessage());
         } catch (Exception e) {
             showError("Erreur système", "Une erreur inattendue est survenue.");
+            e.printStackTrace();
+        }
+    }
+
+
+    // Méthode générique pour ouvrir un dashboard
+    private void openDashboard(String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.show();
+
+            // Fermer la fenêtre de login
+            emailField.getScene().getWindow().hide();
+        } catch (Exception e) {
+            showError("Erreur système", "Impossible d'ouvrir le dashboard.");
             e.printStackTrace();
         }
     }

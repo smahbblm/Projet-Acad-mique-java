@@ -12,7 +12,7 @@ public class DatabaseConnection {
     private Connection connection;
 
     // Configuration à charger depuis database.properties
-    private static final String URL = "jdbc:mysql://localhost:3306/stock_management";
+    private static final String URL = "jdbc:mysql://localhost:3307/stock_management";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
