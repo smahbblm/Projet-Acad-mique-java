@@ -14,13 +14,10 @@
 <!-- Sidebar -->
 <left>
     <VBox spacing="20.0" alignment="TOP_LEFT" style="-fx-background-color: #f5f7fa; -fx-padding: 20;">
-
-        <!-- Sidebar Header -->
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Gestion des stocks" style="-fx-font-weight:bold; -fx-font-size:14;"/>
         </HBox>
 
-        <!-- Navigation Links -->
         <VBox spacing="8">
             <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding:6 10; -fx-background-color:#ffffff; -fx-border-radius:6; -fx-background-radius:6;">
                 <Label text="Tableau de bord" style="-fx-font-weight:bold;"/>
