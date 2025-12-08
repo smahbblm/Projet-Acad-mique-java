@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.controller.StatistiquesController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- En-tête -->
+    <top>
+        <VBox style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Label text="📊 Statistiques du Système"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    style="-fx-background-color: #f5f5f5; -fx-background: #f5f5f5;">
+            <VBox spacing="20" style="-fx-padding: 20;">
+
+                <!-- Cartes de statistiques -->
+                <HBox spacing="20" alignment="CENTER">
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="200" prefHeight="120">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="💰" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblVentesTotales" text="0.00 DH"
+                               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                        <Label text="Ventes Totales" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="200" prefHeight="120">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="🛒" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblAchatsTotaux" text="0.00 DH"
+                               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+                        <Label text="Achats Totaux" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="200" prefHeight="120">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="📦" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblProduitsStock" text="0"
+                               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                        <Label text="Produits en Stock" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="200" prefHeight="120">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="👥" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblUtilisateursActifs" text="0"
+                               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+                        <Label text="Utilisateurs Actifs" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Graphiques -->
+                <HBox spacing="20">
+                    <!-- Graphique des ventes -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="15" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="📈 Évolution des Ventes (6 derniers mois)"
+                               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <BarChart fx:id="chartVentes" prefHeight="300" animated="false">
+                            <xAxis>
+                                <CategoryAxis label="Mois"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Montant (DH)"/>
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+
+                    <!-- Graphique produits par catégorie -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="15" prefWidth="400">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="🥧 Répartition par Catégorie"
+                               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <PieChart fx:id="chartProduitsParCategorie" prefHeight="300" animated="false"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Graphique évolution stock -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                      spacing="15">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="📊 Évolution du Stock Total"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <LineChart fx:id="chartEvolutionStock" prefHeight="250" animated="false">
+                        <xAxis>
+                            <CategoryAxis label="Mois"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Quantité"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+
+                <!-- Bouton retour -->
+                <HBox alignment="CENTER" style="-fx-padding: 20;">
+                    <Button fx:id="btnRetour" text="↩️ Retour au Dashboard"
+                            onAction="#handleRetour"
+                            style="-fx-padding: 12 25; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox style="-fx-background-color: #34495e; -fx-padding: 10;" spacing="10" alignment="CENTER_RIGHT">
+            <Label fx:id="lblDateHeure" text="" style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
