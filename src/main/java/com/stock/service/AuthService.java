@@ -14,8 +14,8 @@ public class AuthService {
     private IUtilisateurDAO utilisateurDAO;
 
 
-    public AuthService(IUtilisateurDAO utilisateurDAO) {
-        this.utilisateurDAO = utilisateurDAO;
+    public AuthService() throws Exception {
+        this.utilisateurDAO = new UtilisateurDAO();
     }
 
 
