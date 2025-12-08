@@ -22,7 +22,9 @@ public class MouvementStockDAO implements IMouvementStockDAO {
     }
 
     @Override
-    public void create(MouvementStock mouvementStock) throws Exception {}
+    public void create(MouvementStock mouvementStock) throws Exception {
+
+    }
 
     @Override
     public MouvementStock read(int id) throws Exception {
