@@ -4,6 +4,9 @@ import com.stock.service.AuthService;
 import com.stock.exception.AuthenticationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import com.stock.dao.interfaces.IUtilisateurDAO;
+import com.stock.dao.implementation.UtilisateurDAO;
+
 
 public class Form_controller {
 
