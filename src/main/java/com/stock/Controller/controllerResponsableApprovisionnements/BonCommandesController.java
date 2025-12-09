@@ -154,6 +154,25 @@ public class BonCommandesController {
     }
 
     @FXML
+    public void openDetailsPopup(BonCommande commande) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DashResponsableApprovisionnements/detailsCommande.fxml"));
+            Parent root = loader.load();
+            DetailsCommandeController controller = loader.getController();
+            controller.setCommande(commande);
+            
+            Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.setTitle("Détails du bon de commande");
+            popup.setScene(new Scene(root));
+            popup.setResizable(false);
+            popup.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void openEditOrderPopup(BonCommande commande) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DashResponsableApprovisionnements/modifierCommande.fxml"));
@@ -245,6 +264,9 @@ public class BonCommandesController {
                     actions
                 );
                 
+                row.setOnMouseClicked(e -> openDetailsPopup(c));
+                row.setStyle(row.getStyle() + "-fx-cursor: hand;");
+                
                 ordersContainer.getChildren().add(row);
             });
         } catch (Exception e) {
@@ -333,6 +355,9 @@ public class BonCommandesController {
                         lblStatut,
                         actions
                     );
+                    
+                    row.setOnMouseClicked(e -> openDetailsPopup(c));
+                    row.setStyle(row.getStyle() + "-fx-cursor: hand;");
                     
                     ordersContainer.getChildren().add(row);
                 });
