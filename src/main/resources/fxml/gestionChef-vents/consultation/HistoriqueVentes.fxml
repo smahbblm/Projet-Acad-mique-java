@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.stock.ui.Controller.chef_vents.consultation.HistoriqueVentesController">
+
+   <top>
+      <VBox styleClass="header-section">
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+            </VBox.margin>
+            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📊 Historique des Ventes" styleClass="main-title">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Text>
+         </HBox>
+         
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="action-bar">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" />
+            </VBox.margin>
+            <Button fx:id="btnExporter" mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter" onAction="#exporterHistorique">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnActualiser" mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser" onAction="#actualiserHistorique">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="rechercheField" promptText="🔍 Rechercher..." styleClass="search-field" prefWidth="250.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </HBox>
+      </VBox>
+   </top>
+   
+   <center>
+      <VBox spacing="20.0">
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" />
+         </BorderPane.margin>
+         
+         <!-- Statistiques rapides -->
+         <HBox spacing="20.0" styleClass="stats-container">
+            <VBox alignment="CENTER" styleClass="stat-card stat-total">
+               <Text fx:id="totalVentesNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Ventes" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-pending">
+               <Text fx:id="chiffreAffairesNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="0 €" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Chiffre d'Affaires" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-delivered">
+               <Text fx:id="ventesJourNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Ventes Aujourd'hui" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+         </HBox>
+         
+         <!-- Filtres -->
+         <HBox spacing="15.0" styleClass="filter-bar">
+            <Label text="Filtrer par:" styleClass="filter-label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dateDebut" promptText="Date début" styleClass="filter-date" />
+            <DatePicker fx:id="dateFin" promptText="Date fin" styleClass="filter-date" />
+            <ComboBox fx:id="filtreClient" prefWidth="150.0" promptText="Client" styleClass="filter-combo" />
+            <ComboBox fx:id="filtreProduit" prefWidth="150.0" promptText="Produit" styleClass="filter-combo" />
+         </HBox>
+         
+         <!-- Tableau des ventes -->
+         <TableView fx:id="tableVentes" styleClass="modern-table" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="colDate" prefWidth="120.0" text="Date" styleClass="table-header" />
+               <TableColumn fx:id="colNumeroFacture" prefWidth="120.0" text="N° Facture" styleClass="table-header" />
+               <TableColumn fx:id="colClient" prefWidth="200.0" text="Client" styleClass="table-header" />
+               <TableColumn fx:id="colProduit" prefWidth="200.0" text="Produit" styleClass="table-header" />
+               <TableColumn fx:id="colQuantite" prefWidth="100.0" text="Quantité" styleClass="table-header" />
+               <TableColumn fx:id="colPrixUnitaire" prefWidth="120.0" text="Prix Unitaire" styleClass="table-header" />
+               <TableColumn fx:id="colMontantTotal" prefWidth="120.0" text="Montant Total" styleClass="table-header" />
+            </columns>
+         </TableView>
+      </VBox>
+   </center>
+</BorderPane>

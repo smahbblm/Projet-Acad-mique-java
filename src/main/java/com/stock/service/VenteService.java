@@ -1,3 +1,4 @@
+
 package com.stock.service;
 
 import com.stock.dao.interfaces.IBonLivraisonDAO;
@@ -47,4 +48,3 @@ public class VenteService {
         bonLivraisonDAO.update(bonLivraison);
     }
 }
-

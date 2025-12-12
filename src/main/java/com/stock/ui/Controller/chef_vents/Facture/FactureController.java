@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.util.List;
-import com.stock.Service.FactureServce;
+import com.stock.service.FactureServce;
 import com.stock.model.Facture;
 
 public class FactureController {

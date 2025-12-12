@@ -2,7 +2,7 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.ILigneSortieDAO;
 import com.stock.model.document.LigneSortie;
-import com.stock.util.DatabaseConnection;
+import com.stock.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ public class LigneSortieDAO implements ILigneSortieDAO {
     private Connection connection;
 
     public LigneSortieDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

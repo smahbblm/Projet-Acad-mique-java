@@ -131,30 +131,50 @@ public class DaoBon {
         };
        return  liste_numeros_bon_livraison;
     }
-    /*   la méthode de la récuperation de la liste des bons de livraison
-    public ObservableList<Bon> getallbons(){
-        String sql = "SELECT * FROM bon_livraison";
-        ObservableList<Bon> liste_bons = FXCollections.observableArrayList();
+    // Méthode pour récupérer tous les bons de livraison
+    public ObservableList<com.stock.model.document.BonLivraison> getallbons(){
+        String sql = "SELECT bl.*, c.nom as clientNom FROM bon_livraison bl LEFT JOIN clients c ON bl.idClient = c.idClient";
+        ObservableList<com.stock.model.document.BonLivraison> liste_bons = FXCollections.observableArrayList();
         try(
                 Connection objet_conne = DatabaseConnection.getConnection();
                 Statement stm = objet_conne.createStatement();
                 ResultSet res = stm.executeQuery(sql);
         ){
             while(res.next()){
-                Bon bon = new Bon(
-                        res.getString("numero"),
-                        res.getDate("dateLivraison").toLocalDate(),
-                        res.getString("statut"),
-                        res.getString("adresseLivraison"),
-                        res.getString("observations"),
-                        res.getInt("idClient")
-                );
+                com.stock.model.document.BonLivraison bon = new com.stock.model.document.BonLivraison();
+                bon.setNumero(res.getString("numero"));
+                bon.setDateLivraison(res.getDate("dateLivraison").toLocalDate());
+                bon.setStatut(res.getString("statut"));
+                bon.setAdresseLivraison(res.getString("adresseLivraison"));
+                bon.setObservations(res.getString("observations"));
+                
+                // Créer un client avec le nom
+                com.stock.model.partenaire.Client client = new com.stock.model.partenaire.Client();
+                client.setNom(res.getString("clientNom"));
+                bon.setClient(client);
+                
                 liste_bons.add(bon);
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
         return liste_bons;
-    }  */
-
+    }
+    //méthode pour le nombre totale de bons de  livraisons
+    public int gettotalbons(){
+        String sql = "SELECT COUNT(*) FROM bon_livraison ";
+        try(
+             Connection objt_conn = DatabaseConnection.getConnection();
+             PreparedStatement stm = objt_conn.prepareStatement(sql);
+             ResultSet res = stm.executeQuery();
+             ){
+            //avec cette resultat je dois faire le traitement necessaire pour que me  returne un int
+              if (res.next()){
+                  return res.getInt(1);
+              }
+        }catch(SQLException e ){
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

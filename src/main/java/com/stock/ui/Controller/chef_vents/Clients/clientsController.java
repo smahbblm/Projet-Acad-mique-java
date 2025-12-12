@@ -9,7 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.stock.Service.ClientService;
+import com.stock.service.ClientService;
+import com.stock.model.partenaire.Client;
 
 public class clientsController implements Initializable {
 
@@ -17,7 +18,7 @@ public class clientsController implements Initializable {
     @FXML private TextField searchField;
     @FXML private Button addClientButton;
     @FXML private TableView<Client> clientsTable;
-    @FXML private TableColumn<Client, Integer> idColumn; // java est un langage typé donc ,  si  j'autilise  juste tableColumn ( c'est  je dit à  java l'objet de controle  qui  va controller idColumn dans javafx est une boite ??
+    @FXML private TableColumn<Client, Integer> idColumn;
     @FXML private TableColumn<Client, String> nomColumn;
     @FXML private TableColumn<Client, String> prenomColumn;
     @FXML private TableColumn<Client, String> emailColumn;
@@ -29,7 +30,7 @@ public class clientsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Configuration des colonnes
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idClient"));
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -94,13 +95,11 @@ public class clientsController implements Initializable {
     @FXML
     private void monbutton() {
         System.out.println("votre application  fait la gestion de stock ");
-
     }
 
     @FXML
     private void searchClients() {
-        // searchField est un id pour le champ de recherche
-        String searchTerm = searchField.getText(); // c'est pour récupèrer le contenu du champ
+        String searchTerm = searchField.getText();
         ClientService clientService = new ClientService();
         ObservableList<Client> searchResults = FXCollections.observableArrayList(clientService.searchClients(searchTerm));
         clientsTable.setItems(searchResults);
@@ -108,47 +107,19 @@ public class clientsController implements Initializable {
 
     @FXML
     private void addClient() {
-        //lorsque le client va clicqué sur le botton il va allée cherche ici sur cette méthode
         System.out.println("le button d'ajouter  un client est cliqué  maintenant pour ajouter un client");
-        //mais à ce moment là le controller va applée le service pour récuperre l'implémentation  de la méthode qui va réellement faire l'ajout
         ClientService clientService = new ClientService();
-        //pour ajouter cet  client on aura besoin que lapplication  backend soit connecter .
-        boolean ajoutReussi = clientService.addClient(new Client(3, "smahan", "boulmane", "email@example.com", "123456789", "Azilal/hey el wahda"));
-
+        Client nouveauClient = new Client("smahan", "boulmane", "Azilal/hey el wahda", "Azilal/hey el wahda", "123456789", "email@example.com");
+        boolean ajoutReussi = clientService.addClient(nouveauClient);
     }
 
     private void loadClients() {
-        // Données d'exemple pour tester les couleurs
-        clientsList.addAll(
-            new Client(1, "Dupont", "Jean", "jean.dupont@email.com", "0123456789", "123 Rue de la Paix"),
-            new Client(2, "Martin", "Marie", "marie.martin@email.com", "0987654321", "456 Avenue des Champs")
-        );
-        clientsTable.setItems(clientsList);
-    }
-
-    // Classe Client simple
-    public static class Client {
-        private int id;
-        private String nom;
-        private String prenom;
-        private String email;
-        private String telephone;
-        private String adresse;
-
-        public Client(int id, String nom, String prenom, String email, String telephone, String adresse) {
-            this.id = id;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.email = email;
-            this.telephone = telephone;
-            this.adresse = adresse;
+        try {
+            ClientService clientService = new ClientService();
+            clientsList.addAll(clientService.getAllClients());
+            clientsTable.setItems(clientsList);
+        } catch (Exception e) {
+            System.out.println("Erreur lors du chargement des clients: " + e.getMessage());
         }
-
-        public int getId() { return id; }
-        public String getNom() { return nom; }
-        public String getPrenom() { return prenom; }
-        public String getEmail() { return email; }
-        public String getTelephone() { return telephone; }
-        public String getAdresse() { return adresse; }
     }
 }

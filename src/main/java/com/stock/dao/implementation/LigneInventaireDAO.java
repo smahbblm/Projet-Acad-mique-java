@@ -1,3 +1,4 @@
+
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.ILigneInventaireDAO;
@@ -91,4 +92,3 @@ public class LigneInventaireDAO implements ILigneInventaireDAO {
 
 
 }
-

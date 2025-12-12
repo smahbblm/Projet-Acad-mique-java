@@ -18,6 +18,9 @@ public class Client {
     private String email;
     private LocalDate dateInscription;
 
+    public Client() {
+    }
+
     public Client(String nom, String prenom, String raisonSociale, String adresse,
                   String telephone, String email) {
         this.nom = nom;

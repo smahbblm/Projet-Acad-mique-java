@@ -2,8 +2,12 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.ILigneCommandeDAO;
 import com.stock.model.document.LigneCommande;
+<<<<<<< HEAD
 import com.stock.model.produit.Produit;
 import com.stock.util.DatabaseConnection;
+=======
+import com.stock.model.DatabaseConnection;
+>>>>>>> e06bae3 (section de livraison)
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +18,7 @@ public class LigneCommandeDAO implements ILigneCommandeDAO {
     private Connection connection;
 
     public LigneCommandeDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

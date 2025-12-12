@@ -1,8 +1,8 @@
-package com.stock.Service;
+package com.stock.service;
 import  java.lang.System;
 import java.util.List;
 
-import com.stock.api.ApisFactures;
+//import com.stock.api.ApisFactures;
 import com.stock.model.Facture;
 import com.stock.model.FactureDAO;
 

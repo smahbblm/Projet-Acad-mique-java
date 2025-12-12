@@ -2,7 +2,7 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IFournisseurDAO;
 import com.stock.model.partenaire.Fournisseur;
-import com.stock.util.DatabaseConnection;
+import com.stock.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class FournisseurDAO implements IFournisseurDAO {
     private Connection connection;
 
     public FournisseurDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

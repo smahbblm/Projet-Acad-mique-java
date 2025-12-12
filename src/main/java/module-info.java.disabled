@@ -1,0 +1,40 @@
+/**
+ * FICHIER module-info.java
+ * 
+ * POURQUOI CE FICHIER EXISTE ?
+ * - Depuis Java 9+, Java utilise un système de modules (JPMS)
+ * - Avec Java 11+, JavaFX est séparé de Java
+ * - Ce fichier est OBLIGATOIRE pour que JavaFX fonctionne
+ * - Sans lui : l'application ne compile pas et ne démarre pas
+ * 
+ * CE N'EST PAS une sécurité optionnelle pour la production
+ * C'EST une obligation technique dès le développement
+ */
+module com.stock {
+    
+    // REQUIRES : Déclare les dépendances (bibliothèques) nécessaires
+    requires javafx.controls;  // Pour les boutons, tableaux, TextField, etc.
+    requires javafx.fxml;      // Pour charger les fichiers .fxml
+    requires javafx.graphics;  // Pour l'interface graphique
+    requires java.sql;         // Pour la connexion à MySQL
+    
+    // USES : Permet le chargement automatique des drivers JDBC (MySQL)
+    uses java.sql.Driver;
+    
+    // OPENS : Autorise JavaFX à accéder à vos classes par réflexion
+    // JavaFX a besoin de créer vos contrôleurs depuis les fichiers FXML
+    // Sans "opens", JavaFX ne peut pas instancier vos contrôleurs → ERREUR
+    opens com.stock to javafx.fxml;
+    opens com.stock.controller to javafx.fxml;
+    
+    // EXPORTS : Rend vos packages visibles aux autres modules
+    // Permet à d'autres parties de l'application d'utiliser ces classes
+    exports com.stock;
+    exports com.stock.controller;
+    exports com.stock.model.utilisateur;
+    exports com.stock.model.produit;
+    exports com.stock.model.partenaire;
+    exports com.stock.model.document;
+    exports com.stock.model.stock;
+    exports com.stock.model.systeme;
+}

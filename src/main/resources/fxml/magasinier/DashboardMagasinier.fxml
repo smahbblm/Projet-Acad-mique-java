@@ -22,7 +22,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.stock.Controler.TableuController"
-            stylesheets="@/CSS/StyleMagsinier.css"
+            stylesheets="@/css/StyleMagsinier.css"
             prefWidth="260" >
 
     <fx:include source="menu.fxml"

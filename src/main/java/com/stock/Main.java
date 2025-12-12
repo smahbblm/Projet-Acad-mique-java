@@ -24,8 +24,8 @@ public  class Main extends Application  {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/CSS/gestionchef-de-vents/css-siedbar.css").toExternalForm());
         stage.setScene(scene);
-
         */
+
         // ========== CLIENTS ==========
        /*
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/clients/Clients.fxml"));
@@ -56,7 +56,7 @@ public  class Main extends Application  {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         */
-
+         /*
         // ========== BONS DE LIVRAISON (ACTIF) ==========
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/Bons_liv/BonsLivraison.fxml"));
         Parent root = loader.load();
@@ -70,6 +70,20 @@ public  class Main extends Application  {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/CSS/gestionchef-de-vents/bons-livraison.css").toExternalForm());
+        stage.setScene(scene);
+        */
+
+        //========section de consultation d'historique=========================================
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/consultation/HistoriqueVentes.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        /*
+        //==========================section de consultation d'historiqueVents=========================================
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/consultation/DisponibiliteProduits.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         */
         stage.show();

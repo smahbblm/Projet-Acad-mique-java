@@ -3,9 +3,14 @@ package com.stock.dao.implementation;
 import com.mysql.cj.xdevapi.PreparableStatement;
 import com.stock.dao.interfaces.IInventaireDAO;
 import com.stock.model.stock.Inventaire;
+<<<<<<< HEAD
 import com.stock.util.DatabaseConnection;
 
 import java.sql.*;
+=======
+import com.stock.model.DatabaseConnection;
+import java.sql.Connection;
+>>>>>>> e06bae3 (section de livraison)
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +18,7 @@ public class InventaireDAO implements IInventaireDAO {
     private Connection connection;
 
     public InventaireDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

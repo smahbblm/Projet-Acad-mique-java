@@ -6,7 +6,7 @@ import com.stock.model.utilisateur.Utilisateur;
 import com.stock.util.PasswordHasher;
 import com.stock.util.SessionManager;
 import com.stock.exception.AuthenticationException;
-import com.stock.session.SessionUtilisateur;
+
 
 
 /**

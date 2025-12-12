@@ -2,23 +2,18 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IProduitDAO;
 import com.stock.model.produit.Produit;
-import com.stock.util.DatabaseConnection;
+import com.stock.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implémentation DAO pour les produits
- */
 public class ProduitDAO implements IProduitDAO {
-    private Connection connection;
+    DatabaseConnection app = new DatabaseConnection();
+    Connection con = app.getConnection();
 
-    public ProduitDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
-    }
-
+    /*
     @Override
     public void create(Produit produit) throws Exception {
         String sql = "INSERT INTO produits (reference, designation, description, prixAchat, prixVente, " +
@@ -44,11 +39,11 @@ public class ProduitDAO implements IProduitDAO {
             }
         }
     }
-
+*/
     @Override
     public Produit read(int id) throws Exception {
         String sql = "SELECT * FROM produits WHERE idProduit=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -62,36 +57,49 @@ public class ProduitDAO implements IProduitDAO {
     @Override
     public List<Produit> readAll() throws Exception {
         List<Produit> produits = new ArrayList<>();
-        String sql = "SELECT * FROM produits ORDER BY designation";
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
+        String sql = "SELECT * FROM produits";
+        
+        try (PreparedStatement stmt = con.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
+            
+            System.out.println("ProduitDAO.readAll() - Requête exécutée");
+            
             while (rs.next()) {
-                Produit p = new Produit(
-                    rs.getString("reference"),
-                    rs.getString("designation"),
-                    rs.getFloat("prixAchat"),
-                    rs.getFloat("prixVente"),
-                    rs.getInt("quantiteStock"),
-                    rs.getInt("seuilMin"),
-                    rs.getInt("seuilMax"),
-                    rs.getString("categorie")
-                );
-                p.setIdProduit(rs.getInt("idProduit"));
-                p.setDescription(rs.getString("description"));
-                if (rs.getDate("dateAjout") != null) {
-                    p.setDateAjout(rs.getDate("dateAjout").toLocalDate());
+                try {
+                    System.out.println("Produit trouvé: " + rs.getString("designation"));
+                    // mapping  objet java  et table relationnel
+                    Produit p = new Produit(
+                        rs.getString("reference"),
+                        rs.getString("designation"),
+                        rs.getFloat("prixAchat"),
+                        rs.getFloat("prixVente"),
+                        rs.getInt("quantiteStock"),
+                        rs.getInt("seuilMin"),
+                        rs.getInt("seuilMax"),
+                        rs.getString("categorie")
+                    );
+                    p.setIdProduit(rs.getInt("idProduit"));
+                    p.setDescription(rs.getString("description"));
+                    if (rs.getDate("dateAjout") != null) {
+                        p.setDateAjout(rs.getDate("dateAjout").toLocalDate());
+                    }
+                    produits.add(p);
+                    System.out.println("Produit ajouté à la liste: " + p.getDesignation());
+                } catch (Exception e) {
+                    System.out.println("ERREUR lors de la création du produit: " + e.getMessage());
+                    e.printStackTrace();
                 }
-                produits.add(p);
             }
         }
+        System.out.println("Nombre de produits récupérés: " + produits.size());
         return produits;
     }
-
+/*
     @Override
     public void update(Produit produit) throws Exception {
         String sql = "UPDATE produits SET reference=?, designation=?, description=?, prixAchat=?, " +
                      "prixVente=?, quantiteStock=?, seuilMin=?, seuilMax=?, categorie=? WHERE idProduit=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, produit.getReference());
             stmt.setString(2, produit.getDesignation());
             stmt.setString(3, produit.getDescription());
@@ -115,7 +123,7 @@ public class ProduitDAO implements IProduitDAO {
         }
         
         String sql = "DELETE FROM produits WHERE idProduit=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
@@ -124,7 +132,7 @@ public class ProduitDAO implements IProduitDAO {
     @Override
     public Produit findByReference(String reference) throws Exception {
         String sql = "SELECT * FROM produits WHERE reference=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, reference);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -157,7 +165,7 @@ public class ProduitDAO implements IProduitDAO {
         }
         return categories;
     }
-
+*/
     private Produit mapResultSetToProduit(ResultSet rs) throws Exception {
         Produit p = new Produit(
             rs.getString("reference"),

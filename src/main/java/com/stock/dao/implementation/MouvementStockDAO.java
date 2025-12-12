@@ -3,9 +3,13 @@ package com.stock.dao.implementation;
 import com.stock.dao.interfaces.IMouvementStockDAO;
 import com.stock.model.produit.Produit;
 import com.stock.model.stock.MouvementStock;
+
 import com.stock.model.utilisateur.Magasinier;
 import com.stock.model.utilisateur.Utilisateur;
-import com.stock.util.DatabaseConnection;
+//import com.stock.util.DatabaseConnection;
+
+import com.stock.model.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -20,7 +24,7 @@ public class MouvementStockDAO implements IMouvementStockDAO {
     private Connection connection;
 
     public MouvementStockDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

@@ -1,11 +1,10 @@
-package com.stock.Service;
+package com.stock.service;
 import com.stock.model.DaoBon;
 import javafx.collections.ObservableList;
 
 import java.net.ConnectException;
 import java.time.LocalDate;
 import java.util.List;
-import com.stock.Service.BonService;
 
 public class BonService {
 
@@ -46,6 +45,17 @@ public class BonService {
         DaoBon daobon = new DaoBon();
         // cette fonction ça va me récuperre la liste de bon de livraison
         return daobon.getbonslivraison();
+    }
+
+    // Méthode pour récupérer tous les bons de livraison
+    public ObservableList<com.stock.model.document.BonLivraison> getAllBons(){
+        DaoBon daobon = new DaoBon();
+        return daobon.getallbons();
+    }
+    //méthode pour la récuperation de nombre total de bons
+    public int getnombrebons(){
+        DaoBon daobon = new DaoBon();
+        return daobon.gettotalbons();
     }
 
 }

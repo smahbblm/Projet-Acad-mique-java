@@ -136,8 +136,8 @@ public class BonLivraison {
      * Méthode helper pour affichage du nom client dans les tableaux
      */
     public String getClientNom() {
-        if (client != null) {
-            return client.getNom() + " " + client.getPrenom();
+        if (client != null && client.getNom() != null) {
+            return client.getNom();
         }
         return "";
     }

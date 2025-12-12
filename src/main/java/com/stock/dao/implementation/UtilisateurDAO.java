@@ -2,8 +2,12 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IUtilisateurDAO;
 import com.stock.model.utilisateur.Utilisateur;
+
 import com.stock.model.utilisateur.UserFactory;
-import com.stock.util.DatabaseConnection;
+//import com.stock.util.DatabaseConnection;
+
+
+import com.stock.model.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +20,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     private final Connection connection;
 
     public UtilisateurDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

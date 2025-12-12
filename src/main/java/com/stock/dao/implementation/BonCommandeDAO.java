@@ -2,8 +2,12 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IBonCommandeDAO;
 import com.stock.model.document.BonCommande;
+
 import com.stock.model.partenaire.Fournisseur;
-import com.stock.util.DatabaseConnection;
+//import com.stock.util.DatabaseConnection;
+
+import com.stock.model.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +23,11 @@ public class BonCommandeDAO implements IBonCommandeDAO {
     private LigneCommandeDAO ligneCommandeDAO;
 
     public BonCommandeDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+
+        //this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
         this.ligneCommandeDAO=new LigneCommandeDAO();
+
     }
 
     @Override

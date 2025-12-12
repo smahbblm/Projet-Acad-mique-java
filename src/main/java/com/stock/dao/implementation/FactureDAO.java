@@ -2,7 +2,7 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IFactureDAO;
 import com.stock.model.document.Facture;
-import com.stock.util.DatabaseConnection;
+import com.stock.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class FactureDAO implements IFactureDAO {
     private Connection connection;
 
     public FactureDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override

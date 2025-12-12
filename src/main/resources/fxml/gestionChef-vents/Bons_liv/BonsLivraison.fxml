@@ -36,12 +36,12 @@ fx:controller="com.stock.ui.Controller.chef_vents.Bons.bonslivrController">
                  </font>
              </Button>
 
-            <Button mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter">
+            <Button fx:id="btnExporter" mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter" onAction="#exporterBon">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser">
+            <Button fx:id="btnActualiser" mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser" onAction="#actualiserBons">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -123,42 +123,42 @@ fx:controller="com.stock.ui.Controller.chef_vents.Bons.bonslivrController">
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="150.0" promptText="Statut" styleClass="filter-combo" />
-            <DatePicker promptText="Date début" styleClass="filter-date" />
-            <DatePicker promptText="Date fin" styleClass="filter-date" />
-            <ComboBox prefWidth="150.0" promptText="Client" styleClass="filter-combo" />
+            <ComboBox fx:id="filtreStatut" prefWidth="150.0" promptText="Statut" styleClass="filter-combo" />
+            <DatePicker promptText="Date de livraison" styleClass="filter-date" />
+            <ComboBox fx:id="filtreClient" prefWidth="150.0" promptText="Client" styleClass="filter-combo" />
          </HBox>
          
          <!-- Tableau des bons de livraison -->
-         <TableView styleClass="modern-table" VBox.vgrow="ALWAYS">
+         <TableView fx:id="tablebon" styleClass="modern-table" VBox.vgrow="ALWAYS">
             <columns>
-               <TableColumn prefWidth="100.0" text="N° Bon" styleClass="table-header" />
-               <TableColumn prefWidth="120.0" text="Date" styleClass="table-header" />
-               <TableColumn prefWidth="180.0" text="Client" styleClass="table-header" />
-               <TableColumn prefWidth="150.0" text="Produits" styleClass="table-header" />
-               <TableColumn prefWidth="100.0" text="Quantité" styleClass="table-header" />
-               <TableColumn prefWidth="120.0" text="Statut" styleClass="table-header" />
-               <TableColumn prefWidth="150.0" text="Actions" styleClass="table-header" />
+               <TableColumn fx:id="colNumero" prefWidth="120.0" text="N° Bon" styleClass="table-header" />
+               <TableColumn fx:id="colDate" prefWidth="150.0" text="Date de livraison" styleClass="table-header" />
+               <TableColumn fx:id="colClient" prefWidth="250.0" text="Client" styleClass="table-header" />
+               <TableColumn fx:id="colStatut" prefWidth="150.0" text="Statut" styleClass="table-header" />
+               <TableColumn fx:id="colActions" prefWidth="200.0" text="Actions" styleClass="table-header" />
             </columns>
          </TableView>
       </VBox>
    </center>
-   
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-bar">
-         <BorderPane.margin>
-            <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
-         </BorderPane.margin>
-         <Label text="Affichage: 1-20 sur 156 bons" styleClass="pagination-info">
-            <font>
-               <Font size="12.0" />
-            </font>
-         </Label>
-         <Button mnemonicParsing="false" styleClass="btn-pagination" text="◀ Précédent" />
-         <Button mnemonicParsing="false" styleClass="btn-pagination btn-active" text="1" />
-         <Button mnemonicParsing="false" styleClass="btn-pagination" text="2" />
-         <Button mnemonicParsing="false" styleClass="btn-pagination" text="3" />
-         <Button mnemonicParsing="false" styleClass="btn-pagination" text="Suivant ▶" />
+
+    <!--
+ <bottom>
+    <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-bar">
+       <BorderPane.margin>
+          <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
+       </BorderPane.margin>
+       <Label text="Affichage: 1-20 sur 156 bons" styleClass="pagination-info">
+          <font>
+             <Font size="12.0" />
+          </font>
+       </Label>
+
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="◀ Précédent" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination btn-active" text="1" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="2" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="3" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="Suivant ▶" />
+
       </HBox>
-   </bottom>
+   </bottom>     -->
 </BorderPane>

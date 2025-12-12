@@ -5,13 +5,15 @@ import com.stock.dao.implementation.ProduitDAO;
 import com.stock.dao.interfaces.IMouvementStockDAO;
 import com.stock.dao.implementation.MouvementStockDAO;
 import com.stock.model.produit.Produit;
+<<<<<<< HEAD
 import com.stock.model.stock.MouvementStock;
+=======
+import javafx.collections.ObservableList;
+
+>>>>>>> e06bae3 (section de livraison)
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Service pour la gestion des produits
- */
 public class ProduitService {
     private IProduitDAO produitDAO;
     private IMouvementStockDAO mouvementStockDAO;
@@ -20,6 +22,7 @@ public class ProduitService {
         this.produitDAO = new ProduitDAO();
         this.mouvementStockDAO = new MouvementStockDAO();
     }
+<<<<<<< HEAD
 
     public void ajouterProduit(Produit produit) throws Exception {
         produitDAO.create(produit);
@@ -73,15 +76,34 @@ public class ProduitService {
         
         produitDAO.delete(idProduit);
     }
+=======
+//    public void ajouterProduit(Produit produit) throws Exception {
+//        produitDAO.create(produit);
+//    }
+//
+//    public void modifierProduit(Produit produit) throws Exception {
+//        produitDAO.update(produit);
+//    }
+//
+//    public void supprimerProduit(int idProduit) throws Exception {
+//        produitDAO.delete(idProduit);
+//    }
+>>>>>>> e06bae3 (section de livraison)
 
     public Produit consulterProduit(int idProduit) throws Exception {
         return produitDAO.read(idProduit);
     }
 
-    public List<Produit> consulterTousProduits() throws Exception {
-        return produitDAO.readAll();
+    public List<Produit> consulterTousProduits()  {
+        try {
+          System.out.println("je suis la fonction consulterTousProduits"+ produitDAO.readAll());
+            return produitDAO.readAll();
+        }catch(Exception e){
+            return new ArrayList<>();
+        }
     }
 
+<<<<<<< HEAD
     public List<Produit> consulterProduitsStockBas() throws Exception {
         return produitDAO.findStockBas();
     }
@@ -142,5 +164,18 @@ public class ProduitService {
                 .sum();
     }
 
+=======
+//    public List<Produit> consulterProduitsStockBas() throws Exception {
+//        return produitDAO.findStockBas();
+//    }
+//
+//    public List<Produit> consulterProduitsParCategorie(String categorie) throws Exception {
+//        return produitDAO.findByCategorie(categorie);
+//    }
+//
+//    public Produit consulterProduitParReference(String reference) throws Exception {
+//        return produitDAO.findByReference(reference);
+//    }
+>>>>>>> e06bae3 (section de livraison)
 }
 

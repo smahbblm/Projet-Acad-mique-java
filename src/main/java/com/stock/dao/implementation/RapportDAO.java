@@ -2,7 +2,7 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IRapportDAO;
 import com.stock.model.systeme.Rapport;
-import com.stock.util.DatabaseConnection;
+import com.stock.model.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +14,13 @@ import java.util.List;
 
 public class RapportDAO implements IRapportDAO {
 
+/*
     private Connection getConn() throws Exception {
         return DatabaseConnection.getInstance().getConnection();
     }
+*/
+    private Connection getConn() throws Exception { return DatabaseConnection.getConnection(); }
+
 
     @Override
     public void create(Rapport rapport) throws Exception {

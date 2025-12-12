@@ -7,7 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
-import com.stock.Service.BonService;
+import com.stock.service.Bonservice;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ public class NouveauBonController {
         System.out.println("je suis le contructeur de la nouvelle bon de livraison ");
     }
 
-    BonService bonService = new BonService();
+    Bonservice bonService = new Bonservice();
     public void initialize() {
         System.out.println("je suis exactement le point d'entré  de voitre controller");
         ObservableList<String> clientsList = bonService.getclient();

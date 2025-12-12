@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.stock.ui.Controller.chef_vents.consultation.DisponibiliteProduitsController">
+
+   <top>
+      <VBox styleClass="header-section">
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+            </VBox.margin>
+            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📦 Disponibilité des Produits" styleClass="main-title">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Text>
+         </HBox>
+         
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="action-bar">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" />
+            </VBox.margin>
+            <Button fx:id="btnExporter" mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter Stock" onAction="#exporterStock">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnActualiser" mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser" onAction="#actualiserStock">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAlertes" mnemonicParsing="false" styleClass="btn-warning" text="⚠️ Alertes Stock" onAction="#voirAlertes">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="rechercheField" promptText="🔍 Rechercher produit..." styleClass="search-field" prefWidth="250.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </HBox>
+      </VBox>
+   </top>
+   
+   <center>
+      <VBox spacing="20.0">
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" />
+         </BorderPane.margin>
+         
+         <!-- Statistiques rapides -->
+         <HBox spacing="20.0" styleClass="stats-container">
+            <VBox alignment="CENTER" styleClass="stat-card stat-total">
+               <Text fx:id="totalProduitsNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Produits" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-pending">
+               <Text fx:id="stockBasNumber" fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock Bas" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-delivered">
+               <Text fx:id="stockDisponibleNumber" fill="green" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="green" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock Disponible" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-cancelled">
+               <Text fx:id="stockEpuiseNumber" fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text="0" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock Épuisé" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+         </HBox>
+         
+         <!-- Filtres -->
+         <HBox spacing="15.0" styleClass="filter-bar">
+            <Label text="Filtrer par:" styleClass="filter-label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="filtreCategorie" prefWidth="150.0" promptText="Catégorie" styleClass="filter-combo" />
+            <ComboBox fx:id="filtreStatutStock" prefWidth="150.0" promptText="Statut Stock" styleClass="filter-combo" />
+            <ComboBox fx:id="filtreFournisseur" prefWidth="150.0" promptText="Fournisseur" styleClass="filter-combo" />
+         </HBox>
+         
+         <!-- Tableau des produits -->
+         <TableView fx:id="tableProduits" styleClass="modern-table" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="colReference" prefWidth="120.0" text="Référence" styleClass="table-header" />
+               <TableColumn fx:id="colNomProduit" prefWidth="200.0" text="Nom Produit" styleClass="table-header" />
+               <TableColumn fx:id="colCategorie" prefWidth="150.0" text="Catégorie" styleClass="table-header" />
+               <TableColumn fx:id="colQuantiteStock" prefWidth="120.0" text="Qté en Stock" styleClass="table-header" />
+               <TableColumn fx:id="colSeuilMin" prefWidth="120.0" text="Seuil Min" styleClass="table-header" />
+               <TableColumn fx:id="colStatutStock" prefWidth="120.0" text="Statut" styleClass="table-header" />
+               <TableColumn fx:id="colPrixVente" prefWidth="120.0" text="Prix Vente" styleClass="table-header" />
+               <TableColumn fx:id="colActions" prefWidth="150.0" text="Actions" styleClass="table-header" />
+            </columns>
+         </TableView>
+      </VBox>
+   </center>
+</BorderPane>
