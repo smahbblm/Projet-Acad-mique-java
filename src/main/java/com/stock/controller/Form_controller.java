@@ -48,12 +48,13 @@ public class Form_controller {
             showSuccess("Connexion réussie !");
 
             // Redirection selon le rôle
+
             switch (user.getRole()) {
                 case "ADMINISTRATEUR":
                     openDashboard("/fxml/DashboardAdmin.fxml", "Dashboard Admin");
                     break;
                 case "RESPONSABLE_VENTES":
-                    openDashboard("/fxml/DashboardVentes.fxml", "Dashboard Ventes");
+                    openDashboard("/fxml/DashboardChef_vents.fxml", "Dashboard Ventes");
                     break;
                 case "RESPONSABLE_APPROVISIONNEMENT":
                     openDashboard("/fxml/DashboardAppro.fxml", "Dashboard Approvisionnement");
