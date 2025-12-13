@@ -1,2 +1,9 @@
 ### IntelliJ IDEA ###
 .idea/
+
+### Maven ###
+target/
+
+### Environment ###
+.env
+*.env

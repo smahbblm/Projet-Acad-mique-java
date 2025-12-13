@@ -1,5 +1,6 @@
 package com.stock.Controller.Dashboard_Administrateur;
 
+import com.stock.model.utilisateur.Utilisateur;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -12,47 +13,57 @@ public class EditUserPageController {
     @FXML private CheckBox actifCheck;
 
     private UsersPageController parentController;
-    private UsersPageController.User userToEdit;
+    private Utilisateur userToEdit;
 
     public void setParentController(UsersPageController controller) {
         this.parentController = controller;
     }
 
-    public void setUserData(UsersPageController.User user) {
+    public void setUserData(Utilisateur user) {
         this.userToEdit = user;
 
-        // Pré-remplir les champs
         nomField.setText(user.getNom());
         prenomField.setText(user.getPrenom());
         emailField.setText(user.getEmail());
-        roleBox.getItems().addAll(
+
+        roleBox.getItems().setAll(
                 "ADMINISTRATEUR",
                 "RESPONSABLE_APPROVISIONNEMENT",
                 "RESPONSABLE_VENTES",
                 "MAGASINIER"
         );
+
         roleBox.setValue(user.getRole());
         actifCheck.setSelected(user.isActif());
     }
 
     @FXML
     private void handleSave() {
+        try {
+            userToEdit.setNom(nomField.getText());
+            userToEdit.setPrenom(prenomField.getText());
+            userToEdit.setEmail(emailField.getText());
+            userToEdit.setRole(roleBox.getValue());
+            userToEdit.setActif(actifCheck.isSelected());
 
-        // On crée un NOUVEAU user (statique)
-        UsersPageController.User updatedUser =
-                new UsersPageController.User(
-                        userToEdit.getId(),                  // même ID
-                        nomField.getText(),
-                        prenomField.getText(),
-                        emailField.getText(),
-                        roleBox.getValue(),
-                        actifCheck.isSelected()
-                );
+            // Mettre à jour la base de données
+            com.stock.service.UtilisateurService service = new com.stock.service.UtilisateurService();
+            service.updateUser(userToEdit);
 
-        // Envoi à la table
-        parentController.updateUserInTable(userToEdit, updatedUser);
+            // Recharger la table
+            parentController.loadUsers();
 
-        // Fermer fenêtre
-        nomField.getScene().getWindow().hide();
+            // Fermer la fenêtre
+            nomField.getScene().getWindow().hide();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossible de sauvegarder les modifications : " + e.getMessage());
+            alert.showAndWait();
+        }
     }
+
 }

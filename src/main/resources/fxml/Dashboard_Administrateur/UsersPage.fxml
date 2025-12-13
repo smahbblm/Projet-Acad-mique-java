@@ -42,15 +42,15 @@
                        prefHeight="600"
                        style="-fx-background-color:white; -fx-background-radius:8; -fx-font-size:14px;">
                 <columns>
-                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="30"/>
                     <TableColumn fx:id="nomColumn" text="Nom" prefWidth="100"/>
                     <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="100"/>
-                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
-                    <TableColumn fx:id="roleColumn" text="Rôle" prefWidth="170"/>
-                    <TableColumn fx:id="actifColumn" text="Actif" prefWidth="90"/>
-                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="170"/>
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="170"/>
+                    <TableColumn fx:id="roleColumn" text="Rôle" prefWidth="250"/>
+                    <TableColumn fx:id="dateCreationColumn" text="Date création" prefWidth="120"/>
+                    <TableColumn fx:id="actifColumn" text="Actif" prefWidth="70"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="200"/>
                 </columns>
-
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>

@@ -9,7 +9,7 @@ CREATE TABLE utilisateurs (
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     motDePasse VARCHAR(255) NOT NULL,
-    role ENUM('ADMINISTRATEUR', 'RESPONSABLE_APPROVISIONNEMENT', 'RESPONSABLE_VENTES', 'MAGASINIER') NOT NULL,
+    role ENUM('Administrateur', 'Responsable_Approvisionnement', 'Responsable_Ventes', 'Magasinier') NOT NULL,
     dateCreation DATE NOT NULL,
     actif BOOLEAN DEFAULT TRUE,
     INDEX idx_email (email)
@@ -200,9 +200,9 @@ CREATE TABLE rapports (
 -- Utilisateurs de test
 INSERT INTO utilisateurs (nom, prenom, email, motDePasse, role, dateCreation, actif)
 VALUES
-('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'ADMINISTRATEUR', NOW(), TRUE),
-('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'RESPONSABLE_APPROVISIONNEMENT', NOW(), TRUE),
-('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'RESPONSABLE_VENTES', NOW(), TRUE),
-('Magasin', 'Test', 'magasin@test.com', 'motdepasse123', 'MAGASINIER', NOW(), TRUE);
+('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'Administrateur', NOW(), TRUE),
+('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'Responsable_Approvisionnement', NOW(), TRUE),
+('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'Responsable_Ventes', NOW(), TRUE),
+('Magasin', 'Test', 'magasin@test.com', 'motdepasse123', 'Magasinier', NOW(), TRUE);
 ALTER TABLE fournisseurs
     ADD COLUMN actif BOOLEAN NOT NULL DEFAULT TRUE;
