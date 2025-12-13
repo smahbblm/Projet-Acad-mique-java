@@ -17,14 +17,19 @@ public class HistoriqueVenteDAO {
 
     public List<HistoriqueVente> getAllVentes() throws Exception {
         List<HistoriqueVente> ventes = new ArrayList<>();
-        String sql = "SELECT f.numero as numeroFacture, f.dateFacture, c.nom as nomClient, " +
-                    "p.designation as nomProduit, lf.quantite, lf.prixUnitaire, " +
-                    "(lf.quantite * lf.prixUnitaire) as montantTotal " +
-                    "FROM factures f " +
-                    "JOIN clients c ON f.idClient = c.idClient " +
-                    "JOIN lignes_facture lf ON f.idFacture = lf.idFacture " +
-                    "JOIN produits p ON lf.idProduit = p.idProduit " +
-                    "ORDER BY f.dateFacture DESC";
+        String sql = "SELECT bl.numero as numeroFacture, bl.dateLivraison as dateFacture, " +
+                    "CONCAT(c.nom, ' ', COALESCE(c.prenom, '')) as nomClient, " +
+                    "p.designation as nomProduit, " +
+                    "ll.quantite, " +
+                    "ll.prixUnitaire, " +
+                    "(ll.quantite * ll.prixUnitaire) as montantTotal " +
+                    "FROM bon_livraison bl " +
+                    "JOIN clients c ON bl.idClient = c.idClient " +
+                    "JOIN ligne_livraison ll ON bl.idBonLivraison = ll.idBonLivraison " +
+                    "JOIN produits p ON ll.idProduit = p.idProduit " +
+                    "ORDER BY bl.dateLivraison DESC";
+        
+        System.out.println("Exécution de la requête: " + sql);
 
         try (PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {

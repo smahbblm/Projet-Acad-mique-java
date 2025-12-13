@@ -6,7 +6,9 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.stock.ui.Controller.chef_vents.consultation.HistoriqueVentesController">
+fx:controller="com.stock.ui.Controller.chef_vents.consultation.HistoriqueVentesController"
+styleClass="historique-container"
+stylesheets="@../../../css/gestionchef-de-vents/historique-ventes.css">
 
    <top>
       <VBox styleClass="header-section">
@@ -25,11 +27,6 @@ fx:controller="com.stock.ui.Controller.chef_vents.consultation.HistoriqueVentesC
             <VBox.margin>
                <Insets bottom="20.0" left="30.0" right="30.0" />
             </VBox.margin>
-            <Button fx:id="btnExporter" mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter" onAction="#exporterHistorique">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
             <Button fx:id="btnActualiser" mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser" onAction="#actualiserHistorique">
                <font>
                   <Font name="System Bold" size="14.0" />
