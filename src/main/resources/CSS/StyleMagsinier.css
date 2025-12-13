@@ -576,7 +576,7 @@ Separator{
 }
 .inventor-cart{
 -fx-pref-height:100;
--fx-pref-width:150;
+-fx-pref-width:500;
 -fx-background-color:#F4F4F4;
 -fx-border-radius:15px;
 -fx-background-radius: 15px;
@@ -680,7 +680,6 @@ Separator{
     -fx-border-color: transparent;
 }
 
-/* Colonnes se repartissent sur toute la largeur */
 #TableProduit .table-view {
     -fx-table-cell-border-color: transparent;
 }
@@ -689,12 +688,10 @@ Separator{
     -fx-background-color: #6d28d9;
 }
 
-/* Supprime les bordures par défaut */
 #TableProduit .table-view {
     -fx-background-color: transparent;
 }
 
-/* Zone de contenu du tableau */
 #TableProduit .virtual-flow .clipped-container {
     -fx-background-color: transparent;
 }
@@ -713,7 +710,7 @@ Separator{
     -fx-background-color: #5b21b6;
     -fx-border-color: #6d28d9;
     -fx-border-width: 0 1 0 0;
-    -fx-padding: 15 10;
+    -fx-padding: 12 10;
 }
 
 #TableProduit .column-header:last-child {
@@ -724,9 +721,9 @@ Separator{
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
+    -fx-alignment: CENTER;
 }
 
-/* Icône de tri */
 #TableProduit .column-header .arrow {
     -fx-background-color: white;
 }
@@ -737,6 +734,7 @@ Separator{
     -fx-border-color: #1a1d2e;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 0;
+    -fx-cell-size: 45;
 }
 
 #TableProduit .table-row-cell:odd {
@@ -756,44 +754,75 @@ Separator{
     -fx-background-color: #4b5563;
 }
 
-/* === CELLULES === */
+/* === CELLULES - ALIGNEMENT CORRIGÉ === */
 #TableProduit .table-cell {
     -fx-text-fill: #d1d5db;
-    -fx-padding: 15 10;
-    -fx-alignment: center-left;
+    -fx-padding: 8 10;
+    -fx-alignment: CENTER;
     -fx-font-size: 13px;
     -fx-border-color: transparent;
 }
 
-/* Colonne Produit - texte blanc et gras */
+/* Colonne Produit - aligné à gauche */
 #colProduit .table-cell {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 8 15;
 }
 
-/* Colonne Référence - texte gris */
+/* Colonne Référence - centré */
 #colRef .table-cell {
     -fx-text-fill: #9ca3af;
     -fx-font-size: 12px;
+    -fx-alignment: CENTER;
 }
 
-/* Colonnes avec quantités - cyan et gras */
+/* Colonnes quantités - centré */
 #colQtéSys .table-cell,
 #colQtéRel .table-cell {
     -fx-text-fill: #06b6d4;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
-    -fx-alignment: center;
+    -fx-alignment: CENTER;
+    -fx-padding: 5 10;
 }
 
-/* Colonne Ecart */
+/* Colonne Ecart - centré */
 #colEcart .table-cell {
     -fx-text-fill: #9ca3af;
-    -fx-alignment: center;
+    -fx-alignment: CENTER;
+    -fx-font-size: 13px;
 }
 
-/* === PLACEHOLDER (Aucun contenu) === */
+/* === TEXTFIELD ÉDITABLE TOUJOURS VISIBLE === */
+#colQtéRel .text-field {
+    -fx-alignment: CENTER;
+    -fx-background-color: #2d3250;
+    -fx-text-fill: #06b6d4;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-border-color: #6d28d9;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+    -fx-pref-height: 35;
+    -fx-max-height: 35;
+}
+
+#colQtéRel .text-field:focused {
+    -fx-background-color: #374151;
+    -fx-border-color: #8b5cf6;
+}
+
+#colQtéRel .text-field-table-cell {
+    -fx-padding: 0;
+    -fx-alignment: CENTER;
+}
+
+/* === PLACEHOLDER === */
 #TableProduit .placeholder {
     -fx-background-color: transparent;
 }
@@ -856,15 +885,18 @@ Separator{
     -fx-background-color: #374151;
 }
 
-/* Cache la bordure de focus */
 #TableProduit:focused {
     -fx-background-insets: 0;
 }
-.btnNot{
--fx-background-color:#1D546C;
--fx-padding:15;
--fx-text-fill:white;
 
+/* === BOUTON ANNULER === */
+.btnNot {
+    -fx-background-color: #1D546C;
+    -fx-padding: 15;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }
 
-
+.btnNot:hover {
+    -fx-background-color: #256080;
+}

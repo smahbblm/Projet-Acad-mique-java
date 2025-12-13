@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.controller.AdministrateurController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- En-tête -->
+    <top>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 15;" spacing="20" alignment="CENTER_LEFT">
+            <Label text="📊 Dashboard Administrateur"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUtilisateurNom" text="Admin"
+                   style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Button fx:id="btnDeconnexion" text="Déconnexion"
+                    onAction="#handleDeconnexion"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 8 15;"/>
+        </HBox>
+    </top>
+
+    <!-- Menu latéral gauche -->
+    <left>
+        <VBox style="-fx-background-color: #34495e; -fx-pref-width: 250;" spacing="5"
+              prefHeight="Infinity">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+
+            <Label text="MENU PRINCIPAL"
+                   style="-fx-text-fill: #95a5a6; -fx-font-size: 12px; -fx-font-weight: bold;">
+                <padding><Insets bottom="10"/></padding>
+            </Label>
+
+            <Button fx:id="btnAccueil" text="🏠 Accueil"
+                    onAction="#handleAccueil"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+
+            <Button fx:id="btnUtilisateurs" text="👥 Gestion Utilisateurs"
+                    onAction="#handleUtilisateurs"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+
+            <Button fx:id="btnStatistiques" text="📈 Statistiques"
+                    onAction="#handleStatistiques"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+
+            <Button fx:id="btnRapports" text="📄 Rapports"
+                    onAction="#handleRapports"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+
+            <Separator style="-fx-background-color: #95a5a6;">
+                <VBox.margin><Insets top="10" bottom="10"/></VBox.margin>
+            </Separator>
+
+            <Label text="SYSTÈME"
+                   style="-fx-text-fill: #95a5a6; -fx-font-size: 12px; -fx-font-weight: bold;">
+                <padding><Insets bottom="10"/></padding>
+            </Label>
+
+            <Button fx:id="btnParametres" text="⚙️ Paramètres"
+                    onAction="#handleParametres"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+
+            <Button fx:id="btnLogs" text="📋 Logs Système"
+                    onAction="#handleLogs"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 12; -fx-font-size: 14px;"/>
+        </VBox>
+    </left>
+
+    <!-- Contenu principal -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    style="-fx-background-color: #f5f5f5; -fx-background: #f5f5f5;">
+            <VBox fx:id="contentArea" spacing="20" style="-fx-background-color: #f5f5f5;">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <!-- Cartes de statistiques -->
+                <HBox spacing="20" alignment="CENTER">
+                    <!-- Carte Utilisateurs -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="220" prefHeight="140">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="👥" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblNbUtilisateurs" text="0"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+                        <Label text="Utilisateurs" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <!-- Carte Produits -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="220" prefHeight="140">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="📦" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblNbProduits" text="0"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+                        <Label text="Produits" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <!-- Carte Commandes -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="220" prefHeight="140">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="🛒" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblNbCommandes" text="0"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                        <Label text="Commandes" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+
+                    <!-- Carte Ventes -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="10" alignment="CENTER" prefWidth="220" prefHeight="140">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="💰" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="lblMontantVentes" text="0 DH"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+                        <Label text="Ventes du mois" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Graphiques et tableaux -->
+                <HBox spacing="20">
+                    <!-- Activités récentes -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="15" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="📊 Activités Récentes"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <TableView fx:id="tableActivites" prefHeight="300">
+                            <columns>
+                                <TableColumn fx:id="colDate" text="Date" prefWidth="120"/>
+                                <TableColumn fx:id="colUtilisateur" text="Utilisateur" prefWidth="150"/>
+                                <TableColumn fx:id="colAction" text="Action" prefWidth="200"/>
+                                <TableColumn fx:id="colDetails" text="Détails" prefWidth="230"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <!-- Alertes système -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                          spacing="15" prefWidth="350">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="⚠️ Alertes Système"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <ListView fx:id="listAlertes" prefHeight="300"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Actions rapides -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                      spacing="15">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="⚡ Actions Rapides"
+                           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <HBox spacing="15">
+                        <Button text="➕ Nouvel Utilisateur"
+                                onAction="#handleNouvelUtilisateur"
+                                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 12 20; -fx-font-size: 14px;"/>
+                        <Button text="📊 Rapport Mensuel"
+                                onAction="#handleRapportMensuel"
+                                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-padding: 12 20; -fx-font-size: 14px;"/>
+                        <Button text="💾 Backup BD"
+                                onAction="#handleBackupBD"
+                                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-padding: 12 20; -fx-font-size: 14px;"/>
+                        <Button text="🔄 Actualiser"
+                                onAction="#handleActualiser"
+                                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-padding: 12 20; -fx-font-size: 14px;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 10;" spacing="20" alignment="CENTER">
+            <Label fx:id="lblVersion" text="Version 1.0.0"
+                   style="-fx-text-fill: #95a5a6; -fx-font-size: 12px;"/>
+            <Separator orientation="VERTICAL" style="-fx-background-color: #95a5a6;"/>
+            <Label fx:id="lblDateHeure" text="Date et heure"
+                   style="-fx-text-fill: #95a5a6; -fx-font-size: 12px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblStatutConnexion" text="● Connecté"
+                   style="-fx-text-fill: #2ecc71; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
+

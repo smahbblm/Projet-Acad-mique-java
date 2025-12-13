@@ -1,0 +1,157 @@
+/* =========================== */
+/*     STYLE GLOBAL ANCHOR     */
+/* =========================== */
+.main-container {
+    -fx-background-color: #f9f9f9;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* =========================== */
+/*         MENU À GAUCHE       */
+/* =========================== */
+.fx-include {
+    -fx-background-color: #2c3e50;
+}
+
+.fx-include .menu-item {
+    -fx-padding: 15 20;
+    -fx-text-fill: #ecf0f1;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.fx-include .menu-item:hover {
+    -fx-background-color: #34495e;
+}
+
+/* =========================== */
+/*      CONTENU PRINCIPAL      */
+/* =========================== */
+.content-area {
+    -fx-padding: 20;
+    -fx-background-color: white;
+}
+
+/* =========================== */
+/*          HEADER             */
+/* =========================== */
+.header-section {
+    -fx-padding: 10 0 20 0;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+/* =========================== */
+/*         STATISTIQUES        */
+/* =========================== */
+.stats-bar {
+    -fx-padding: 10 0;
+}
+
+.stat-box {
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-background-color: #3498db;
+    -fx-alignment: center;
+    -fx-pref-width: 180;
+}
+
+.stat-green {
+    -fx-background-color: #2ecc71;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+}
+
+.stat-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+/* =========================== */
+/*       SECTIONS TABLES       */
+/* =========================== */
+.section-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.section-header {
+    -fx-padding: 0 0 10 0;
+}
+
+/* =========================== */
+/*           BOUTONS           */
+/* =========================== */
+.btn-refresh {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+}
+
+.btn-refresh:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* =========================== */
+/*           TABLES            */
+/* =========================== */
+.custom-table {
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-background-color: white;
+}
+
+.custom-table .column-header-background {
+    -fx-background-color: #ecf0f1;
+}
+
+.custom-table .table-row-cell {
+    -fx-padding: 5 10;
+}
+
+.custom-table .table-row-cell:filled:selected,
+.custom-table .table-row-cell:focused:selected {
+    -fx-background-color: #3498db33;
+}
+
+/* =========================== */
+/*        PLACEHOLDER          */
+/* =========================== */
+.empty-state {
+    -fx-alignment: center;
+}
+
+.empty-icon {
+    -fx-font-size: 30px;
+}
+
+.empty-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* =========================== */
+/*           SCROLL            */
+/* =========================== */
+.scroll-content {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}

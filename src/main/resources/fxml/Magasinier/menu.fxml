@@ -22,7 +22,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.stock.Controler.menu"
-            stylesheets="@/CSS/StyleMagsinier.css"
+            stylesheets="@../../CSS/StyleMagsinier.css"
+
             prefWidth="260" >
 
     <VBox spacing="20" alignment="TOP_CENTER"  styleClass="sidebar"

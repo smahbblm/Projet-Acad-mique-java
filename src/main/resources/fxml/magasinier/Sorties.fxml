@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controler.ValidationMagasinierController"
+            stylesheets="@../../CSS/validation_magasinier.css"
+            prefWidth="1600" prefHeight="700"
+            style="-fx-background-color: white;">
+
+    <!-- ===== MENU À GAUCHE ===== -->
+    <fx:include source="menu.fxml"
+                AnchorPane.topAnchor="0"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0"
+                prefWidth="250"/>
+
+    <!-- ===== CONTENU PRINCIPAL AVEC SCROLL ===== -->
+    <ScrollPane AnchorPane.topAnchor="0"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="250"
+                AnchorPane.rightAnchor="0"
+                fitToWidth="true"
+                styleClass="scroll-content">
+
+        <content>
+            <VBox spacing="25" styleClass="content-area">
+
+                <!-- ===== EN-TÊTE ===== -->
+                <VBox styleClass="header-section">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="🏪 Validation Magasinier" styleClass="page-title"/>
+                    </HBox>
+
+                    <!-- Statistiques -->
+                    <HBox spacing="30" styleClass="stats-bar">
+                        <VBox styleClass="stat-box stat-blue">
+                            <Label text="Commandes en attente" styleClass="stat-label"/>
+                            <Label fx:id="lblNbCommandes" text="0" styleClass="stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="stat-box stat-green">
+                            <Label text="Livraisons en attente" styleClass="stat-label"/>
+                            <Label fx:id="lblNbLivraisons" text="0" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- ===== SECTION BONS DE COMMANDE ===== -->
+                <VBox spacing="15" styleClass="section-container">
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                        <Label text="📦 Bons de Commande à Valider" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="🔄 Actualiser" styleClass="btn-refresh"/>
+                    </HBox>
+
+                    <TableView fx:id="tableCommandes" styleClass="custom-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colNumeroCommande" text="N° Commande"
+                                         prefWidth="130" sortable="false"/>
+                            <TableColumn fx:id="colDateCommande" text="Date"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colFournisseur" text="Fournisseur"
+                                         prefWidth="200" sortable="false"/>
+                            <TableColumn fx:id="colStatutCommande" text="Statut"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colMontantCommande" text="Montant (MAD)"
+                                         prefWidth="120" sortable="false"/>
+                            <TableColumn fx:id="colNbProduitsCommande" text="Nb Produits"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colActionCommande" text="Action"
+                                         prefWidth="150" sortable="false"/>
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="10" styleClass="empty-state">
+                                <Label text="✅" styleClass="empty-icon"/>
+                                <Label text="Aucune commande en attente de validation"
+                                       styleClass="empty-text"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+
+                <!-- ===== SECTION BONS DE LIVRAISON ===== -->
+                <VBox spacing="15" styleClass="section-container">
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                        <Label text="🚚 Bons de Livraison à Valider" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="🔄 Actualiser" styleClass="btn-refresh"/>
+                    </HBox>
+
+                    <TableView fx:id="tableLivraisons" styleClass="custom-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colNumeroLivraison" text="N° Livraison"
+                                         prefWidth="130" sortable="false"/>
+                            <TableColumn fx:id="colDateLivraison" text="Date"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colClient" text="Client"
+                                         prefWidth="200" sortable="false"/>
+                            <TableColumn fx:id="colAdresse" text="Adresse"
+                                         prefWidth="250" sortable="false"/>
+                            <TableColumn fx:id="colStatutLivraison" text="Statut"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colNbProduitsLivraison" text="Nb Produits"
+                                         prefWidth="100" sortable="false"/>
+                            <TableColumn fx:id="colActionLivraison" text="Action"
+                                         prefWidth="180" sortable="false"/>
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="10" styleClass="empty-state">
+                                <Label text="✅" styleClass="empty-icon"/>
+                                <Label text="Aucune livraison en attente de validation"
+                                       styleClass="empty-text"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+
+            </VBox>
+        </content>
+    </ScrollPane>
+
+</AnchorPane>

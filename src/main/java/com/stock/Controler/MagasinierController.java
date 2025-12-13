@@ -1,24 +1,24 @@
 package com.stock.Controler;
 
+import com.stock.dao.implementation.MouvementStockDAO;
+import com.stock.dao.interfaces.IMouvementStockDAO;
+import com.stock.model.stock.MouvementStock;
+import com.stock.model.produit.Produit;
+import com.stock.service.StockService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import  com.stock.model.Produit;
 import javafx.fxml.FXML;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MagasinierController {
     @FXML
@@ -31,56 +31,81 @@ public class MagasinierController {
     @FXML
     private VBox formulSortie;
     @FXML
-private TableView<Produit> mouvementsTable;
+private TableView<MouvementStock> mouvementsTable;
     @FXML
-private TableColumn<Produit,String> colReference;
+private TableColumn<MouvementStock,String> colReference;
+
 
     @FXML
-private TableColumn<Produit,String> colProduit;
+private TableColumn<MouvementStock,Double> colQuantite;
     @FXML
-private TableColumn<Produit,Double> colQuantite;
+private TableColumn<MouvementStock, LocalDate> colDate;
     @FXML
-private TableColumn<Produit, Date> colDate;
+private TableColumn<MouvementStock,String> colType;
+@FXML
+Label TotalMv;
+@FXML
+Label NbrEntree;
+@FXML
+Label Nbrsortie;
+private StockService stockSer;
+private IMouvementStockDAO mouvementStockDAO;
+public MagasinierController(){
+    try{
+       this.stockSer=new StockService();
+       this.mouvementStockDAO=new MouvementStockDAO();
+    }catch(Exception e){
+        e.printStackTrace();
+    }
 
+}
 public  void initialize(){
+
+
+     TotalMv.setText(String.valueOf(stockSer.getNombre_mouvement()));
+     try{
+         NbrEntree.setText(String.valueOf(stockSer.getNbrMouvementsEntree()));
+         Nbrsortie.setText(String.valueOf(stockSer.getNbrMouvementsSortie()));
+     }catch(Exception e){
+         e.printStackTrace();
+     }
     colReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
+    colReference.setStyle("-fx-alignment: CENTER;");
 
-    colProduit.setCellValueFactory(new PropertyValueFactory<>("description"));
     colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-    colDate.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
-        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
-        colDate.setCellFactory(column->new TableCell<Produit,Date>(){
-            protected void updateItem(Date item,boolean empty){
-                super.updateItem(item,empty);
-                if (empty || item == null){
-                    setText(null);
-                }
-                else{
-                    setText(sdf.format(item));
-                }
+    colType.setCellValueFactory(new PropertyValueFactory<>("typeMouvement"));
+    colDate.setCellValueFactory(new PropertyValueFactory<>("dateMouvement"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    colDate.setCellFactory(column -> new TableCell<MouvementStock, LocalDate>() {
+        @Override
+        protected void updateItem(LocalDate item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+            } else {
+                setText(item.format(formatter));
             }
-
-        });
-        try{
-            Date date=sdf.parse("12-06-2025");
-            mouvementsTable.getItems().addAll(
-                    new Produit("MM12345","lait",23,date),
-                    new Produit("M12345","téléphone",25,date)
-                    );
-
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+    });
+        try{
+            List<MouvementStock> mouvements =stockSer.consulterTousMouvements();
+            ObservableList<MouvementStock> data = FXCollections.observableArrayList(mouvements);
+            mouvementsTable.setItems(data);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
 
 
 
 }
     public void chercher(){
         String recherche=barreRecherche.getText().toLowerCase();
-        ObservableList<Produit> produitesFiltres= FXCollections.observableArrayList();
-        for(Produit P: mouvementsTable.getItems()){
-            if(P.getReference().toLowerCase().contains(recherche) || P.getDescription().toLowerCase().contains(recherche)){
-                produitesFiltres.add(P);
+        ObservableList<MouvementStock> produitesFiltres= FXCollections.observableArrayList();
+        for(MouvementStock M: mouvementsTable.getItems()){
+            if(M.getReference().toLowerCase().contains(recherche) ){
+                produitesFiltres.add(M);
             }
         }
         mouvementsTable.setItems(produitesFiltres);

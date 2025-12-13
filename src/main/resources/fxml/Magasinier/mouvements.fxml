@@ -9,7 +9,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.stock.Controler.MagasinierController"
-            stylesheets="@/CSS/StyleMagsinier.css"
+            stylesheets="@../../CSS/StyleMagsinier.css"
             prefWidth="1600" prefHeight="700"
             style="-fx-background-color: white;">
 
@@ -58,8 +58,8 @@
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20"/>
                         </padding>
-                        <Label text="Entrées Aujourd'hui" styleClass="carte-title"/>
-                        <Label text="18" styleClass="carte-value"/>
+                        <Label  text="Entrées Aujourd'hui" styleClass="carte-title"/>
+                        <Label fx:id="NbrEntree" text="18" styleClass="carte-value"/>
                     </VBox>
 
                     <VBox spacing="8" alignment="CENTER_LEFT" styleClass="carte-orange"
@@ -67,8 +67,8 @@
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20"/>
                         </padding>
-                        <Label text="Sorties Aujourd'hui" styleClass="carte-title"/>
-                        <Label text="25" styleClass="carte-value"/>
+                        <Label  text="Sorties Aujourd'hui" styleClass="carte-title"/>
+                        <Label fx:id="Nbrsortie" text="25" styleClass="carte-value"/>
                     </VBox>
 
                     <VBox spacing="8" alignment="CENTER_LEFT" styleClass="carte-purple"
@@ -76,9 +76,13 @@
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20"/>
                         </padding>
-                        <Label text="Total Mouvements" styleClass="carte-title"/>
-                        <Label text="46" styleClass="carte-value"/>
+                        <Label  text="Total Mouvements" styleClass="carte-title"/>
+                        <Label fx:id="TotalMv" text="46" styleClass="carte-value"/>
                     </VBox>
+                </HBox>
+                <HBox>
+                    <Button  text="Valider Bons Commande"/>
+                    <Button text="Valider Bons de livraison" />
                 </HBox>
 
                 <VBox spacing="20" alignment="TOP_LEFT"
@@ -117,9 +121,9 @@
                                style="-fx-background-color: white; -fx-border-color: transparent;">
                         <columns>
                             <TableColumn text="Référence" prefWidth="150" fx:id="colReference" style="-fx-alignment: CENTER-LEFT;"/>
-                            <TableColumn text="Type" prefWidth="120" fx:id="colType" style="-fx-alignment: CENTER;"/>
-                            <TableColumn text="Produit" prefWidth="170" fx:id="colProduit" style="-fx-alignment: CENTER-LEFT;"/>
                             <TableColumn text="Quantité" prefWidth="120" fx:id="colQuantite" style="-fx-alignment: CENTER;"/>
+                            <TableColumn text="Type" prefWidth="120" fx:id="colType" style="-fx-alignment: CENTER;"/>
+
                             <TableColumn text="Date" prefWidth="180" fx:id="colDate" style="-fx-alignment: CENTER;"/>
                         </columns>
                         <columnResizePolicy>
