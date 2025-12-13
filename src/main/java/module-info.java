@@ -4,14 +4,15 @@ module com.stock {
     requires javafx.graphics;
     requires java.sql;
 
-    // Permettre la découverte automatique des drivers JDBC
     uses java.sql.Driver;
 
     opens com.stock to javafx.fxml;
     opens com.stock.Controller.Dashboard_Administrateur to javafx.fxml;
+    opens com.stock.Controller.controllerResponsableApprovisionnements to javafx.fxml;
 
     exports com.stock;
     exports com.stock.Controller.Dashboard_Administrateur;
+    exports com.stock.Controller.controllerResponsableApprovisionnements;
     exports com.stock.model.utilisateur;
     exports com.stock.model.produit;
     exports com.stock.model.partenaire;
