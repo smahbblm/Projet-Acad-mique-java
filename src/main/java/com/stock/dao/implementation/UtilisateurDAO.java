@@ -33,6 +33,39 @@ public class UtilisateurDAO implements IUtilisateurDAO {
             stmt.executeUpdate();
         }
     }
+    public List<Object[]> countByRole() throws Exception {
+        List<Object[]> result = new ArrayList<>();
+        String sql = "SELECT role, COUNT(*) AS total FROM utilisateurs GROUP BY role";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                result.add(new Object[]{
+                        rs.getString("role"),
+                        rs.getInt("total")
+                });
+            }
+        }
+        return result;
+    }
+
+    public List<Object[]> countByStatus() throws Exception {
+        List<Object[]> result = new ArrayList<>();
+        String sql = "SELECT actif, COUNT(*) AS total FROM utilisateurs GROUP BY actif";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                result.add(new Object[]{
+                        rs.getBoolean("actif"),
+                        rs.getInt("total")
+                });
+            }
+        }
+        return result;
+    }
+
+
 
     @Override
     public Utilisateur read(int id) throws Exception {

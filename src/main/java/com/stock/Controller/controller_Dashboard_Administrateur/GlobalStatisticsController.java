@@ -1,4 +1,4 @@
-package com.stock.Controller.Dashboard_Administrateur;
+package com.stock.Controller.controller_Dashboard_Administrateur;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
@@ -7,42 +7,57 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import com.stock.dao.implementation.UtilisateurDAO;
+import com.stock.dao.implementation.ProduitDAO;
+import com.stock.model.produit.Produit;
+import com.stock.dao.implementation.MouvementStockDAO;
+
 
 public class GlobalStatisticsController {
 
     // Utilisateurs
-    @FXML private PieChart pieUsersRoles;
-    @FXML private PieChart pieUsersStatus;
+    @FXML
+    private PieChart pieUsersRoles;
+    @FXML
+    private PieChart pieUsersStatus;
 
     // Produits & stock
-    @FXML private TableView<Product> tableProduits;
-    @FXML private TableColumn<Product, String> colNomProduit;
-    @FXML private TableColumn<Product, String> colCategorie;
-    @FXML private TableColumn<Product, Integer> colStock;
-    @FXML private TableColumn<Product, Double> colValeur;
+    @FXML
+    private TableView<Produit> tableProduits;
+    @FXML
+    private TableColumn<Produit, String> colNomProduit;
+    @FXML
+    private TableColumn<Produit, String> colCategorie;
+    @FXML
+    private TableColumn<Produit, Integer> colStock;
+    @FXML
+    private TableColumn<Produit, Double> colValeur;
 
-    @FXML private Label labelValeurStock;
-    @FXML private BarChart<String, Number> barStockProduits;
+    @FXML
+    private Label labelValeurStock;
+    @FXML
+    private BarChart<String, Number> barStockProduits;
 
     // CA et ventes
-    @FXML private Label labelCA;
-    @FXML private LineChart<String, Number> lineCA;
-    @FXML private BarChart<String, Number> barTopVentes;
+    @FXML
+    private Label labelCA;
+    @FXML
+    private LineChart<String, Number> lineCA;
+    @FXML
+    private BarChart<String, Number> barTopVentes;
 
     // Commandes
-    @FXML private LineChart<String, Number> lineCommandes;
+    @FXML
+    private LineChart<String, Number> lineCommandes;
 
-    /* ================================
-              INITIALISATION
-       ================================ */
 
     @FXML
     public void initialize() {
         loadUserRoles();
         loadUserActivity();
 
-        loadProductsTable();
-        loadProductsStockChart();
+        loadProduitsTable();
+        loadProduitsStockChart();
         loadStaticStockValue();
 
         loadStaticChiffreAffaires();
@@ -50,152 +65,203 @@ public class GlobalStatisticsController {
         loadStaticCommandes();
     }
 
-    /* ================================
-           STATISTIQUES UTILISATEURS
-       ================================ */
 
     private void loadUserRoles() {
-        pieUsersRoles.getData().addAll(
-                new PieChart.Data("Administrateurs", 2),
-                new PieChart.Data("Resp. Approvisionnement", 4),
-                new PieChart.Data("Resp. Ventes", 3),
-                new PieChart.Data("Magasiniers", 6)
-        );
+        pieUsersRoles.getData().clear();
+
+        try {
+            UtilisateurDAO dao = new UtilisateurDAO();
+            var data = dao.countByRole();
+
+            int totalUsers = data.stream()
+                    .mapToInt(o -> (int) o[1])
+                    .sum();
+
+            for (Object[] row : data) {
+                String role = (String) row[0];
+                int count = (int) row[1];
+
+                double percent = (count * 100.0) / totalUsers;
+
+                PieChart.Data slice = new PieChart.Data(
+                        role + " (" + String.format("%.1f", percent) + "%)",
+                        count
+                );
+
+                pieUsersRoles.getData().add(slice);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void loadUserActivity() {
-        pieUsersStatus.getData().addAll(
-                new PieChart.Data("Actifs", 12),
-                new PieChart.Data("Inactifs", 3)
-        );
+        pieUsersStatus.getData().clear();
+
+        try {
+            UtilisateurDAO dao = new UtilisateurDAO();
+            var data = dao.countByStatus();
+
+            int total = data.stream()
+                    .mapToInt(o -> (int) o[1])
+                    .sum();
+
+            for (Object[] row : data) {
+                boolean actif = (boolean) row[0];
+                int count = (int) row[1];
+
+                double percent = (count * 100.0) / total;
+
+                String label = actif ? "Actifs" : "Inactifs";
+
+                pieUsersStatus.getData().add(
+                        new PieChart.Data(
+                                label + " (" + String.format("%.1f", percent) + "%)",
+                                count
+                        )
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /* ================================
-               PRODUITS / STOCK
-       ================================ */
 
-    private void loadProductsTable() {
+    private void loadProduitsTable() {
+        try {
+            ProduitDAO dao = new ProduitDAO();
+            ObservableList<Produit> produits =
+                    FXCollections.observableArrayList(dao.readAll());
 
-        // Colonnes mappées aux données
-        colNomProduit.setCellValueFactory(data -> data.getValue().nomProperty());
-        colCategorie.setCellValueFactory(data -> data.getValue().categorieProperty());
-        colStock.setCellValueFactory(data -> data.getValue().stockProperty().asObject());
-        colValeur.setCellValueFactory(data -> data.getValue().valeurProperty().asObject());
+            colNomProduit.setCellValueFactory(data ->
+                    new javafx.beans.property.SimpleStringProperty(data.getValue().getDesignation()));
+            colCategorie.setCellValueFactory(data ->
+                    new javafx.beans.property.SimpleStringProperty(data.getValue().getCategorie()));
+            colStock.setCellValueFactory(data ->
+                    new javafx.beans.property.SimpleIntegerProperty(data.getValue().getQuantiteStock()).asObject());
+            colValeur.setCellValueFactory(data ->
+                    new javafx.beans.property.SimpleDoubleProperty(
+                            data.getValue().getQuantiteStock() * data.getValue().getPrixVente()
+                    ).asObject());
 
-        // Liste statique
-        ObservableList<Product> produits = FXCollections.observableArrayList(
-                new Product("Produit A", "Électronique", 15, 30.0),
-                new Product("Produit B", "Bureau", 8, 20.0),
-                new Product("Produit C", "Alimentaire", 25, 5.0),
-                new Product("Produit D", "Électronique", 10, 120.0),
-                new Product("Produit E", "Hygiène", 50, 3.0)
-        );
+            tableProduits.setItems(produits);
 
-        tableProduits.setItems(produits);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void loadProductsStockChart() {
-        XYChart.Series<String, Number> s = new XYChart.Series<>();
-        s.setName("Stock restant");
 
-        s.getData().add(new XYChart.Data<>("Produit A", 15));
-        s.getData().add(new XYChart.Data<>("Produit B", 8));
-        s.getData().add(new XYChart.Data<>("Produit C", 25));
-        s.getData().add(new XYChart.Data<>("Produit D", 10));
-        s.getData().add(new XYChart.Data<>("Produit E", 50));
+    private void loadProduitsStockChart() {
+        barStockProduits.getData().clear();
 
-        barStockProduits.getData().add(s);
+        try {
+            ProduitDAO dao = new ProduitDAO();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Stock restant");
+
+            for (Produit p : dao.readAll()) {
+                series.getData().add(
+                        new XYChart.Data<>(p.getDesignation(), p.getQuantiteStock())
+                );
+            }
+
+            barStockProduits.getData().add(series);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadStaticStockValue() {
-        // TOTAL 100% FIXE
-        double total = (15 * 30) + (8 * 20) + (25 * 5) + (10 * 120) + (50 * 3);
-        labelValeurStock.setText("Valeur totale du stock : " + total + " €");
+        try {
+            ProduitDAO dao = new ProduitDAO();
+            double total = 0;
+
+            for (Produit p : dao.readAll()) {
+                total += p.getQuantiteStock() * p.getPrixVente();
+            }
+
+            labelValeurStock.setText(
+                    "Valeur totale du stock : " + String.format("%.2f", total) + " Dh"
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /* ================================
-                 CHIFFRE D'AFFAIRES
-       ================================ */
 
     private void loadStaticChiffreAffaires() {
+        lineCA.getData().clear();
 
-        // Valeur totalement statique
-        labelCA.setText("Chiffre d’affaires total : 12 500 €");
+        try {
+            MouvementStockDAO dao = new MouvementStockDAO();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Chiffre d'affaires");
 
-        XYChart.Series<String, Number> s = new XYChart.Series<>();
-        s.setName("Évolution CA");
+            double totalCA = 0;
 
-        s.getData().add(new XYChart.Data<>("Jan", 2000));
-        s.getData().add(new XYChart.Data<>("Fév", 1500));
-        s.getData().add(new XYChart.Data<>("Mar", 3200));
-        s.getData().add(new XYChart.Data<>("Avr", 2800));
-        s.getData().add(new XYChart.Data<>("Mai", 3000));
+            for (Object[] row : dao.chiffreAffairesParMois()) {
+                String mois = (String) row[0];
+                double montant = (double) row[1];
 
-        lineCA.getData().add(s);
+                totalCA += montant;
+                series.getData().add(new XYChart.Data<>(mois, montant));
+            }
+
+            labelCA.setText("Chiffre d’affaires total : " + String.format("%.2f", totalCA) + " Dh");
+            lineCA.getData().add(series);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /* ================================
-           PRODUITS LES + VENDUS
-       ================================ */
 
     private void loadStaticTopVentes() {
-        XYChart.Series<String, Number> s = new XYChart.Series<>();
-        s.setName("Top 5 ventes");
+        barTopVentes.getData().clear();
 
-        s.getData().add(new XYChart.Data<>("Produit E", 300));
-        s.getData().add(new XYChart.Data<>("Produit C", 150));
-        s.getData().add(new XYChart.Data<>("Produit A", 120));
-        s.getData().add(new XYChart.Data<>("Produit B", 90));
-        s.getData().add(new XYChart.Data<>("Produit D", 40));
+        try {
+            MouvementStockDAO dao = new MouvementStockDAO();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Top ventes");
 
-        barTopVentes.getData().add(s);
+            for (Object[] row : dao.topVentes()) {
+                series.getData().add(
+                        new XYChart.Data<>((String) row[0], (int) row[1])
+                );
+            }
+
+            barTopVentes.getData().add(series);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-    /* ================================
-               COMMANDES / JOUR
-       ================================ */
 
     private void loadStaticCommandes() {
-        XYChart.Series<String, Number> s = new XYChart.Series<>();
-        s.setName("Commandes / jour");
+        lineCommandes.getData().clear();
 
-        s.getData().add(new XYChart.Data<>("01/01", 10));
-        s.getData().add(new XYChart.Data<>("02/01", 18));
-        s.getData().add(new XYChart.Data<>("03/01", 5));
-        s.getData().add(new XYChart.Data<>("04/01", 20));
-        s.getData().add(new XYChart.Data<>("05/01", 15));
+        try {
+            MouvementStockDAO dao = new MouvementStockDAO();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Commandes");
 
-        lineCommandes.getData().add(s);
-    }
+            // récupérer les données par mois
+            for (Object[] row : dao.commandesParMois()) {
+                String mois = (String) row[0];
+                int total = (int) row[1];
+                series.getData().add(new XYChart.Data<>(mois, total));
+            }
 
-    /* ================================
-                  CLASS PRODUIT
-       ================================ */
+            lineCommandes.getData().add(series);
 
-    public static class Product {
-
-        private final javafx.beans.property.SimpleStringProperty nom;
-        private final javafx.beans.property.SimpleStringProperty categorie;
-        private final javafx.beans.property.SimpleIntegerProperty stock;
-        private final javafx.beans.property.SimpleDoubleProperty valeur;
-
-        public Product(String nom, String categorie, int stock, double prix) {
-            this.nom = new javafx.beans.property.SimpleStringProperty(nom);
-            this.categorie = new javafx.beans.property.SimpleStringProperty(categorie);
-            this.stock = new javafx.beans.property.SimpleIntegerProperty(stock);
-            this.valeur = new javafx.beans.property.SimpleDoubleProperty(prix * stock);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        public String getNom() { return nom.get(); }
-        public javafx.beans.property.StringProperty nomProperty() { return nom; }
-
-        public String getCategorie() { return categorie.get(); }
-        public javafx.beans.property.StringProperty categorieProperty() { return categorie; }
-
-        public int getStock() { return stock.get(); }
-        public javafx.beans.property.IntegerProperty stockProperty() { return stock; }
-
-        public double getValeur() { return valeur.get(); }
-        public javafx.beans.property.DoubleProperty valeurProperty() { return valeur; }
     }
 }

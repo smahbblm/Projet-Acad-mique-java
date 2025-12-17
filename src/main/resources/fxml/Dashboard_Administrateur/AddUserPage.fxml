@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21.0.0"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.AddUserPageController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.AddUserPageController"
             style="-fx-background-color:#ffffff; -fx-padding:30;">
 
     <center>

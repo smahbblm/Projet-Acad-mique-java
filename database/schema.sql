@@ -196,13 +196,117 @@ CREATE TABLE rapports (
     INDEX idx_type (type)
 );
 
+ALTER TABLE fournisseurs
+    ADD COLUMN actif BOOLEAN NOT NULL DEFAULT TRUE;
+
 -- Insertion de données de test
 -- Utilisateurs de test
 INSERT INTO utilisateurs (nom, prenom, email, motDePasse, role, dateCreation, actif)
 VALUES
-('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'Administrateur', NOW(), TRUE),
-('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'Responsable_Approvisionnement', NOW(), TRUE),
-('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'Responsable_Ventes', NOW(), TRUE),
-('Magasin', 'Test', 'magasin@test.com', 'motdepasse123', 'Magasinier', NOW(), TRUE);
-ALTER TABLE fournisseurs
-    ADD COLUMN actif BOOLEAN NOT NULL DEFAULT TRUE;
+    ('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'Administrateur', CURDATE(), TRUE),
+    ('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'Responsable_Approvisionnement', CURDATE(), TRUE),
+    ('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'Responsable_Ventes', CURDATE(), TRUE),
+    ('Magasin', 'Test', 'magasin@test.com', 'motdepasse123', 'Magasinier', CURDATE(), TRUE);
+
+
+-- Fournisseurs de test
+INSERT INTO fournisseurs (raisonSociale, adresse, telephone, email, contact, conditions, actif)
+VALUES
+    ('Fournisseur A', '123 Rue A, Ville', '0102030405', 'fournisseurA@test.com', 'Alice', 'Paiement à 30 jours', TRUE),
+    ('Fournisseur B', '456 Rue B, Ville', '0607080910', 'fournisseurB@test.com', 'Bob', 'Paiement à 15 jours', TRUE);
+
+-- Clients de test
+INSERT INTO clients (nom, prenom, raisonSociale, adresse, telephone, email, dateInscription)
+VALUES
+    ('Client', 'Test', 'Client SARL', '789 Rue C, Ville', '0112233445', 'client@test.com', CURDATE()),
+    ('Client2', 'Test', 'Client2 SARL', '321 Rue D, Ville', '0556677889', 'client2@test.com', CURDATE());
+
+-- Produits
+INSERT INTO produits (reference, designation, description, prixAchat, prixVente, quantiteStock, seuilMin, seuilMax, categorie, dateAjout)
+VALUES
+    ('PROD001', 'Produit 1', 'Description produit 1', 10.0, 15.0, 50, 10, 100, 'Catégorie A', CURDATE()),
+    ('PROD002', 'Produit 2', 'Description produit 2', 20.0, 30.0, 30, 5, 50, 'Catégorie B', CURDATE()),
+    ('PROD003', 'Produit 3', 'Description produit 3', 5.0, 8.0, 100, 20, 200, 'Catégorie A', CURDATE());
+
+-- Mouvements de stock
+INSERT INTO mouvement_stock (dateMouvement, typeMouvement, quantite, stockAvant, stockApres, reference, idProduit, idUtilisateur)
+VALUES
+    (CURDATE(), 'ENTREE', 50, 0, 50, 'ENT001', 1, 2),
+    (CURDATE(), 'SORTIE', 10, 50, 40, 'SORT001', 1, 4),
+    (CURDATE(), 'ENTREE', 30, 0, 30, 'ENT002', 2, 2),
+    (CURDATE(), 'SORTIE', 5, 30, 25, 'SORT002', 2, 4);
+
+-- Bons de commande
+INSERT INTO bon_commande (numero, dateCommande, dateLivraisonPrevue, statut, montantTotal, observations, idFournisseur)
+VALUES
+    ('BC001', CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY), 'BROUILLON', 0, 'Commande test 1', 1),
+    ('BC002', CURDATE(), DATE_ADD(CURDATE(), INTERVAL 10 DAY), 'EN_ATTENTE', 0, 'Commande test 2', 2);
+
+-- Lignes de commande de test
+INSERT INTO ligne_commande (idBonCommande, idProduit, quantite, prixUnitaire, sousTotal)
+VALUES
+    (1, 1, 20, 10.0, 200.0),
+    (1, 2, 10, 20.0, 200.0),
+    (2, 3, 50, 5.0, 250.0);
+
+-- rapports de test
+INSERT INTO rapports (type, dateGeneration, dateDe, dateA, contenu)
+VALUES
+    (
+        'STOCK_GLOBAL',
+        CURDATE(),
+        '2025-01-01',
+        CURDATE(),
+        'Rapport global des stocks :
+        - Total produits : 3
+        - Quantité totale en stock : 175
+        - Produits en alerte : 1
+        - Produits au-dessus du seuil max : 0'
+    ),
+    (
+        'MOUVEMENTS_STOCK',
+        CURDATE(),
+        '2025-12-01',
+        CURDATE(),
+        'Rapport des mouvements de stock :
+        - Total entrées : 80 unités
+        - Total sorties : 15 unités
+        - Stock final : 65 unités
+        - Mouvements validés : oui'
+    ),
+    (
+        'UTILISATEURS',
+        CURDATE(),
+        '2025-01-01',
+        CURDATE(),
+        'Rapport utilisateurs :
+        - Total utilisateurs : 4
+        - Administrateurs : 1
+        - Responsable Approvisionnement : 1
+        - Responsable Ventes : 1
+        - Magasiniers : 1
+        - Comptes actifs : 4'
+    ),
+    (
+        'VENTES',
+        CURDATE(),
+        '2025-12-01',
+        CURDATE(),
+        'Rapport des ventes :
+        - Clients servis : 2
+        - Produits vendus : 15
+        - Montant total HT : 375.00
+        - TVA : 75.00
+        - Montant TTC : 450.00'
+    ),
+    (
+        'ALERTES_STOCK',
+        CURDATE(),
+        '2025-12-01',
+        CURDATE(),
+        'Rapport des alertes stock :
+        - Produits sous seuil minimum : 1
+        - Produits en rupture : 0
+        - Actions recommandées : réapprovisionnement'
+    );
+

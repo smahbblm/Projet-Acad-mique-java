@@ -10,7 +10,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.StockMovementController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.StockMovementController"
             prefHeight="500" prefWidth="800">
 
     <VBox spacing="15" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
@@ -39,24 +39,24 @@
 
         <!-- TABLEAU -->
         <TableView fx:id="movementTable" VBox.vgrow="ALWAYS"
+                   prefHeight="550" minHeight="400"
                    style="-fx-background-color:white; -fx-background-radius:8; -fx-font-size:14px;" >
             <columns>
-                <TableColumn fx:id="idColumn" text="ID" prefWidth="90"/>
-                <TableColumn fx:id="DateColumn" text="Date" prefWidth="170"/>
-                <TableColumn fx:id="ArticleColumn" text="Article" prefWidth="140"/>
-                <TableColumn fx:id="TypeColumn" text="Type" prefWidth="120"/>
-                <TableColumn fx:id="QuantiteColumn" text="Quantité" prefWidth="140"/>
-                <TableColumn fx:id="StockAvantColumn" text="Stock Avant" prefWidth="170"/>
-                <TableColumn fx:id="StockApresColumn" text="Stock Après" prefWidth="170"/>
-                <TableColumn fx:id="UtilisateurColumn" text="Utilisateur" prefWidth="150"/>
-                <TableColumn fx:id="CommentaireColumn" text="Commentaire" prefWidth="270"/>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="DateColumn" text="Date" prefWidth="180"/>
+                <TableColumn fx:id="ArticleColumn" text="Article" prefWidth="160"/>
+                <TableColumn fx:id="TypeColumn" text="Type" prefWidth="140"/>
+                <TableColumn fx:id="ProduitColumn" text="Produit" prefWidth="180"/>
+                <TableColumn fx:id="QuantiteColumn" text="Quantité" prefWidth="160"/>
+                <TableColumn fx:id="StockAvantColumn" text="Stock Avant" prefWidth="200"/>
+                <TableColumn fx:id="StockApresColumn" text="Stock Après" prefWidth="180"/>
+                <TableColumn fx:id="UtilisateurColumn" text="Utilisateur" prefWidth="180"/>
+                <TableColumn fx:id="CommentaireColumn" text="Commentaire" prefWidth="300"/>
             </columns>
-
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-            </columnResizePolicy>
         </TableView>
 
+
+        <!-- Totaux -->
         <HBox spacing="40" alignment="CENTER"
               style="-fx-padding:20;"
               minHeight="80" prefHeight="100">
@@ -64,21 +64,25 @@
             <VBox alignment="CENTER" spacing="5"
                   style="-fx-background-color:#d1fae5; -fx-padding:15; -fx-background-radius:10;">
                 <Label text="Total Entrées" style="-fx-font-size:14; -fx-text-fill:#065f46;" />
-                <Label text="120" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#064e3b;" />
+                <Label fx:id="totalEntreesLabel" text="0"
+                       style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#064e3b;" />
             </VBox>
 
             <VBox alignment="CENTER" spacing="5"
                   style="-fx-background-color:#fee2e2; -fx-padding:15; -fx-background-radius:10;">
                 <Label text="Total Sorties" style="-fx-font-size:14; -fx-text-fill:#7f1d1d;" />
-                <Label text="85" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#B91C1C;" />
+                <Label fx:id="totalSortiesLabel" text="0"
+                       style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#B91C1C;" />
             </VBox>
 
             <VBox alignment="CENTER" spacing="5"
                   style="-fx-background-color:#e0e7ff; -fx-padding:15; -fx-background-radius:10;">
                 <Label text="Stock Actuel" style="-fx-font-size:14; -fx-text-fill:#1e3a8a;" />
-                <Label text="350" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#1e40af;" />
+                <Label fx:id="stockActuelLabel" text="0"
+                       style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#1e40af;" />
             </VBox>
         </HBox>
+
 
     </VBox>
 

@@ -1,4 +1,4 @@
-package com.stock.Controller.Dashboard_Administrateur;
+package com.stock.Controller.controller_Dashboard_Administrateur;
 
 import com.stock.model.utilisateur.Utilisateur;
 import javafx.fxml.FXML;
@@ -11,6 +11,8 @@ public class EditUserPageController {
     @FXML private TextField emailField;
     @FXML private ComboBox<String> roleBox;
     @FXML private CheckBox actifCheck;
+    @FXML private PasswordField passwordField;
+
 
     private UsersPageController parentController;
     private Utilisateur userToEdit;
@@ -27,14 +29,16 @@ public class EditUserPageController {
         emailField.setText(user.getEmail());
 
         roleBox.getItems().setAll(
-                "ADMINISTRATEUR",
-                "RESPONSABLE_APPROVISIONNEMENT",
-                "RESPONSABLE_VENTES",
-                "MAGASINIER"
+                "Administrateur",
+                "Responsable_Approvisionnement",
+                "Responsable_Ventes",
+                "Magasinier"
         );
+        passwordField.setText(user.getPassword());
 
         roleBox.setValue(user.getRole());
         actifCheck.setSelected(user.isActif());
+
     }
 
     @FXML
@@ -45,6 +49,7 @@ public class EditUserPageController {
             userToEdit.setEmail(emailField.getText());
             userToEdit.setRole(roleBox.getValue());
             userToEdit.setActif(actifCheck.isSelected());
+            userToEdit.setPassword(passwordField.getText());
 
             // Mettre à jour la base de données
             com.stock.service.UtilisateurService service = new com.stock.service.UtilisateurService();

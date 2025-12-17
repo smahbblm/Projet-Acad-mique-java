@@ -1,4 +1,4 @@
-package com.stock.Controller.Dashboard_Administrateur;
+package com.stock.Controller.controller_Dashboard_Administrateur;
 
 import com.stock.model.utilisateur.Utilisateur;
 import com.stock.service.UtilisateurService;
@@ -26,12 +26,10 @@ public class AddUserPageController {
     @FXML
     public void initialize() {
         roleCombo.getItems().setAll(
-                Arrays.asList(
-                        "Administrateur",
-                        "Responsable_Approvisionnement",
-                        "Responsable_Ventes",
-                        "Magasinier"
-                )
+                "Administrateur",
+                "Responsable_Approvisionnement",
+                "Responsable_Ventes",
+                "Magasinier"
         );
 
         try {

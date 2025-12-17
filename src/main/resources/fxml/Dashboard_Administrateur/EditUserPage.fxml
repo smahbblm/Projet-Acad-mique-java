@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.EditUserPageController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.EditUserPageController"
             prefHeight="400.0" prefWidth="600.0">
 
     <center>
@@ -19,6 +19,8 @@
             <TextField fx:id="emailField" promptText="Email"/>
 
             <ComboBox fx:id="roleBox"/>
+            <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+
 
             <CheckBox fx:id="actifCheck" text="Actif"/>
 

@@ -11,7 +11,7 @@
 
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/21.0.0"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.DashboardController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.DashboardController"
             style="-fx-background-color:#f4f6f8;"
             prefHeight="500.0" prefWidth="800.0">
 
@@ -115,38 +115,58 @@
                         <Label text="Surveillance des utilisateurs et indicateurs système clés" style="-fx-text-fill:#666666;"/>
                     </VBox>
 
-                    <!-- Section KPI Cards -->
-                    <HBox spacing="16">
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                    <!-- Section KPI utilisateurs -->
+                    <HBox spacing="16" alignment="CENTER_LEFT">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
                             <Label text="Total utilisateurs" style="-fx-text-fill:#777;"/>
                             <Label fx:id="totalUsersLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
                             <Label text="Comptes enregistrés" style="-fx-text-fill:#999; -fx-font-size:11;"/>
                         </VBox>
-
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
                             <Label text="Comptes actifs" style="-fx-text-fill:#777;"/>
                             <Label fx:id="activeAccountsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
                             <Label text="Aujourd'hui" style="-fx-text-fill:#999; -fx-font-size:11;"/>
                         </VBox>
-
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
                             <Label text="Comptes inactifs" style="-fx-text-fill:#777;"/>
                             <Label fx:id="inactiveAccountsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
                             <Label text="Vérification nécessaire" style="-fx-text-fill:#999; -fx-font-size:11;"/>
                         </VBox>
-
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:200;">
+                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
                             <Label text="Alertes critiques" style="-fx-text-fill:#777;"/>
                             <Label fx:id="criticalAlertsLabel" text="--" style="-fx-font-size:22; -fx-font-weight:bold;"/>
                             <Label text="Actions requises" style="-fx-text-fill:#e53e3e; -fx-font-size:11;"/>
                         </VBox>
                     </HBox>
 
+                    <!-- Section KPI stock (nouvelle ligne) -->
+                    <HBox spacing="16" alignment="CENTER_LEFT" style="-fx-padding:20 0 0 0;">
+                        <VBox spacing="8" style="-fx-background-color:#d1fae5; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
+                            <Label text="Total Entrées" style="-fx-font-size:14; -fx-text-fill:#065f46;" />
+                            <Label fx:id="totalEntreesLabel" text="0" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#064e3b;" />
+                        </VBox>
+                        <VBox spacing="8" style="-fx-background-color:#fee2e2; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
+                            <Label text="Total Sorties" style="-fx-font-size:14; -fx-text-fill:#7f1d1d;" />
+                            <Label fx:id="totalSortiesLabel" text="0" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#B91C1C;" />
+                        </VBox>
+                        <VBox spacing="8" style="-fx-background-color:#e0e7ff; -fx-padding:18; -fx-background-radius:8;" prefWidth="200">
+                            <Label text="Stock Actuel" style="-fx-font-size:14; -fx-text-fill:#1e3a8a;" />
+                            <Label fx:id="stockActuelLabel" text="0" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#1e40af;" />
+                        </VBox>
+                    </HBox>
+
                     <!-- Section Graphiques -->
-                    <HBox spacing="16">
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:400; -fx-pref-height:250;">
-                            <Label text="Évolution des utilisateurs" style="-fx-font-weight:bold; -fx-font-size:14;"/>
-                            <LineChart fx:id="userEvolutionChart" prefWidth="400" prefHeight="200">
+                    <HBox spacing="16" prefWidth="900">
+
+                        <VBox spacing="8"
+                              style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;"
+                              prefWidth="400" prefHeight="300">
+
+                            <Label text="Évolution des utilisateurs"
+                                   style="-fx-font-weight:bold; -fx-font-size:14;"/>
+
+                            <LineChart fx:id="userEvolutionChart"
+                                       prefWidth="380" prefHeight="240">
                                 <xAxis>
                                     <CategoryAxis label="Jour"/>
                                 </xAxis>
@@ -156,13 +176,21 @@
                             </LineChart>
                         </VBox>
 
-                        <VBox spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8; -fx-pref-width:400; -fx-pref-height:250;">
-                            <Label text="Répartition des rôles" style="-fx-font-weight:bold; -fx-font-size:14;"/>
-                            <PieChart fx:id="rolesDistributionChart" prefWidth="400" prefHeight="200"
-                                      legendSide="RIGHT" labelsVisible="true"/>
-                        </VBox>
-                    </HBox>
+                        <!-- ⬇⬇⬇ ICI -->
+                        <VBox spacing="8"
+                              style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:8;"
+                              prefWidth="480" prefHeight="300">
 
+                            <Label text="Répartition des rôles"
+                                   style="-fx-font-weight:bold; -fx-font-size:14;"/>
+
+                            <PieChart fx:id="rolesDistributionChart"
+                                      prefWidth="440" prefHeight="240"
+                                      legendSide="RIGHT"
+                                      labelsVisible="true"/>
+                        </VBox>
+
+                    </HBox>
                 </VBox>
             </ScrollPane>
         </AnchorPane>

@@ -7,7 +7,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.GlobalStatisticsController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.GlobalStatisticsController"
             prefHeight="800" prefWidth="1000">
 
     <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
@@ -54,12 +54,12 @@
                                 <TableColumn fx:id="colNomProduit" text="Nom du produit" prefWidth="200"/>
                                 <TableColumn fx:id="colCategorie" text="Catégorie" prefWidth="150"/>
                                 <TableColumn fx:id="colStock" text="Quantité en stock" prefWidth="150"/>
-                                <TableColumn fx:id="colValeur" text="Valeur totale (€)" prefWidth="150"/>
+                                <TableColumn fx:id="colValeur" text="Valeur totale (Dh)" prefWidth="150"/>
                             </columns>
                         </TableView>
 
                         <Label fx:id="labelValeurStock"
-                               text="Valeur totale du stock : 0 €"
+                               text="Valeur totale du stock : 0 Dh"
                                style="-fx-font-size:16; -fx-text-fill:#2d3748;"/>
 
                         <BarChart fx:id="barStockProduits" prefHeight="300">
@@ -78,12 +78,12 @@
                         </padding>
 
                         <Label fx:id="labelCA"
-                               text="Chiffre d’affaires total : 0 €"
+                               text="Chiffre d’affaires total : 0 Dh"
                                style="-fx-font-size:18; -fx-font-weight:bold;"/>
 
                         <LineChart fx:id="lineCA" prefHeight="300">
                             <xAxis><CategoryAxis label="Période"/></xAxis>
-                            <yAxis><NumberAxis label="Montant (€)"/></yAxis>
+                            <yAxis><NumberAxis label="Montant (Dh)"/></yAxis>
                         </LineChart>
 
                         <Label text="Top 5 produits les plus vendus"

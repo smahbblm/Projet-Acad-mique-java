@@ -1,4 +1,4 @@
-package com.stock.Controller.Dashboard_Administrateur;
+package com.stock.Controller.controller_Dashboard_Administrateur;
 
 import com.stock.model.utilisateur.Utilisateur;
 import com.stock.service.UtilisateurService;
@@ -24,6 +24,8 @@ public class UsersPageController {
     @FXML private TableColumn<Utilisateur, String> dateCreationColumn;
     @FXML private TableColumn<Utilisateur, Void> actionColumn;
     @FXML private TextField searchField;
+    @FXML private TableColumn<Utilisateur, String> passwordColumn;
+
 
     private ObservableList<Utilisateur> usersList = FXCollections.observableArrayList();
     private UtilisateurService utilisateurService;
@@ -60,7 +62,16 @@ public class UsersPageController {
         nomColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNom()));
         prenomColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getPrenom()));
         emailColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getEmail()));
-        roleColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getRole()));
+        roleColumn.setCellValueFactory(c ->
+                new javafx.beans.property.SimpleStringProperty(
+                        c.getValue().getRole().substring(0,1).toUpperCase() +
+                                c.getValue().getRole().substring(1).toLowerCase()
+                )
+        );
+        passwordColumn.setCellValueFactory(c ->
+                new javafx.beans.property.SimpleStringProperty(c.getValue().getPassword())
+        );
+
         actifColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleBooleanProperty(c.getValue().isActif()).asObject());
         dateCreationColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(
                 c.getValue().getDateCreation() != null ? c.getValue().getDateCreation().toString() : ""
@@ -70,10 +81,12 @@ public class UsersPageController {
     private void setupSearchFilter() {
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             String filter = newVal.toLowerCase();
+
             usersTable.setItems(usersList.filtered(u ->
                     u.getNom().toLowerCase().contains(filter) ||
                             u.getPrenom().toLowerCase().contains(filter) ||
-                            u.getEmail().toLowerCase().contains(filter)
+                            u.getEmail().toLowerCase().contains(filter) ||
+                            u.getRole().toLowerCase().contains(filter)   // 🔹 Filtre par rôle
             ));
         });
     }

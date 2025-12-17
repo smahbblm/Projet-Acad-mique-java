@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.DatabaseManagementController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.DatabaseManagementController"
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"

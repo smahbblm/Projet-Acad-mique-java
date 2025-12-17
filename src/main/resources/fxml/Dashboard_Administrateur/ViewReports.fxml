@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.ViewReportsController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.ViewReportsController"
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
@@ -32,11 +32,11 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
             <columns>
-                <TableColumn fx:id="nameColumn" text="Nom du rapport" prefWidth="450"/>
-                <TableColumn fx:id="typeColumn" text="Type" prefWidth="300"/>
-                <TableColumn fx:id="dateColumn" text="Date" prefWidth="350"/>
+                <TableColumn fx:id="nameColumn" text="Nom rapport" prefWidth="350"/>
+                <TableColumn fx:id="typeColumn" text="Type" prefWidth="500"/>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="290"/>
                 <TableColumn fx:id="formatColumn" text="Format" prefWidth="250"/>
-                <TableColumn fx:id="actionColumn" text="Action" prefWidth="550"/>
+                <TableColumn fx:id="actionColumn" text="Action" prefWidth="490"/>
             </columns>
         </TableView>
 

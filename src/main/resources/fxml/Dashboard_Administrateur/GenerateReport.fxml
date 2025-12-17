@@ -5,7 +5,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.stock.Controller.Dashboard_Administrateur.GenerateReportController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.GenerateReportController"
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
@@ -37,18 +37,13 @@
             </VBox>
         </HBox>
 
-        <!-- FORMAT -->
-        <VBox spacing="5">
-            <Label text="Format :" style="-fx-font-size:18; -fx-font-weight:bold;" />
-            <ComboBox fx:id="formatBox" style="-fx-font-size:14px; " prefWidth="200" promptText="Choisir un format"/>
-        </VBox>
 
         <!-- BOUTON -->
         <Button fx:id="generateButton"
                 text="Générer le Rapport"
                 prefWidth="250"
                 style="-fx-background-color:#2b6cb0; -fx-text-fill:white;
-                       -fx-font-size:17; -fx-padding:12 20; -fx-background-radius:10;" />
+               -fx-font-size:17; -fx-padding:12 20; -fx-background-radius:10;" />
 
         <!-- STATUT -->
         <Label fx:id="statusLabel" text="" style="-fx-font-size:14;" />
