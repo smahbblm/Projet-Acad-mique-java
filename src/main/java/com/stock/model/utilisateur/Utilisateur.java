@@ -86,6 +86,15 @@ public abstract class Utilisateur {
         this.dateCreation = dateCreation;
     }
 
+
+    public String getPassword() {
+        return motDePasse;
+    }
+
+    public void setPassword(String password) {
+        this.motDePasse = password;
+    }
+
     // Surcharge pour JDBC
     public void setDateCreation(java.sql.Date dateCreation) {
         if (dateCreation != null) {

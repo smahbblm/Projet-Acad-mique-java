@@ -24,7 +24,7 @@ public class ProduitDAO implements IProduitDAO {
         String sql = "INSERT INTO produits (reference, designation, description, prixAchat, prixVente, " +
                      "quantiteStock, seuilMin, seuilMax, categorie, dateAjout) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, produit.getReference());
             stmt.setString(2, produit.getDesignation());
             stmt.setString(3, produit.getDescription());
@@ -36,6 +36,12 @@ public class ProduitDAO implements IProduitDAO {
             stmt.setString(9, produit.getCategorie());
             stmt.setObject(10, produit.getDateAjout());
             stmt.executeUpdate();
+            
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    produit.setIdProduit(rs.getInt(1));
+                }
+            }
         }
     }
 
@@ -102,6 +108,12 @@ public class ProduitDAO implements IProduitDAO {
 
     @Override
     public void delete(int id) throws Exception {
+        String sqlMouvement = "DELETE FROM mouvement_stock WHERE idProduit=?";
+        try (PreparedStatement stmt = connection.prepareStatement(sqlMouvement)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+        
         String sql = "DELETE FROM produits WHERE idProduit=?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);

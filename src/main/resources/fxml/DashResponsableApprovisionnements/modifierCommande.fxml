@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.ModifierCommandeController"
+            fitToWidth="true" style="-fx-background-color:white;">
+<VBox spacing="20" style="-fx-padding:24; -fx-background-color:white;">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Modifier le bon de commande" style="-fx-font-size:20; -fx-font-weight:bold;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="✕" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-cursor:hand; -fx-font-size:18;"/>
+    </HBox>
+
+    <Label text="Modifiez les informations de la commande" style="-fx-text-fill:#666666;"/>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Fournisseur *"/>
+            <ComboBox fx:id="cmbFournisseur" promptText="Sélectionner un fournisseur" prefWidth="9999" style="-fx-padding:8;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Date de livraison prévue"/>
+            <DatePicker fx:id="dateLivraison" promptText="jj/mm/aaaa" prefWidth="9999" style="-fx-padding:8;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Observations"/>
+        <TextArea fx:id="txtObservations" promptText="Observations..." prefRowCount="2" style="-fx-padding:10;"/>
+    </VBox>
+
+    <Separator/>
+
+    <Label text="Produits commandés" style="-fx-font-weight:bold; -fx-font-size:14;"/>
+
+    <VBox spacing="8">
+        <Label text="Ajouter un produit"/>
+        <ComboBox fx:id="cmbProduit" promptText="Sélectionner un produit" prefWidth="9999" style="-fx-padding:8;"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Quantité"/>
+            <TextField fx:id="txtQuantite" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Prix unitaire (€)"/>
+            <TextField fx:id="txtPrixUnitaire" promptText="0.00" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" alignment="BOTTOM_LEFT">
+            <Button fx:id="btnAjouterLigne" text="+ Ajouter" onAction="#ajouterLigne" style="-fx-background-color:#27ae60; -fx-text-fill:white; -fx-padding:10 15; -fx-background-radius:6; -fx-cursor:hand;"/>
+        </VBox>
+    </HBox>
+
+    <VBox fx:id="lignesContainer" spacing="5" style="-fx-max-height:150; -fx-border-color:#e0e0e0; -fx-border-radius:6; -fx-padding:10;">
+        <Label text="Aucun produit ajouté" style="-fx-text-fill:#999999;"/>
+    </VBox>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Label fx:id="lblTotal" text="Total: 0.00 €" style="-fx-font-weight:bold; -fx-font-size:16;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnAnnuler" text="Annuler" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-padding:10 20; -fx-cursor:hand;"/>
+        <Button fx:id="btnModifier" text="Enregistrer les modifications" onAction="#modifierCommande" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:10 20; -fx-background-radius:6; -fx-cursor:hand;"/>
+    </HBox>
+</VBox>
+</ScrollPane>

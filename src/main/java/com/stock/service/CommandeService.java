@@ -44,6 +44,7 @@ public class CommandeService {
     public List<BonCommande> consulterBonsCommandeParFournisseur(int idFournisseur) throws Exception {
         return bonCommandeDAO.findByFournisseur(idFournisseur);
     }
+
     public List<BonCommande>  getBonsEntreeEnAttenteValidation() throws Exception{
         List<BonCommande> allBons=bonCommandeDAO.readAll();
         List<BonCommande> enAttente=new ArrayList<>();
@@ -57,6 +58,11 @@ public class CommandeService {
     public void mettreAJourStatut(BonCommande bc) throws Exception {
         // On appelle le DAO pour mettre à jour dans la base
         bonCommandeDAO.updateStatut(bc);
+    }
+
+    public int compterCommandesParStatut(String statut) throws Exception {
+        List<BonCommande> commandes = bonCommandeDAO.findByStatut(statut);
+        return commandes.size();
     }
 
 }
