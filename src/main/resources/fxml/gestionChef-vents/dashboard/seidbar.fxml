@@ -40,7 +40,7 @@
                     <VBox alignment="CENTER" spacing="5">
                         <ImageView fitWidth="160" fitHeight="160">
                             <image>
-                                <Image url="/images/smahan.jpg"/>
+                                <Image url="/images/image.jpeg"/>
                             </image>
                             <clip>
                                 <Circle radius="80" centerX="80" centerY="80"/>
