@@ -172,20 +172,7 @@
                     </HBox>
 
 
-                    <HBox styleClass="alert_card" spacing="0" >
-                        <Region styleClass="alert_bar_critique" />
 
-                        <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 15;">
-                            <Label text="Péremption Proche"
-                                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                            <Label text="Produit REF-089 expire dans 7 jours"
-                                   style="-fx-font-size: 12px; -fx-text-fill: #64748b;" />
-                        </VBox>
-
-                        <VBox alignment="CENTER" style="-fx-padding: 15;">
-                            <Button text="CRITIQUE" styleClass="badge_critique" />
-                        </VBox>
-                    </HBox>
                     <VBox>
                         <HBox spacing="960">
                             <HBox spacing="5">

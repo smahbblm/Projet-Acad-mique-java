@@ -42,5 +42,9 @@ public class VenteService {
     public List<BonLivraison> consulterBonsLivraisonParClient(int idClient) throws Exception {
         return bonLivraisonDAO.findByClient(idClient);
     }
+    public void mettreAJourStatut(BonLivraison bonLivraison) throws Exception {
+        // On suppose que tu veux juste mettre à jour le statut
+        bonLivraisonDAO.update(bonLivraison);
+    }
 }
 

@@ -10,6 +10,9 @@ public class LigneSortie {
     private BonSortie bonSortie;
     private Produit produit;
     private int quantite;
+    public LigneSortie(){
+
+    }
 
     public LigneSortie(Produit produit, int quantite) {
         this.produit = produit;

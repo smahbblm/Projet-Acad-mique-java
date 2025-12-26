@@ -12,5 +12,6 @@ public interface IBonLivraisonDAO {
     BonLivraison findByNumero(String numero) throws Exception;
     List<BonLivraison> findByStatut(String statut) throws Exception;
     List<BonLivraison> findByClient(int idClient) throws Exception;
+    void updateStatut(BonLivraison bonLivraison) throws Exception;
 }
 

@@ -13,7 +13,9 @@ public class BonSortie {
     private LocalDate dateSortie;
     private String statut;
     private List<LigneSortie> lignes;
+    public BonSortie(){
 
+    }
     public BonSortie(String numero) {
         this.numero = numero;
         this.dateSortie = LocalDate.now();

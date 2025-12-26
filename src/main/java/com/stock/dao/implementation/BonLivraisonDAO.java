@@ -169,4 +169,12 @@ public class BonLivraisonDAO implements IBonLivraisonDAO {
 
         return bonLivraison;
     }
+    public void updateStatut(BonLivraison bonLivraison) throws Exception {
+        String sql = "UPDATE bon_livraison SET statut=? WHERE idBonLivraison=?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, bonLivraison.getStatut());
+            stmt.setInt(2, bonLivraison.getIdBonLivraison());
+            stmt.executeUpdate();
+        }
+    }
 }

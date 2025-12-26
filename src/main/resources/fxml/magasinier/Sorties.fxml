@@ -109,8 +109,7 @@
                                          prefWidth="250" sortable="false"/>
                             <TableColumn fx:id="colStatutLivraison" text="Statut"
                                          prefWidth="100" sortable="false"/>
-                            <TableColumn fx:id="colNbProduitsLivraison" text="Nb Produits"
-                                         prefWidth="100" sortable="false"/>
+
                             <TableColumn fx:id="colActionLivraison" text="Action"
                                          prefWidth="180" sortable="false"/>
                         </columns>

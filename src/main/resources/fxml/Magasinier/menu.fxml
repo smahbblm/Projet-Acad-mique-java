@@ -47,7 +47,8 @@
             <ImageView fitHeight="80" fitWidth="80">
                 <image><Image url="@Img/profile.png"/></image>
             </ImageView>
-            <Label text="Ahmed Bennani" styleClass="profile-name"/>
+            <Label fx:id="labelNomMagasinier" styleClass="profile-name"/>
+
             <Label text="Magasinier" styleClass="profile-role"/>
         </VBox>
         <Separator prefWidth="40" />
@@ -105,12 +106,23 @@
                 </graphic>
 
             </Button>
+            <Button  styleClass="menu-item" alignment="CENTER_LEFT" onAction="#pageValidationBons">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ImageView fitWidth="22" fitHeight="22">
+                            <image><Image url="@Img/check.png"/></image>
+                        </ImageView>
+                        <Label text="Validation des bons" styleClass="menu-label"/>
+                    </HBox>
+                </graphic>
+
+            </Button>
 
         </VBox>
 
         <Separator prefWidth="40" />
 
-        <Button  styleClass="lagout" alignment="CENTER_LEFT">
+        <Button  styleClass="lagout" alignment="CENTER_LEFT" onAction="#handleLogout">
             <graphic>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <ImageView fitWidth="22" fitHeight="22">

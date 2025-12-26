@@ -80,10 +80,7 @@
                         <Label fx:id="TotalMv" text="46" styleClass="carte-value"/>
                     </VBox>
                 </HBox>
-                <HBox>
-                    <Button  text="Valider Bons Commande"/>
-                    <Button text="Valider Bons de livraison" />
-                </HBox>
+
 
                 <VBox spacing="20" alignment="TOP_LEFT"
                       AnchorPane.topAnchor="200"
@@ -133,84 +130,6 @@
 
                 </VBox>
 
-                <VBox spacing="15" alignment="TOP_LEFT"
-                      AnchorPane.topAnchor="600"
-                      AnchorPane.leftAnchor="20"
-                      AnchorPane.rightAnchor="30"
-                      style="-fx-background-color: white;
-                             -fx-background-radius: 10;
-                             -fx-padding: 20;
-                             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
-                      prefHeight="210">
-
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <ImageView fitHeight="25" fitWidth="25" preserveRatio="true">
-                            <Image url="@Img/data-access.png" />
-                        </ImageView>
-                        <Label text="Actions Rapides"
-                               style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
-                    </HBox>
-
-                    <VBox spacing="10">
-                        <Button text="Enregistrer Entrée"
-                                prefHeight="45" maxWidth="Infinity"
-                                style="-fx-background-color: #5B7FE5;
-                                       -fx-text-fill: white;
-                                       -fx-font-size: 14px;
-                                       -fx-font-weight: bold;
-                                       -fx-background-radius: 8;
-                                       -fx-cursor: hand;
-                                       -fx-effect: dropshadow(three-pass-box, rgba(91, 127, 229, 0.3), 8, 0, 0, 2);"
-                                onAction="#afficherFormuleEntre">
-                            <graphic>
-                                <HBox spacing="8" alignment="CENTER">
-                                    <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
-                                        <Image url="@Img/mobility.png" />
-                                    </ImageView>
-                                </HBox>
-                            </graphic>
-                        </Button>
-
-                        <Button text="Générer Bon Sortie"
-                                prefHeight="45" maxWidth="Infinity"
-                                style="-fx-background-color: #9B7FE5;
-                                       -fx-text-fill: white;
-                                       -fx-font-size: 14px;
-                                       -fx-font-weight: bold;
-                                       -fx-background-radius: 8;
-                                       -fx-cursor: hand;
-                                       -fx-effect: dropshadow(three-pass-box, rgba(155, 127, 229, 0.3), 8, 0, 0, 2);"
-                                onAction="#afficheFormuleSortie">
-                            <graphic>
-                                <HBox spacing="8" alignment="CENTER">
-                                    <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
-                                        <Image url="@Img/mobility.png" />
-                                    </ImageView>
-                                </HBox>
-                            </graphic>
-                        </Button>
-                    </VBox>
-
-                    <VBox fx:id="formulEntrée" spacing="15" prefWidth="450"
-                          style="-fx-background-color: rgba(255, 255, 255, 0.95);
-                                 -fx-padding: 25;
-                                 -fx-background-radius: 10;
-                                 -fx-border-color: #718096;
-                                 -fx-border-width: 2;
-                                 -fx-border-radius: 10;
-                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);"
-                          visible="false"/>
-
-                    <VBox fx:id="formulSortie" spacing="15" prefWidth="450"
-                          style="-fx-background-color: rgba(255, 255, 255, 0.95);
-                                 -fx-padding: 25;
-                                 -fx-background-radius: 10;
-                                 -fx-border-color: #718096;
-                                 -fx-border-width: 2;
-                                 -fx-border-radius: 10;
-                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);"
-                          visible="false"/>
-                </VBox>
 
             </AnchorPane>
         </content>
