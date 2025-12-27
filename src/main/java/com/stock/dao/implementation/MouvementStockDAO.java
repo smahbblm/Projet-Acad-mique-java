@@ -43,7 +43,13 @@ public class MouvementStockDAO implements IMouvementStockDAO {
             stmt.setInt(5, mv.getStockApres());
             stmt.setString(6, mv.getReference());
             stmt.setInt(7, mv.getProduit().getIdProduit());
-            stmt.setInt(8, mv.getUtilisateur() != null ? mv.getUtilisateur().getIdUtilisateur() : null);
+            
+            // Correction: utiliser setObject pour gérer les valeurs null
+            if (mv.getUtilisateur() != null) {
+                stmt.setInt(8, mv.getUtilisateur().getIdUtilisateur());
+            } else {
+                stmt.setNull(8, java.sql.Types.INTEGER);
+            }
 
             stmt.executeUpdate();
         }
