@@ -398,4 +398,4 @@ public class ProduitDAO implements IProduitDAO {
         return p;
     }
 }
-//>>>>>>> d44fc21 (fin  de code)
+

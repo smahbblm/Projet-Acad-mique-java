@@ -7,24 +7,36 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-//avand de crée  la classe qui va hérité de la classe Application on dois crée les  fichiers fxml
-public  class Main_smahan extends Application  {
+public  class Main_smahan extends Application {
     public static void main(String[] args) {
-        Application.launch(Main_smahan.class,args);
+        Application.launch(Main_smahan.class, args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Gestion de Stock");
-        
+
         // Créer une session utilisateur fictive pour le test
         com.stock.util.SessionManager sessionManager = com.stock.util.SessionManager.getInstance();
         com.stock.model.utilisateur.ResponsableVentes user = new com.stock.model.utilisateur.ResponsableVentes(
-            "Boulmane", "Smahan", "smahan@example.com", "password123"
+                "Boulmane", "Smahan", "smahan@example.com", "password123"
         );
         sessionManager.createSession(user, "RESPONSABLE_VENTES");
-        
-        // ========== DASHBOARD ==========
+        // ========== DASHBOARD  latifa ==========
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Magasinier/DashboardMagasinier.fxml"));
+
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Stock Manager");
+        stage.show();
+    }
+}
+
+
+
+   /*
+    // ========== DASHBOARD  smahan ==========
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml"));
         Parent root = loader.load();
@@ -93,7 +105,7 @@ public  class Main_smahan extends Application  {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        */
+
         stage.show();
     }
-}
+}*/

@@ -112,7 +112,7 @@
                 <version>0.0.8</version>
                 <configuration>
 
-                    <mainClass>com.stock.MainAppOumnia</mainClass>
+                    <mainClass>com.stock.Main_smahan</mainClass>
 
                 </configuration>
             </plugin>

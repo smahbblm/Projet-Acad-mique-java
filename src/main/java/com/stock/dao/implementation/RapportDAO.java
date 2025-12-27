@@ -15,11 +15,7 @@ import java.util.List;
 
 public class RapportDAO implements IRapportDAO {
 
-/*
-    private Connection getConn() throws Exception {
-        return DatabaseConnection.getInstance().getConnection();
-    }
-*/
+
     private Connection getConn() throws Exception { return DatabaseConnection.getConnection(); }
 
 
