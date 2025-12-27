@@ -4,13 +4,16 @@ module com.stock {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
-    // PDFBox - NOMS CORRECTS DES MODULES
-    requires org.apache.pdfbox;
-    requires org.apache.fontbox;
 
+    /*
     requires javafx.swing;
     requires mysql.connector.j;
+    */
 
+    // iText modules
+    requires kernel;
+    requires layout;
+    requires io;
 
     uses java.sql.Driver;
 
