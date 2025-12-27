@@ -23,9 +23,6 @@
             </ImageView>
         </StackPane>
 
-        <!-- =====================
-             PARTIE DROITE : FORMULAIRE
-        ====================== -->
         <VBox spacing="28" alignment="CENTER" styleClass="form-side"
               prefWidth="450" maxWidth="450">
 
@@ -35,7 +32,6 @@
                 <Label text="Accédez à Votre espace de Gestion" styleClass="subtitle"/>
             </VBox>
 
-            <!-- Formulaire -->
             <VBox spacing="20" maxWidth="360" prefWidth="360">
 
                 <VBox spacing="8">
@@ -58,9 +54,7 @@
                     <CheckBox fx:id="rememberMe"
                               text="Se souvenir de moi"
                               styleClass="modern-checkbox"/>
-                    <Hyperlink fx:id="forgotPassword"
-                               text="Mot de passe oublié ?"
-                               styleClass="link"/>
+
                 </HBox>
 
                 <Button fx:id="loginBtn"
