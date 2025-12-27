@@ -28,12 +28,14 @@ public class Form_controller {
         }
 
         loginBtn.setOnAction(event -> handleLogin());
-        passwordField.setOnAction(event -> handleLogin());
+        passwordField.setOnAction(
+                event -> handleLogin());
     }
 
     private void handleLogin() {
         String email = emailField.getText();
         String pass = passwordField.getText();
+
 
         if (email.isEmpty() || pass.isEmpty()) {
             showError("Erreur !", "Veuillez remplir tous les champs.");
@@ -51,16 +53,16 @@ public class Form_controller {
 
             switch (user.getRole()) {
                 case "ADMINISTRATEUR":
-                    openDashboard("/fxml/DashboardAdmin.fxml", "Dashboard Admin");
+                    openDashboard("/fxml/Dashboard_Administrateur/dashboard.fxml", "Dashboard Admin");
                     break;
                 case "RESPONSABLE_VENTES":
                     openDashboard("/fxml/DashboardChef_vents.fxml", "Dashboard Ventes");
                     break;
                 case "RESPONSABLE_APPROVISIONNEMENT":
-                    openDashboard("/fxml/DashboardAppro.fxml", "Dashboard Approvisionnement");
+                    openDashboard("/fxml/DashResponsableApprovisionnements/dashboardResApprov.fxml", "Dashboard Approvisionnement");
                     break;
                 case "MAGASINIER":
-                    openDashboard("/fxml/DashboardMagasinier.fxml", "Dashboard Magasinier");
+                    openDashboard("/fxml/Magasinier/DashboardMagasinier.fxml", "Dashboard Magasinier");
                     break;
                 default:
                     showError("Erreur", "Rôle inconnu.");
