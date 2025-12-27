@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+/*
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IProduitDAO;
 import com.stock.model.produit.Produit;
-import com.stock.model.DatabaseConnection;
+import com.stock.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +41,7 @@ public class ProduitDAO implements IProduitDAO {
         }
     }
 */
+/*
     @Override
     public Produit read(int id) throws Exception {
         String sql = "SELECT * FROM produits WHERE idProduit=?";
@@ -167,6 +168,7 @@ public class ProduitDAO implements IProduitDAO {
         return categories;
     }
 */
+/*
     private Produit mapResultSetToProduit(ResultSet rs) throws Exception {
         Produit p = new Produit(
             rs.getString("reference"),
@@ -187,17 +189,18 @@ public class ProduitDAO implements IProduitDAO {
     }
     public void mettreAJourStock(Produit p) throws Exception {
         String sql = "UPDATE produits SET quantiteStock = ? WHERE idProduit = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, p.getQuantiteStock());
             stmt.setInt(2, p.getIdProduit());
             stmt.executeUpdate();
         }
     }
 
+     /*
     // Méthode pour récupérer un produit par id
     public Produit getProduitById(int idProduit) throws Exception {
         String sql = "SELECT * FROM produits WHERE idProduit = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, idProduit);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -219,8 +222,13 @@ public class ProduitDAO implements IProduitDAO {
         }
         return null;
     }
-}
-=======
+    */
+
+
+
+
+
+
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IProduitDAO;
@@ -236,13 +244,13 @@ public class ProduitDAO implements IProduitDAO {
     DatabaseConnection app = new DatabaseConnection();
     Connection con = app.getConnection();
 
-    /*
+
     @Override
     public void create(Produit produit) throws Exception {
-        String sql = "INSERT INTO produits (reference, designation, description, prixAchat, prixVente, " +
+       String sql = "INSERT INTO produits (reference, designation, description, prixAchat, prixVente, " +
                      "quantiteStock, seuilMin, seuilMax, categorie, dateAjout) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, produit.getReference());
             stmt.setString(2, produit.getDesignation());
             stmt.setString(3, produit.getDescription());
@@ -256,8 +264,8 @@ public class ProduitDAO implements IProduitDAO {
             stmt.executeUpdate();
         }
     }
-*/
-    @Override
+
+   @Override
     public Produit read(int id) throws Exception {
         String sql = "SELECT * FROM produits WHERE idProduit=?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -271,16 +279,16 @@ public class ProduitDAO implements IProduitDAO {
         return null;
     }
 
-    @Override
+   @Override
     public List<Produit> readAll() throws Exception {
         List<Produit> produits = new ArrayList<>();
         String sql = "SELECT * FROM produits";
-        
+
         try (PreparedStatement stmt = con.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-            
+
             System.out.println("ProduitDAO.readAll() - Requête exécutée");
-            
+
             while (rs.next()) {
                 try {
                     System.out.println("Produit trouvé: " + rs.getString("designation"));
@@ -289,8 +297,7 @@ public class ProduitDAO implements IProduitDAO {
                         rs.getString("reference"),
                         rs.getString("designation"),
                         rs.getFloat("prixAchat"),
-                        rs.getFloat("prixVente"),
-                        rs.getInt("quantiteStock"),
+                        rs.getFloat("prixVente"), rs.getInt("quantiteStock"),
                         rs.getInt("seuilMin"),
                         rs.getInt("seuilMax"),
                         rs.getString("categorie")
@@ -304,19 +311,19 @@ public class ProduitDAO implements IProduitDAO {
                     System.out.println("Produit ajouté à la liste: " + p.getDesignation());
                 } catch (Exception e) {
                     System.out.println("ERREUR lors de la création du produit: " + e.getMessage());
-                    e.printStackTrace();
+                   e.printStackTrace();
                 }
             }
         }
         System.out.println("Nombre de produits récupérés: " + produits.size());
         return produits;
     }
-/*
-    @Override
+
+   @Override
     public void update(Produit produit) throws Exception {
         String sql = "UPDATE produits SET reference=?, designation=?, description=?, prixAchat=?, " +
                      "prixVente=?, quantiteStock=?, seuilMin=?, seuilMax=?, categorie=? WHERE idProduit=?";
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+       try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, produit.getReference());
             stmt.setString(2, produit.getDesignation());
             stmt.setString(3, produit.getDescription());
@@ -327,8 +334,7 @@ public class ProduitDAO implements IProduitDAO {
             stmt.setInt(8, produit.getSeuilMax());
             stmt.setString(9, produit.getCategorie());
             stmt.setInt(10, produit.getIdProduit());
-            stmt.executeUpdate();
-        }
+            stmt.executeUpdate();        }
     }
 
     @Override
@@ -341,18 +347,15 @@ public class ProduitDAO implements IProduitDAO {
     }
 
     @Override
-    public Produit findByReference(String reference) throws Exception {
+    public Produit getProduitById(String reference) throws Exception {
         String sql = "SELECT * FROM produits WHERE reference=?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, reference);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return mapResultSetToProduit(rs);
-                }
-            }
+                    return mapResultSetToProduit(rs);}}
         }
-        return null;
-    }
+        return null;    }
 
     @Override
     public List<Produit> findByCategorie(String categorie) throws Exception {
@@ -366,9 +369,8 @@ public class ProduitDAO implements IProduitDAO {
 
     @Override
     public List<String> getCategories() throws Exception {
-        List<String> categories = new ArrayList<>();
-        String sql = "SELECT DISTINCT categorie FROM produits WHERE categorie IS NOT NULL AND categorie != '' ORDER BY categorie";
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
+        List<String> categories = new ArrayList<>();String sql = "SELECT DISTINCT categorie FROM produits WHERE categorie IS NOT NULL AND categorie != '' ORDER BY categorie";
+        try (PreparedStatement stmt = con.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 categories.add(rs.getString("categorie"));
@@ -376,7 +378,7 @@ public class ProduitDAO implements IProduitDAO {
         }
         return categories;
     }
-*/
+
     private Produit mapResultSetToProduit(ResultSet rs) throws Exception {
         Produit p = new Produit(
             rs.getString("reference"),
@@ -396,4 +398,4 @@ public class ProduitDAO implements IProduitDAO {
         return p;
     }
 }
->>>>>>> d44fc21 (fin  de code)
+//>>>>>>> d44fc21 (fin  de code)

@@ -1,14 +1,13 @@
-<<<<<<< HEAD
+
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.ILigneCommandeDAO;
 import com.stock.model.document.LigneCommande;
-<<<<<<< HEAD
+
 import com.stock.model.produit.Produit;
 import com.stock.util.DatabaseConnection;
-=======
-import com.stock.model.DatabaseConnection;
->>>>>>> e06bae3 (section de livraison)
+
+//import com.stock.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,7 +84,7 @@ public class LigneCommandeDAO implements ILigneCommandeDAO {
 
 }
 
-=======
+/*  avant rebase
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.ILigneCommandeDAO;
@@ -125,6 +124,8 @@ public class LigneCommandeDAO implements ILigneCommandeDAO {
     public List<LigneCommande> findByBonCommande(int idBonCommande) throws Exception {
         return new ArrayList<>();
     }
-}
 
->>>>>>> d44fc21 (fin  de code)
+ */
+
+
+

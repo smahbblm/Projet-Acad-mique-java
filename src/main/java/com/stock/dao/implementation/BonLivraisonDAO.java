@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 package com.stock.dao.implementation;
 
@@ -17,7 +17,7 @@ public class BonLivraisonDAO implements IBonLivraisonDAO {
     private Connection connection;
 
     public BonLivraisonDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     @Override
@@ -354,7 +354,7 @@ public class BonLivraisonDAO implements IBonLivraisonDAO {
 //        return bonLivraison;
 //    }
 //}
-
+/*
 =======
 package com.stock.dao.implementation;
 
@@ -526,3 +526,5 @@ public class BonLivraisonDAO implements IBonLivraisonDAO {
     }
 }
 >>>>>>> d44fc21 (fin  de code)
+
+ */

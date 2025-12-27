@@ -1,13 +1,13 @@
-<<<<<<< HEAD
+
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IBonCommandeDAO;
 import com.stock.model.document.BonCommande;
 
 import com.stock.model.partenaire.Fournisseur;
-//import com.stock.util.DatabaseConnection;
+import com.stock.util.DatabaseConnection;
 
-import com.stock.model.DatabaseConnection;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,8 +25,8 @@ public class BonCommandeDAO implements IBonCommandeDAO {
 
     public BonCommandeDAO() throws Exception {
 
-        //this.connection = DatabaseConnection.getInstance().getConnection();
         this.connection = DatabaseConnection.getConnection();
+        //this.connection = DatabaseConnection.getConnection();
         this.ligneCommandeDAO=new LigneCommandeDAO();
 
     }
@@ -277,7 +277,7 @@ public class BonCommandeDAO implements IBonCommandeDAO {
     }
 
 }
-=======
+/* avant rebase
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IBonCommandeDAO;
@@ -290,7 +290,7 @@ import java.util.List;
 
 /**
  * Implémentation DAO pour les bons de commande
- */
+
 public class BonCommandeDAO implements IBonCommandeDAO {
     private Connection connection;
 
@@ -451,3 +451,4 @@ public class BonCommandeDAO implements IBonCommandeDAO {
     }
 }
 >>>>>>> d44fc21 (fin  de code)
+*/

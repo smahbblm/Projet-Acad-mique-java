@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.stock.service.Bonservice;
+import com.stock.service.BonService;
 import com.stock.util.PDFExporter;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -71,7 +71,7 @@ public class bonslivrController {
     //la méthode pour la supprission d'un  bon de livraison
     @FXML
     public void supprimebon() {
-        Bonservice Bonservice = new Bonservice();
+        BonService Bonservice = new BonService();
         List<String> listeBons = Bonservice.liste_numero_bonliv();
         System.out.println("listeBons");
 
@@ -96,7 +96,7 @@ public class bonslivrController {
     // Fonction pour récupérer et afficher tous les bons de livraison
     @FXML
     public void chargerBons() {
-        Bonservice Bonservice = new Bonservice();
+        BonService Bonservice = new BonService();
         ObservableList<BonLivraison> listeBons = Bonservice.getAllBons();
         tablebon.setItems(listeBons);
         
@@ -145,10 +145,10 @@ public class bonslivrController {
     // Fonction pour charger les filtres (clients et statuts)
     @FXML
     public void chargerFiltres() {
-        Bonservice Bonservice = new Bonservice();
+        BonService BonService = new BonService();
         
         // Charger les clients
-        ObservableList<String> listeClients = Bonservice.getclient();
+        ObservableList<String> listeClients = BonService.getclient();
         filtreClient.setItems(listeClients);
         
         // Charger les statuts
@@ -164,8 +164,8 @@ public class bonslivrController {
     
     // Fonction pour filtrer les bons selon les critères sélectionnés
     private void filtrerBons() {
-        Bonservice Bonservice = new Bonservice();
-        ObservableList<BonLivraison> tousLesBons = Bonservice.getAllBons();
+        BonService BonService = new BonService();
+        ObservableList<BonLivraison> tousLesBons = BonService.getAllBons();
         ObservableList<BonLivraison> bonsFiltres = javafx.collections.FXCollections.observableArrayList();
         
         String clientSelectionne = filtreClient.getValue();
@@ -287,8 +287,8 @@ public class bonslivrController {
         
         Optional<ButtonType> result = confirmation.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            Bonservice Bonservice = new Bonservice();
-            Bonservice.supprimerBon(bon.getNumero());
+            BonService BonService = new BonService();
+            BonService.supprimerBon(bon.getNumero());
             chargerBons();
         }
     }

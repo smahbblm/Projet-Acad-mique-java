@@ -16,7 +16,7 @@ public class LigneInventaireDAO implements ILigneInventaireDAO {
     private Connection connection;
   private ProduitDAO produitDAO;
     public LigneInventaireDAO() throws Exception {
-        this.connection = DatabaseConnection.getInstance().getConnection();
+        this.connection = DatabaseConnection.getConnection();
         this.produitDAO=new ProduitDAO();
     }
 

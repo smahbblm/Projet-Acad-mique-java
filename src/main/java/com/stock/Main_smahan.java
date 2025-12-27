@@ -8,9 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 //avand de crée  la classe qui va hérité de la classe Application on dois crée les  fichiers fxml
-public  class Main extends Application  {
+public  class Main_smahan extends Application  {
     public static void main(String[] args) {
-        Application.launch(Main.class,args);
+        Application.launch(Main_smahan.class,args);
     }
 
     @Override

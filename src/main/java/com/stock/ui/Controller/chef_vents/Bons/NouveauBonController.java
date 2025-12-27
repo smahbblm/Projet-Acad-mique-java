@@ -7,7 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
-import com.stock.service.Bonservice;
+import com.stock.service.BonService;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -32,14 +32,14 @@ public class NouveauBonController {
         System.out.println("je suis le contructeur de la nouvelle bon de livraison ");
     }
 
-    Bonservice bonService = new Bonservice();
+    BonService BonService = new BonService();
     public void initialize() {
         System.out.println("je suis exactement le point d'entré  de voitre controller");
-        ObservableList<String> clientsList = bonService.getclient();
+        ObservableList<String> clientsList = BonService.getclient();
         clientCombo.setItems(clientsList);
-        ObservableList<String> bonSortieList = bonService.getbonsortie();
+        ObservableList<String> bonSortieList = BonService.getbonsortie();
         bonSortieCombo.setItems(bonSortieList);
-        ObservableList<String> list_factures = bonService.list_factures();
+        ObservableList<String> list_factures = BonService.list_factures();
         factureCombo.setItems(list_factures);
     }
 
@@ -54,7 +54,7 @@ public class NouveauBonController {
         String status = statutCombo.getValue();
         String adresseLivraison = observationsField.getText();
         String notes = observationsField.getText();
-        int res =bonService.ajouterbons( nombons,  dateLivraison ,status, adresseLivraison, notes );
+        int res =BonService.ajouterbons( nombons,  dateLivraison ,status, adresseLivraison, notes );
         if (res > 0){
             String message = " le bon est bien ajouter à la base  de donées ";
             TextArea resultArea = new TextArea();
@@ -86,9 +86,15 @@ public class NouveauBonController {
     @FXML
     public void supprimebon(){
          System.out.println("la supprission de bon depuis la base de données");
-         //bonService.supprimebon();
+         //BonService.supprimebon();
     }
 }
+
+
+
+
+
+
 
 
 

@@ -37,6 +37,19 @@
       <version>${javafx.version}</version>
     </dependency>
 
+      <!-- PDFBox -->
+      <dependency>
+          <groupId>org.apache.pdfbox</groupId>
+          <artifactId>pdfbox</artifactId>
+          <version>3.0.6</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-swing</artifactId>
+          <version>${javafx.version}</version>
+      </dependency>
+
     <!-- MySQL Connector -->
     <dependency>
       <groupId>com.mysql</groupId>
@@ -99,7 +112,7 @@
                 <version>0.0.8</version>
                 <configuration>
 
-                    <mainClass>com.stock.Main</mainClass>
+                    <mainClass>com.stock.Main_smahan</mainClass>
                 </configuration>
             </plugin>
 

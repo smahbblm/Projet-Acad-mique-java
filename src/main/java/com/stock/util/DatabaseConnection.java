@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> d44fc21 (fin  de code)
 package com.stock.util;
 
 import java.sql.Connection;
@@ -10,7 +7,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-<<<<<<< HEAD
+    /*
     private static DatabaseConnection instance;
 
     private static final String URL = "jdbc:mysql://localhost:3306/stock_management?serverTimezone=UTC";
@@ -30,8 +27,8 @@ public class DatabaseConnection {
         // Chaque appel crée une NOUVELLE connexion
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-}
-=======
+}  */
+
     private static final String URL = "jdbc:mysql://localhost:3307/stock_management";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
@@ -62,4 +59,4 @@ public class DatabaseConnection {
         }
     }
 }
->>>>>>> d44fc21 (fin  de code)
+

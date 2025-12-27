@@ -150,7 +150,7 @@ public class ValidationMagasinierController {
                 return;
             }
             for (LigneCommande ligne : lignes) {
-                Produit p = produitService.getProduitById(ligne.getProduit().getIdProduit());
+                Produit p = produitService.getProduitById(ligne.getProduit().getReference());
                 int stockAvant = p.getQuantiteStock();
                 int stockApres = stockAvant + ligne.getQuantite();
 

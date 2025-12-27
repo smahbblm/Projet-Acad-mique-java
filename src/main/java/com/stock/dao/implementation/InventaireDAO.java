@@ -1,17 +1,16 @@
-<<<<<<< HEAD
+
 package com.stock.dao.implementation;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
+//import com.mysql.cj.xdevapi.PreparableStatement;
 import com.stock.dao.interfaces.IInventaireDAO;
 import com.stock.model.stock.Inventaire;
-<<<<<<< HEAD
 import com.stock.util.DatabaseConnection;
 
 import java.sql.*;
-=======
-import com.stock.model.DatabaseConnection;
+
+
 import java.sql.Connection;
->>>>>>> e06bae3 (section de livraison)
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,8 +116,7 @@ public class InventaireDAO implements IInventaireDAO {
     }
 
 }
-
-=======
+/*   avant rebase
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IInventaireDAO;
@@ -159,5 +157,5 @@ public class InventaireDAO implements IInventaireDAO {
         return new ArrayList<>();
     }
 }
-
 >>>>>>> d44fc21 (fin  de code)
+*/

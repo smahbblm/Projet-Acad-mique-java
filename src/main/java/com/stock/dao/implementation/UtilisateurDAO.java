@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IUtilisateurDAO;
@@ -8,7 +8,7 @@ import com.stock.model.utilisateur.UserFactory;
 //import com.stock.util.DatabaseConnection;
 
 
-import com.stock.model.DatabaseConnection;
+import com.stock.util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -147,7 +147,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         return u;
     }
 }
-=======
+/*  avant rébase
 package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IUtilisateurDAO;
@@ -161,7 +161,7 @@ import java.util.List;
 
 /**
  * Implémentation DAO pour les utilisateurs
- */
+
 public class UtilisateurDAO implements IUtilisateurDAO {
     private Connection connection;
 
@@ -253,3 +253,5 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     }
 }
 >>>>>>> d44fc21 (fin  de code)
+
+ */
