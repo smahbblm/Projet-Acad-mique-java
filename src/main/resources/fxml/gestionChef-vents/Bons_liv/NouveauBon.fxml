@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stock.ui.Controller.chef_vents.Bons.NouveauBonController">
+   <top>
+      <VBox styleClass="header-section">
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+            </VBox.margin>
+            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📦 Nouveau Bon de Livraison" styleClass="form-title">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </HBox>
+      </VBox>
+   </top>
+   
+   <center>
+      <ScrollPane fitToWidth="true" styleClass="form-scroll">
+         <VBox spacing="25.0" styleClass="form-container">
+            <padding>
+               <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+            </padding>
+            
+            <!-- Section Informations générales -->
+            <VBox spacing="15.0" styleClass="form-section">
+               <Label text="Informations générales" styleClass="section-title">
+                  <font>
+                     <Font name="System Bold" size="16.0" />
+                  </font>
+               </Label>
+               
+               <GridPane hgap="20.0" vgap="15.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                  </columnConstraints>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <Label  text="Numéro du bon *" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="numeroidbon" promptText="Ex: BL-2024-001" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label text="Date de livraison *" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <DatePicker fx:id="dateLivraisonBon" promptText="Sélectionner une date" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label text="Statut *" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="statutCombo" prefWidth="200.0" promptText="Sélectionner un statut" styleClass="form-field">
+                        <items>
+                           <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="BROUILLON" />
+                              <String fx:value="EN_ATTENTE" />
+                              <String fx:value="VALIDEE" />
+                              <String fx:value="TRANSMISE" />
+                              <String fx:value="LIVREE" />
+                              <String fx:value="ANNULEE" />
+                           </FXCollections>
+                        </items>
+                     </ComboBox>
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <Label text="Adresse de livraison" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="adresseLivraisonField" promptText="Adresse complète" styleClass="form-field" />
+                  </VBox>
+               </GridPane>
+            </VBox>
+            
+            <!-- Section Client et références -->
+            <VBox spacing="15.0" styleClass="form-section">
+               <Label text="Client et références" styleClass="section-title">
+                  <font>
+                     <Font name="System Bold" size="16.0" />
+                  </font>
+               </Label>
+               
+               <GridPane hgap="20.0" vgap="15.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                  </columnConstraints>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <Label text="Client *" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="clientCombo" prefWidth="200.0" promptText="Sélectionner un client" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label text="Bon de sortie" styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="bonSortieCombo" prefWidth="200.0" promptText="Sélectionner un bon de sortie" styleClass="form-field" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label text="Facture " styleClass="field-label">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="factureCombo" prefWidth="200.0" promptText="Sélectionner une facture" styleClass="form-field" />
+                  </VBox>
+               </GridPane>
+            </VBox>
+            
+            <!-- Section Observations -->
+            <VBox spacing="15.0" styleClass="form-section">
+               <Label text="Observations" styleClass="section-title">
+                  <font>
+                     <Font name="System Bold" size="16.0" />
+                  </font>
+               </Label>
+               
+               <VBox spacing="5.0">
+                  <Label text="Commentaires et notes" styleClass="field-label">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="observationsField" prefRowCount="4" promptText="Saisir des notes..." styleClass="form-field" wrapText="true" />
+               </VBox>
+            </VBox>
+         </VBox>
+      </ScrollPane>
+   </center>
+   
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="15.0" styleClass="button-bar">
+         <padding>
+            <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+         </padding>
+         
+         <Button fx:id="annulerBtn" mnemonicParsing="false" onAction="#annuler" styleClass="btn-secondary" text="❌ Annuler">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Button>
+         
+         <Button fx:id="enregistrerBtn" mnemonicParsing="false" onAction="#enregistrer" styleClass="btn-primary" text="💾 Enregistrer">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Button>
+      </HBox>
+   </bottom>
+</BorderPane>

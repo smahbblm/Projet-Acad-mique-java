@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.ViewReportsController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          style="-fx-padding:20;">
+
+        <!-- TITRE  -->
+        <Label text="Voir les Rapports"
+               style="-fx-font-size:28; -fx-font-weight:bold; -fx-text-fill:#2d3748;" />
+        <Region prefHeight="10"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="filterField" promptText="Rechercher par nom ou type..." HBox.hgrow="ALWAYS" style="-fx-font-size:14px;"/>
+            <DatePicker fx:id="dateFilter" style="-fx-font-size:14px;"/>
+        </HBox>
+        <Region prefHeight="10"/>
+
+        <TableView fx:id="reportTable" VBox.vgrow="ALWAYS"
+                   style="-fx-background-radius:8; -fx-font-size:14px;">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Nom rapport" prefWidth="350"/>
+                <TableColumn fx:id="typeColumn" text="Type" prefWidth="500"/>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="290"/>
+                <TableColumn fx:id="formatColumn" text="Format" prefWidth="250"/>
+                <TableColumn fx:id="actionColumn" text="Action" prefWidth="490"/>
+            </columns>
+        </TableView>
+
+
+
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.ui.Controller.chef_vents.dashboard.content_controller"
+            prefWidth="1200" prefHeight="700"
+            style="-fx-background-color: #f8f9fa;">
+    
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 15 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+            <VBox spacing="2">
+                <Label text="Dashboard Ventes" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                <Label text="Vue d'ensemble" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+            </VBox>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <HBox spacing="6" style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-padding: 4;">
+                <Button fx:id="aujourdhuit" text="Aujourd'hui"
+                        style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 11px; -fx-cursor: hand;"
+                        onAction="#selectPeriod"/>
+                <Button fx:id="semaine" text="7 jours"
+                        style="-fx-background-color: white; -fx-text-fill: #0f172a; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 11px; -fx-cursor: hand; -fx-font-weight: 600;"
+                        onAction="#selectPeriod"/>
+                <Button fx:id="mois" text="30 jours"
+                        style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 11px; -fx-cursor: hand;"
+                        onAction="#selectPeriod"/>
+                <Button fx:id="annee" text="12 mois"
+                        style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 11px; -fx-cursor: hand;"
+                        onAction="#selectPeriod"/>
+            </HBox>
+            
+            <StackPane>
+                <Button text="🔔" style="-fx-background-color: #f1f5f9; -fx-background-radius: 10; -fx-padding: 8 12; -fx-font-size: 14px; -fx-cursor: hand;"
+                        onAction="#afficherNotifications"/>
+                <Label fx:id="badgeNotifications" text="3"
+                       style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 2 5; -fx-font-size: 9px; -fx-font-weight: bold;"
+                       StackPane.alignment="TOP_RIGHT" translateX="6" translateY="-3"/>
+            </StackPane>
+        </HBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="15" style="-fx-padding: 20;">
+                
+                <!-- KPIs -->
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <StackPane style="-fx-background-color: #dbeafe; -fx-background-radius: 8; -fx-pref-width: 36; -fx-pref-height: 36;">
+                                <Label text="💰" style="-fx-font-size: 18px;"/>
+                            </StackPane>
+                            <VBox spacing="1">
+                                <Label text="Chiffre d'Affaires" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                <Label fx:id="chiffreAffaires" text="0.00 €" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            </VBox>
+                        </HBox>
+                        <Label text="↗ +12.5%" style="-fx-font-size: 11px; -fx-text-fill: #10b981; -fx-font-weight: 600;"/>
+                    </VBox>
+                    
+                    <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <StackPane style="-fx-background-color: #fce7f3; -fx-background-radius: 8; -fx-pref-width: 36; -fx-pref-height: 36;">
+                                <Label text="📄" style="-fx-font-size: 18px;"/>
+                            </StackPane>
+                            <VBox spacing="1">
+                                <Label text="Factures" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                <Label fx:id="facturesJour" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            </VBox>
+                        </HBox>
+                        <Label text="↗ +8.2%" style="-fx-font-size: 11px; -fx-text-fill: #10b981; -fx-font-weight: 600;"/>
+                    </VBox>
+                    
+                    <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <StackPane style="-fx-background-color: #e0e7ff; -fx-background-radius: 8; -fx-pref-width: 36; -fx-pref-height: 36;">
+                                <Label text="👥" style="-fx-font-size: 18px;"/>
+                            </StackPane>
+                            <VBox spacing="1">
+                                <Label text="Clients" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                <Label fx:id="clientsActifs" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            </VBox>
+                        </HBox>
+                        <Label text="↗ +5.4%" style="-fx-font-size: 11px; -fx-text-fill: #10b981; -fx-font-weight: 600;"/>
+                    </VBox>
+                    
+                    <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <StackPane style="-fx-background-color: #d1fae5; -fx-background-radius: 8; -fx-pref-width: 36; -fx-pref-height: 36;">
+                                <Label text="🛒" style="-fx-font-size: 18px;"/>
+                            </StackPane>
+                            <VBox spacing="1">
+                                <Label text="Panier Moyen" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                <Label fx:id="panierMoyen" text="0.00 €" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            </VBox>
+                        </HBox>
+                        <Label text="↗ +3.1%" style="-fx-font-size: 11px; -fx-text-fill: #10b981; -fx-font-weight: 600;"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Charts -->
+                <HBox spacing="15" prefHeight="280">
+                    <VBox HBox.hgrow="ALWAYS" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Évolution CA" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="📈" style="-fx-font-size: 16px;"/>
+                        </HBox>
+                        <LineChart fx:id="evolutionCA" VBox.vgrow="ALWAYS" legendVisible="false" animated="true">
+                            <xAxis><CategoryAxis side="BOTTOM" tickLabelFill="#64748b"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" tickLabelFill="#64748b"/></yAxis>
+                        </LineChart>
+                    </VBox>
+                    
+                    <VBox prefWidth="350" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Top Produits" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="🏆" style="-fx-font-size: 16px;"/>
+                        </HBox>
+                        <BarChart fx:id="topProduits" VBox.vgrow="ALWAYS" legendVisible="false" animated="true">
+                            <xAxis><CategoryAxis side="BOTTOM" tickLabelFill="#64748b"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" tickLabelFill="#64748b"/></yAxis>
+                        </BarChart>
+                    </VBox>
+                </HBox>
+                
+                <!-- Bottom -->
+                <HBox spacing="15" prefHeight="260">
+                    <VBox prefWidth="350" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Répartition" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="🎯" style="-fx-font-size: 16px;"/>
+                        </HBox>
+                        <PieChart fx:id="diagrammeCategories" VBox.vgrow="ALWAYS" legendSide="BOTTOM" animated="true"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Dernières Transactions" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="Voir tout →" style="-fx-background-color: transparent; -fx-text-fill: #3b82f6; -fx-font-size: 11px; -fx-cursor: hand; -fx-font-weight: 600;"
+                                    onAction="#voirFactures"/>
+                        </HBox>
+                        
+                        <VBox fx:id="transactionsContainer" spacing="8"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Actions -->
+                <HBox spacing="12" alignment="CENTER" style="-fx-padding: 5 0;">
+                    <Button text="➕ Nouvelle Vente" 
+                            style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-padding: 12 24; -fx-background-radius: 10; -fx-font-weight: 600; -fx-font-size: 13px; -fx-cursor: hand;"
+                            onAction="#nouvelleVente"/>
+                    <Button text="📊 Générer Rapport" 
+                            style="-fx-background-color: white; -fx-text-fill: #3b82f6; -fx-border-color: #e2e8f0; -fx-border-width: 2; -fx-padding: 12 24; -fx-background-radius: 10; -fx-font-weight: 600; -fx-font-size: 13px; -fx-cursor: hand;"
+                            onAction="#genererRapport"/>
+                </HBox>
+                
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

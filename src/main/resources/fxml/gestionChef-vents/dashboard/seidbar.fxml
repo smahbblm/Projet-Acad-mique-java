@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.TitledPane?>
+
+
+                    <!-- Entete de l'application
+                    <top>
+                        <HBox alignment="CENTER_LEFT" spacing="15" styleClass="top-bar" >
+                        <!- cette zone est consacrée et utilisée juste pour la barre de titre et logo
+                        <ImageView  fitHeight="70"  fitWidth="70">
+                            <image>
+                                <Image url="/images/logo.jpg" />
+                            </image>
+                            <clip >
+                                <Circle radius="35" centerX="35" centerY="35" />
+                            </clip>
+                        </ImageView>
+                        <Label text="Gestion de stock " styleClass="style_Nom_Application"/>
+                        </HBox>
+                    </top>  -->
+
+                <!-- VBox principal pour la sidebar -->
+                <VBox xmlns="http://javafx.com/javafx/21.0.2"
+                      xmlns:fx="http://javafx.com/fxml"
+                      fx:controller="com.stock.ui.Controller.chef_vents.dashboard.siedbarcontroller"
+                      alignment="TOP_CENTER" spacing="5" styleClass="sidebar" >
+                    <padding>
+                        <Insets top="30" right="20" bottom="10" left="20"/>
+                    </padding>
+
+                    <!-- Partie supérieure qui contient l'image et le nom -->
+                    <VBox alignment="CENTER" spacing="5">
+                        <ImageView fitWidth="160" fitHeight="160">
+                            <image>
+                                <Image url="/images/image.jpeg"/>
+                            </image>
+                            <clip>
+                                <Circle radius="80" centerX="80" centerY="80"/>
+                            </clip>
+                        </ImageView>
+                        <Label text="Chef Ventes" styleClass="csstext"/>
+                    </VBox>
+
+                    <!-- Section VUE D'ENSEMBLE -->
+                    <TitledPane text="VUE D'ENSEMBLE" collapsible="true" expanded="true" styleClass="section-pane">
+                        <VBox spacing="3">
+                            <Label fx:id="dashboardMenu" text="Dashboard" styleClass="menu-link" onMouseClicked="#affiche_dashboard"/>
+                        </VBox>
+                    </TitledPane>
+
+                    <!-- Section GESTION -->
+                    <TitledPane text="GESTION" collapsible="true" expanded="true" styleClass="section-pane">
+                        <VBox spacing="3">
+                            <Label fx:id="clientsMenu" text="Clients" styleClass="menu-link" onMouseClicked="#affiche_clients"/>
+                            <Label fx:id="livraisons" text="Bons de Livraison" styleClass="menu-link" onMouseClicked="#affiche_livraisons"/>
+                            <Label fx:id="features" text="Factures" styleClass="menu-link" onMouseClicked="#affiche_factures"/>
+                            <Label fx:id="retours" text="Bons de Retour" styleClass="menu-link" onMouseClicked="#affiche_retours"/>
+                        </VBox>
+                    </TitledPane>
+
+                    <!-- Section CONSULTATION -->
+                    <TitledPane text="CONSULTATION" collapsible="true" expanded="true" styleClass="section-pane">
+                        <VBox spacing="3">
+                            <Label fx:id="historique" text="Historique Ventes" styleClass="menu-link" onMouseClicked="#affiche_historique"/>
+                            <Label fx:id="disponibilite" text="Disponibilité Produits" styleClass="menu-link" onMouseClicked="#affiche_disponibilite"/>
+                        </VBox>
+                    </TitledPane>
+
+                    <!-- Déconnexion -->
+                    <Label fx:id="deconnexion" text="Déconnexion" styleClass="menu-link" onMouseClicked="#deconnecter">
+                        <VBox.margin><Insets top="40"/></VBox.margin>
+                    </Label>
+
+                </VBox>

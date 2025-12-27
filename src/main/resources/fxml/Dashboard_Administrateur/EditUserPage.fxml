@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.EditUserPageController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <center>
+        <VBox spacing="10" layoutX="20" layoutY="20">
+
+            <TextField fx:id="nomField" promptText="Nom"/>
+            <TextField fx:id="prenomField" promptText="Prénom"/>
+            <TextField fx:id="emailField" promptText="Email"/>
+
+            <ComboBox fx:id="roleBox"/>
+            <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+
+
+            <CheckBox fx:id="actifCheck" text="Actif"/>
+
+            <Button text="Enregistrer" onAction="#handleSave"/>
+        </VBox>
+    </center>
+
+</BorderPane>

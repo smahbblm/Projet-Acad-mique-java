@@ -7,13 +7,14 @@ import com.stock.util.PasswordHasher;
 import com.stock.util.SessionManager;
 import com.stock.exception.AuthenticationException;
 
+
+
+
 /**
  * Service pour l'authentification et gestion des sessions
  */
 public class AuthService {
     private IUtilisateurDAO utilisateurDAO;
-
-
     public AuthService() throws Exception {
         this.utilisateurDAO = new UtilisateurDAO();
     }
@@ -57,6 +58,4 @@ public class AuthService {
         return SessionManager.getInstance().getUserRole();
     }
 }
-
-
 

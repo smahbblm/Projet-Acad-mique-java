@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.stock.ui.Controller.chef_vents.Bons.bonslivrController">
+
+   <top>
+      <VBox styleClass="header-section">
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+            </VBox.margin>
+            <Text fill="#ff6b35" strokeType="OUTSIDE" strokeWidth="0.0" text="📋 Gestion des Bons de Livraison" styleClass="main-title">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Text>
+         </HBox>
+         
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="action-bar">
+            <VBox.margin>
+               <Insets bottom="20.0" left="30.0" right="30.0" />
+            </VBox.margin>
+            <Button fx:id="btnbonplus" mnemonicParsing="false" styleClass="btn-primary" text="➕ Nouveau Bon" onAction="#ajoutebon" >
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+             <Button fx:id="btnbonmoin" mnemonicParsing="false" styleClass="btn-primary" text="➖ Supprission Bon" onAction="#supprimebon">
+                 <font>
+                     <Font name="System Bold" size="14.0" />
+                 </font>
+             </Button>
+
+            <Button fx:id="btnExporter" mnemonicParsing="false" styleClass="btn-success" text="📤 Exporter" onAction="#exporterBon">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnActualiser" mnemonicParsing="false" styleClass="btn-info" text="🔄 Actualiser" onAction="#actualiserBons">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="recherchebon" promptText="🔍 Rechercher un bon..." styleClass="search-field" prefWidth="250.0" >
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </HBox>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="20.0">
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" />
+         </BorderPane.margin>
+         
+         <!-- Statistiques rapides -->
+         <HBox spacing="20.0" styleClass="stats-container">
+            <VBox alignment="CENTER" styleClass="stat-card stat-total">
+               <Text fx:id="totalBonsNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="156" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fx:id="totalBonsLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Bons" styleClass="stat-label" >
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-pending">
+               <Text fx:id="enAttenteNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="23" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fx:id="enAttenteLabel" fill="Blue" strokeType="OUTSIDE" strokeWidth="0.0" text="En Attente" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-delivered">
+               <Text fx:id="livresNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="128" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fx:id="livresLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Livrés" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+            
+            <VBox alignment="CENTER" styleClass="stat-card stat-cancelled">
+               <Text fx:id="annulesNumber" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="5" styleClass="stat-number">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Text>
+               <Text fx:id="annulesLabel" fill="blue" strokeType="OUTSIDE" strokeWidth="0.0" text="Annulés" styleClass="stat-label">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Text>
+            </VBox>
+         </HBox>
+         
+         <!-- Filtres -->
+         <HBox spacing="15.0" styleClass="filter-bar">
+            <Label text="Filtrer par:" styleClass="filter-label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="filtreStatut" prefWidth="150.0" promptText="Statut" styleClass="filter-combo" />
+            <DatePicker promptText="Date de livraison" styleClass="filter-date" />
+            <ComboBox fx:id="filtreClient" prefWidth="150.0" promptText="Client" styleClass="filter-combo" />
+         </HBox>
+         
+         <!-- Tableau des bons de livraison -->
+         <TableView fx:id="tablebon" styleClass="modern-table" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="colNumero" prefWidth="120.0" text="N° Bon" styleClass="table-header" />
+               <TableColumn fx:id="colDate" prefWidth="150.0" text="Date de livraison" styleClass="table-header" />
+               <TableColumn fx:id="colClient" prefWidth="250.0" text="Client" styleClass="table-header" />
+               <TableColumn fx:id="colStatut" prefWidth="150.0" text="Statut" styleClass="table-header" />
+               <TableColumn fx:id="colActions" prefWidth="200.0" text="Actions" styleClass="table-header" />
+            </columns>
+         </TableView>
+      </VBox>
+   </center>
+
+    <!--
+ <bottom>
+    <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-bar">
+       <BorderPane.margin>
+          <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
+       </BorderPane.margin>
+       <Label text="Affichage: 1-20 sur 156 bons" styleClass="pagination-info">
+          <font>
+             <Font size="12.0" />
+          </font>
+       </Label>
+
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="◀ Précédent" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination btn-active" text="1" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="2" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="3" />
+       <Button mnemonicParsing="false" styleClass="btn-pagination" text="Suivant ▶" />
+
+      </HBox>
+   </bottom>     -->
+</BorderPane>

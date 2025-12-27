@@ -1,46 +1,31 @@
+
 package com.stock.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Classe pour la connexion à la base de données
- */
+
 public class DatabaseConnection {
+
+    /*
     private static DatabaseConnection instance;
-    private Connection connection;
 
-    // Configuration à charger depuis database.properties
-    private static final String URL = "jdbc:mysql://localhost:3307/stock_management";
+    private static final String URL = "jdbc:mysql://localhost:3306/stock_management?serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "latifa19.";
 
-    private DatabaseConnection() throws SQLException {
-        try {
-            // Essayer de charger le driver explicitement pour les environnements modulaires
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            // Si Class.forName échoue, essayer de charger via réflexion
-            try {
-                Class<?> driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Driver driver = (java.sql.Driver) driverClass.getDeclaredConstructor().newInstance();
-                DriverManager.registerDriver(driver);
-            } catch (Exception ex) {
-                System.err.println("⚠️ Impossible de charger le driver MySQL explicitement.");
-                System.err.println("Le driver devrait être chargé automatiquement via SPI...");
-            }
-        }
-        this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-    }
+    private DatabaseConnection() {}
 
-    public static synchronized DatabaseConnection getInstance() throws SQLException {
+    public static synchronized DatabaseConnection getInstance() {
+>>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
         if (instance == null) {
             instance = new DatabaseConnection();
         }
         return instance;
     }
 
+<<<<<<< HEAD
     public Connection getConnection() {
         return connection;
     }
@@ -52,6 +37,41 @@ public class DatabaseConnection {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+=======
+    public Connection getConnection() throws SQLException {
+        // Chaque appel crée une NOUVELLE connexion
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}  */
+
+    private static final String URL = "jdbc:mysql://localhost:3307/stock_management";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+
+    private static Connection connection = null;
+
+    public static Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                System.out.println("Connexion établie !");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur de connexion !");
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    public static void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Connexion fermée !");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
         }
     }
 }

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controler.MagasinierController"
+            stylesheets="@../../CSS/StyleMagsinier.css"
+            prefWidth="1600" prefHeight="700"
+            style="-fx-background-color: white;">
+
+    <fx:include source="menu.fxml"
+                AnchorPane.topAnchor="0"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0" />
+
+    <HBox spacing="15" alignment="CENTER_LEFT"
+          AnchorPane.topAnchor="20"
+          AnchorPane.leftAnchor="290"
+          AnchorPane.rightAnchor="30">
+
+        <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
+            <Image url="@Img/mobility.png" />
+        </ImageView>
+
+        <VBox spacing="5">
+            <Label text="Mouvements de Stock" styleClass="titre"/>
+            <Label text="Historique complet de tous les mouvements (Consultation uniquement)"
+                   styleClass="sous-titre"/>
+        </VBox>
+    </HBox>
+
+    <Separator AnchorPane.topAnchor="100"
+               AnchorPane.leftAnchor="266"
+               AnchorPane.rightAnchor="0"
+               styleClass="separateur-custom"/>
+
+    <ScrollPane fitToWidth="true"
+                AnchorPane.leftAnchor="280"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="110"
+                style="-fx-background-color:transparent;-fx-border-color:transparent">
+        <content>
+            <AnchorPane prefHeight="900">
+
+                <HBox spacing="20" alignment="CENTER_LEFT"
+                      AnchorPane.topAnchor="30"
+                      AnchorPane.leftAnchor="20"
+                      AnchorPane.rightAnchor="30">
+
+                    <VBox spacing="8" alignment="CENTER_LEFT" styleClass="carte-vert"
+                          prefWidth="220" prefHeight="100">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <Label  text="Entrées Aujourd'hui" styleClass="carte-title"/>
+                        <Label fx:id="NbrEntree" text="18" styleClass="carte-value"/>
+                    </VBox>
+
+                    <VBox spacing="8" alignment="CENTER_LEFT" styleClass="carte-orange"
+                          prefWidth="220" prefHeight="100">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <Label  text="Sorties Aujourd'hui" styleClass="carte-title"/>
+                        <Label fx:id="Nbrsortie" text="25" styleClass="carte-value"/>
+                    </VBox>
+
+                    <VBox spacing="8" alignment="CENTER_LEFT" styleClass="carte-purple"
+                          prefWidth="220" prefHeight="100">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <Label  text="Total Mouvements" styleClass="carte-title"/>
+                        <Label fx:id="TotalMv" text="46" styleClass="carte-value"/>
+                    </VBox>
+                </HBox>
+
+
+                <VBox spacing="20" alignment="TOP_LEFT"
+                      AnchorPane.topAnchor="200"
+                      AnchorPane.leftAnchor="20"
+                      AnchorPane.rightAnchor="30"
+                      style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+
+                    <HBox spacing="20" alignment="CENTER_LEFT" fx:id="ZoneH">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                                <Image url="@Img/file.png" />
+                            </ImageView>
+                            <Label text="Mouvements Récents" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                        </HBox>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Button fx:id="btnFiltre" style="-fx-background-color: #5B7FE5; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 8 16 8 16;" onAction="#AfficheBarreRecherche">
+                            <graphic>
+                                <HBox spacing="8" alignment="CENTER">
+                                    <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                        <Image url="@Img/magnifying-glass.png" />
+                                    </ImageView>
+                                    <Label text="Filtrer" style="-fx-text-fill: white; -fx-font-size: 13px;"/>
+                                </HBox>
+                            </graphic>
+                        </Button>
+                    </HBox>
+
+                    <TableView fx:id="mouvementsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: white; -fx-border-color: transparent;">
+                        <columns>
+                            <TableColumn text="Référence" prefWidth="150" fx:id="colReference" style="-fx-alignment: CENTER-LEFT;"/>
+                            <TableColumn text="Quantité" prefWidth="120" fx:id="colQuantite" style="-fx-alignment: CENTER;"/>
+                            <TableColumn text="Type" prefWidth="120" fx:id="colType" style="-fx-alignment: CENTER;"/>
+
+                            <TableColumn text="Date" prefWidth="180" fx:id="colDate" style="-fx-alignment: CENTER;"/>
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                    </TableView>
+
+                </VBox>
+
+
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+
+</AnchorPane>
