@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stock.ui.Controller.chef_vents.retours.BonsRetourController"
+      spacing="15" style="-fx-background-color: #f8f9fa;">
+    
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20;">
+        <Label text="📦 Gestion des Bons de Retour" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ff6b35;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnNouveauRetour" text="+ Nouveau Bon de Retour" 
+                style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;"
+                onAction="#ajouterBonRetour"/>
+    </HBox>
+    
+    <!-- Barre de recherche -->
+    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 15;">
+        <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="300"/>
+        <ComboBox fx:id="filtreStatut" promptText="Filtrer par statut" prefWidth="200"/>
+    </HBox>
+    
+    <!-- Tableau des bons de retour -->
+    <TableView fx:id="retoursTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="numeroColumn" text="Numéro" prefWidth="120"/>
+            <TableColumn fx:id="dateColumn" text="Date Retour" prefWidth="120"/>
+            <TableColumn fx:id="clientColumn" text="Client" prefWidth="200"/>
+            <TableColumn fx:id="motifColumn" text="Motif" prefWidth="250"/>
+            <TableColumn fx:id="statutColumn" text="Statut" prefWidth="120"/>
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="200"/>
+        </columns>
+    </TableView>
+    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</VBox>

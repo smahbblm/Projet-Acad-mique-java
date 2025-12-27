@@ -1,0 +1,243 @@
+/* ==================== HISTORIQUE DES VENTES ==================== */
+
+/* Container principal */
+.historique-container {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Section header */
+.header-section {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+/* Titre principal */
+.main-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff6b35;
+}
+
+/* Barre d'actions */
+.action-bar {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+/* Boutons */
+.btn-info {
+    -fx-background-color: #00008B;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 139, 0.3), 5, 0, 0, 2);
+}
+
+.btn-info:hover {
+    -fx-background-color: #000070;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.btn-info:pressed {
+    -fx-background-color: #000050;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Champ de recherche */
+.search-field {
+    -fx-font-size: 14px;
+    -fx-padding: 12 15;
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.search-field:focused {
+    -fx-border-color: #667eea;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.2), 8, 0, 0, 0);
+}
+
+/* Container des statistiques */
+.stats-container {
+    -fx-spacing: 20;
+    -fx-padding: 20 0;
+}
+
+/* Cartes de statistiques */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 25;
+    -fx-min-width: 180;
+    -fx-pref-width: 180;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 15, 0, 0, 5);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Numéros des statistiques */
+.stat-number {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00008B;
+}
+
+/* Labels des statistiques */
+.stat-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+}
+
+/* Barre de filtres */
+.filter-bar {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+/* Label de filtre */
+.filter-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+/* ComboBox de filtre */
+.filter-combo {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+.filter-combo:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2;
+}
+
+/* DatePicker de filtre */
+.filter-date {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+.filter-date:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2;
+}
+
+/* Tableau moderne */
+.modern-table {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 3);
+}
+
+/* En-têtes de colonnes */
+.modern-table .column-header {
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 15 10;
+    -fx-border-color: #e2e8f0;
+}
+
+.modern-table .column-header:first-child {
+    -fx-background-radius: 10 0 0 0;
+}
+
+.modern-table .column-header:last-child {
+    -fx-background-radius: 0 10 0 0;
+}
+
+/* Lignes du tableau */
+.modern-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-padding: 12 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #334155;
+}
+
+.modern-table .table-row-cell:odd {
+    -fx-background-color: #f8fafc;
+}
+
+.modern-table .table-row-cell:hover {
+    -fx-background-color: #e0e7ff;
+}
+
+.modern-table .table-row-cell:selected {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+}
+
+/* Cellules du tableau */
+.modern-table .table-cell {
+    -fx-padding: 12 15;
+    -fx-alignment: center-left;
+}
+
+/* Scrollbar personnalisée */
+.modern-table .scroll-bar:vertical {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 5;
+    -fx-pref-width: 8;
+}
+
+.modern-table .scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 5;
+}
+
+.modern-table .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #94a3b8;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .stat-card {
+        -fx-min-width: 150;
+        -fx-pref-width: 150;
+        -fx-padding: 20;
+    }
+    
+    .stat-number {
+        -fx-font-size: 28px;
+    }
+}

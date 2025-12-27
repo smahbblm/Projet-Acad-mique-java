@@ -1,0 +1,426 @@
+/* ===== CONTENEUR PRINCIPAL ===== */
+.rapport-container {
+    -fx-background-color: #f5f5f5;
+}
+
+/* ===== WRAPPER PRINCIPAL ===== */
+.rapport-content-wrapper {
+    -fx-padding: 50px 20px;
+    -fx-spacing: 30px;
+    -fx-alignment: top-left;  /* MODIFIÉ: top-center → top-left pour ne pas centrer */
+    -fx-fill-width: true;
+}
+
+/* ===== SCROLLPANE ===== */
+.rapport-scrollpane {
+    -fx-background-color: #f5f5f5;
+}
+
+.rapport-scrollpane .viewport {
+    -fx-background-color: #f5f5f5;
+}
+
+.rapport-scrollpane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.rapport-scrollpane .scroll-bar:vertical .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 3px;
+}
+
+.rapport-scrollpane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+/* ===== FORMULAIRE SIMPLE ===== */
+.form-container {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-spacing: 10px;
+    -fx-max-width: 550px;
+    -fx-alignment: CENTER;  /* Garder centré pour le formulaire uniquement */
+}
+
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+.form-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+/* ===== CHAMPS DE SAISIE ===== */
+TextField, DatePicker ,ComboBox{
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 12px 15px;
+    -fx-font-size: 14px;
+    -fx-min-width: 280px;
+    -fx-pref-width: 280px;
+}
+
+TextField:focused, DatePicker:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.2), 8, 0, 0, 0);
+}
+
+.form-textarea {
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 12px 15px;
+    -fx-font-size: 14px;
+    -fx-min-width: 480px;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 120px;
+}
+
+.form-textarea:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.2), 8, 0, 0, 0);
+}
+
+.form-textarea .content {
+    -fx-background-color: white;
+}
+
+/* ===== BOUTONS SIMPLES ===== */
+.btn-generer {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-font-size: 15px;
+    -fx-padding: 14px 50px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.btn-generer:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-generer:pressed {
+    -fx-background-color: #2574a9;
+}
+
+.btn-annuler {
+    -fx-background-color: white;
+    -fx-text-fill: #6b7280;
+    -fx-font-weight: 500;
+    -fx-font-size: 15px;
+    -fx-padding: 14px 50px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+
+.btn-annuler:hover {
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #9ca3af;
+}
+
+.btn-annuler:pressed {
+    -fx-background-color: #f3f4f6;
+}
+
+/* ===== RAPPORT GÉNÉRÉ ===== */
+.rapport-main-vbox {
+    -fx-padding: 30px;
+    -fx-spacing: 20px;
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 2);
+    -fx-min-width: 900px;      /* MODIFIÉ: largeur minimale */
+    -fx-max-width: Infinity;   /* AJOUTÉ: permet de s'étendre */
+    -fx-pref-width: 100%;      /* AJOUTÉ: préférence 100% largeur */
+}
+
+/* ===== EN-TÊTE ===== */
+.rapport-header-box {
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+.rapport-titre-principal {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ===== SÉPARATEURS ===== */
+.rapport-separateur {
+    -fx-padding: 10px 0px;
+}
+
+/* ===== SECTION INFORMATIONS ===== */
+.rapport-info-section {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-info-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+/* ===== SECTION PRODUITS ===== */
+.rapport-section-produits {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-section-header {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.rapport-section-icon {
+    -fx-fit-width: 24px;
+    -fx-fit-height: 24px;
+}
+
+.rapport-section-titre {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+/* ===== TABLEAU ===== */
+.rapport-table-produits {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-min-width: 750px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-table-produits .column-header {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10px;
+}
+
+.rapport-table-produits .column-header .label {
+    -fx-text-fill: white;
+}
+
+.rapport-table-produits .column-header-background {
+    -fx-background-color: #3498db;
+}
+
+.rapport-table-produits .table-row-cell {
+    -fx-background-color: white;
+}
+
+.rapport-table-produits .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.rapport-table-produits .table-row-cell:selected {
+    -fx-background-color: #d4e6f1;
+}
+
+.rapport-table-produits .table-row-cell:hover {
+    -fx-background-color: #e3f2fd;
+}
+
+.rapport-table-produits .table-cell {
+    -fx-padding: 8px;
+}
+
+/* ===== SECTION OBSERVATIONS ===== */
+.rapport-section-observations {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-observations-header {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.rapport-observations-textarea {
+    -fx-pref-height: 100px;
+    -fx-font-size: 13px;
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 10px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-observations-textarea .content {
+    -fx-background-color: #f8f9fa;
+}
+
+/* ===== STATISTIQUES ===== */
+.rapport-stats-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-max-width: Infinity;   /* AJOUTÉ: prend toute la largeur */
+}
+
+.rapport-stats-icon-box {
+    -fx-alignment: center;
+    -fx-padding: 0px 0px 10px 0px;
+}
+
+.rapport-stats-icon {
+    -fx-fit-width: 32px;
+    -fx-fit-height: 32px;
+}
+
+.rapport-stats-row {
+    -fx-spacing: 30px;
+    -fx-alignment: center;
+    -fx-fill-width: true;
+}
+
+.rapport-stat-box {
+    -fx-alignment: center;
+    -fx-spacing: 8px;
+    -fx-padding: 20px;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 150px;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.rapport-stat-nombre {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.rapport-stat-nombre-manquants {
+    -fx-text-fill: #e74c3c;
+}
+
+.rapport-stat-nombre-excedents {
+    -fx-text-fill: #f39c12;
+}
+
+.rapport-stat-nombre-conformes {
+    -fx-text-fill: #27ae60;
+}
+
+.rapport-stat-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-font-weight: bold;
+}
+
+/* ===== SECTION SIGNATURES ===== */
+.rapport-signatures-section {
+    -fx-spacing: 50px;
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+.rapport-signature-box {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-pref-width: 250px;
+}
+
+.rapport-signature-titre {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.rapport-signature-separateur {
+    -fx-pref-width: 200px;
+    -fx-padding: 30px 0px 10px 0px;
+}
+
+.rapport-signature-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #999999;
+    -fx-font-style: italic;
+}
+
+/* ===== BOUTONS RAPPORT ===== */
+.rapport-boutons-section {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+    -fx-padding: 10px 0px 0px 0px;
+}
+
+.rapport-btn-imprimer {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.rapport-btn-imprimer:hover {
+    -fx-background-color: #2980b9;
+}
+
+.rapport-btn-annuler {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.rapport-btn-annuler:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+.rapport-btn-icon {
+    -fx-fit-width: 16px;
+    -fx-fit-height: 16px;
+}

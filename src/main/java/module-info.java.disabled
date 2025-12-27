@@ -1,0 +1,36 @@
+module com.stock {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires javafx.graphics;
+    requires java.sql;
+    requires java.desktop;
+
+    /*
+    requires javafx.swing;
+    requires mysql.connector.j;
+    */
+
+    // iText modules
+    requires kernel;
+    requires layout;
+    requires io;
+
+    uses java.sql.Driver;
+
+    opens com.stock to javafx.fxml;
+    opens com.stock.Controler to javafx.fxml;
+    opens com.stock.model.utilisateur to javafx.base;
+    opens com.stock.model.produit to javafx.base;
+    opens com.stock.model.partenaire to javafx.base;
+    opens com.stock.model.document to javafx.base;
+    opens com.stock.model.stock to javafx.base;
+
+    exports com.stock;
+    exports com.stock.Controler;
+    exports com.stock.model.utilisateur;
+    exports com.stock.model.produit;
+    exports com.stock.model.partenaire;
+    exports com.stock.model.document;
+    exports com.stock.model.stock;
+    exports com.stock.model.systeme;
+}

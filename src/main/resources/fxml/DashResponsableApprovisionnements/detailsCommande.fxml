@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.DetailsCommandeController"
+            prefWidth="700.0" prefHeight="600.0"
+            style="-fx-background-color: #f5f7fa;">
+
+    <top>
+        <VBox style="-fx-background-color: #ffffff; -fx-padding: 20; -fx-border-color: transparent transparent #e6e6e6 transparent;">
+            <Label fx:id="lblNumero" text="Bon de commande N°" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            <HBox spacing="30" style="-fx-padding: 10 0 0 0;">
+                <VBox spacing="5">
+                    <Label text="Fournisseur:" style="-fx-text-fill: #666;"/>
+                    <Label fx:id="lblFournisseur" style="-fx-font-weight: bold;"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Date:" style="-fx-text-fill: #666;"/>
+                    <Label fx:id="lblDate" style="-fx-font-weight: bold;"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Statut:" style="-fx-text-fill: #666;"/>
+                    <Label fx:id="lblStatut" style="-fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <Label text="Produits commandés" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            
+            <VBox spacing="0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;">
+                <HBox spacing="10" style="-fx-padding: 12; -fx-background-color: #f8f9fa; -fx-border-color: transparent transparent #e6e6e6 transparent;">
+                    <Label text="Référence" style="-fx-font-weight: bold; -fx-pref-width: 100;"/>
+                    <Label text="Désignation" style="-fx-font-weight: bold; -fx-pref-width: 200;"/>
+                    <Label text="Quantité" style="-fx-font-weight: bold; -fx-pref-width: 80;"/>
+                    <Label text="Prix Unit." style="-fx-font-weight: bold; -fx-pref-width: 80;"/>
+                    <Label text="Sous-total" style="-fx-font-weight: bold; -fx-pref-width: 100;"/>
+                </HBox>
+                
+                <VBox fx:id="produitsContainer" spacing="0" style="-fx-max-height: 300;"/>
+            </VBox>
+
+            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10; -fx-background-color: #ffffff; -fx-background-radius: 8;">
+                <Label text="Montant Total: " style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <Label fx:id="lblMontantTotal" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2e86de;"/>
+            </HBox>
+
+            <VBox fx:id="observationsBox" spacing="5" style="-fx-background-color: #ffffff; -fx-padding: 15; -fx-background-radius: 8;">
+                <Label text="Observations:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblObservations" wrapText="true" style="-fx-text-fill: #666;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 15; -fx-background-color: #ffffff; -fx-border-color: #e6e6e6 transparent transparent transparent;">
+            <Button fx:id="btnFermer" text="Fermer" onAction="#fermer"
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-padding: 10 30; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

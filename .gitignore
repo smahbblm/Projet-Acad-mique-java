@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -36,3 +37,16 @@ build/
 
 ### Mac OS ###
 .DS_Store
+=======
+### IntelliJ IDEA ###
+.idea/
+
+### Maven ###
+target/
+
+### Environment ###
+.env
+*.env
+application.properties
+application.yml
+>>>>>>> origin/Dashboard_Administrateur
