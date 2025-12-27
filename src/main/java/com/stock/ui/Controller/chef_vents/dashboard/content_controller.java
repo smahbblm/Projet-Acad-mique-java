@@ -57,20 +57,20 @@ public class content_controller implements Initializable {
     @FXML
     private void nouvelleVente() {
         try {
-            // Charger la vue des factures (nouvelle vente)
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
                 getClass().getResource("/fxml/gestionChef-vents/factures/Facture.fxml")
             );
             javafx.scene.Parent root = loader.load();
             
-            // Obtenir le BorderPane principal et changer le centre
             javafx.scene.Node node = chiffreAffaires.getScene().getRoot();
-            if (node instanceof javafx.scene.layout.BorderPane) {
-                javafx.scene.layout.BorderPane mainPane = (javafx.scene.layout.BorderPane) 
-                    node.getParent().getParent();
-                if (mainPane != null) {
-                    mainPane.setCenter(root);
-                }
+            javafx.scene.Parent parent = node.getParent();
+            
+            while (parent != null && !(parent instanceof javafx.scene.layout.BorderPane)) {
+                parent = parent.getParent();
+            }
+            
+            if (parent instanceof javafx.scene.layout.BorderPane) {
+                ((javafx.scene.layout.BorderPane) parent).setCenter(root);
             }
         } catch (Exception e) {
             System.err.println("Erreur redirection nouvelle vente: " + e.getMessage());

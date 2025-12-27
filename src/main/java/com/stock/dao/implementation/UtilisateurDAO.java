@@ -90,6 +90,9 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                //===========
+                System.out.println("la liste des utilisateurs "+rs.getString("nom"));
+                //==============
                 users.add(mapRowToUtilisateur(rs));
             }
         }

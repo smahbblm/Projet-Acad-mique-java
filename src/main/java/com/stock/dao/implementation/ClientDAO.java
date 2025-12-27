@@ -73,6 +73,21 @@ public class ClientDAO implements IClientDAO {
 
     @Override
     public void delete(int id) throws Exception {
+        // Supprimer d'abord les factures liées
+        String deleteFact = "DELETE FROM factures WHERE idClient=?";
+        try (PreparedStatement stmt = connection.prepareStatement(deleteFact)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+        
+        // Supprimer les bons de livraison liés
+        String deleteBL = "DELETE FROM bon_livraison WHERE idClient=?";
+        try (PreparedStatement stmt = connection.prepareStatement(deleteBL)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+        
+        // Supprimer le client
         String sql = "DELETE FROM clients WHERE idClient=?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);

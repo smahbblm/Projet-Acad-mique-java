@@ -50,12 +50,15 @@ public class UsersPageController {
             // 🔹 Récupère tous les utilisateurs depuis la base
             usersList = FXCollections.observableArrayList(utilisateurService.getAllUsers());
             usersTable.setItems(usersList);
-            usersTable.refresh();
+            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
             showError("Erreur de chargement", e.getMessage());
         }
     }
+
+
+
 
     private void setupColumns() {
         idColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdUtilisateur()).asObject());

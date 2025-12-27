@@ -22,7 +22,7 @@ public  class Main_smahan extends Application {
                 "Boulmane", "Smahan", "smahan@example.com", "password123"
         );
         sessionManager.createSession(user, "RESPONSABLE_VENTES");
-        // ========== DASHBOARD  latifa ==========
+        /*// ========== DASHBOARD  latifa ==========
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Magasinier/DashboardMagasinier.fxml"));
 
 
@@ -31,11 +31,12 @@ public  class Main_smahan extends Application {
         stage.setTitle("Stock Manager");
         stage.show();
     }
-}
+
+}*/
 
 
 
-   /*
+
     // ========== DASHBOARD  smahan ==========
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml"));
@@ -106,6 +107,8 @@ public  class Main_smahan extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
+         */
+
         stage.show();
     }
-}*/
+}
