@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <?import javafx.scene.layout.BorderPane ?>
 
-<BorderPane  xmlns="http://javafx.com/javafx/21.0.2"
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/21.0.2"
              xmlns:fx="http://javafx.com/fxml"
              fx:controller="com.stock.ui.Controller.chef_vents.dashboard.MainDashboardController" >
 
@@ -9,6 +9,10 @@
         <fx:include source="seidbar.fxml" fx:id="sidebar" />
     </left>
     <center>
-        <fx:include source="dashboard-content.fxml" fx:id="content"/>
+        <BorderPane fx:id="contentArea">
+            <center>
+                <fx:include source="dashboard-content.fxml" fx:id="content"/>
+            </center>
+        </BorderPane>
     </center>
 </BorderPane>

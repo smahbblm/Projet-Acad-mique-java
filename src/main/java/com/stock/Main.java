@@ -17,6 +17,13 @@ public  class Main extends Application  {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Gestion de Stock");
         
+        // Créer une session utilisateur fictive pour le test
+        com.stock.util.SessionManager sessionManager = com.stock.util.SessionManager.getInstance();
+        com.stock.model.utilisateur.ResponsableVentes user = new com.stock.model.utilisateur.ResponsableVentes(
+            "Boulmane", "Smahan", "smahan@example.com", "password123"
+        );
+        sessionManager.createSession(user, "RESPONSABLE_VENTES");
+        
         // ========== DASHBOARD ==========
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml"));

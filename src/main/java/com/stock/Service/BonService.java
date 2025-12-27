@@ -1,6 +1,10 @@
 package com.stock.service;
-import com.stock.model.DaoBon;
+import com.stock.dao.implementation.BonLivraisonDAO;
+import com.stock.dao.implementation.ClientDAO;
+import com.stock.dao.implementation.BonSortieDAO;
+import com.stock.dao.implementation.FactureDAO;
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 import java.net.ConnectException;
 import java.time.LocalDate;
@@ -10,52 +14,114 @@ public class BonService {
 
     public int ajouterbons(String nombons , LocalDate dateLivraison, String status  ,String adresseLivraison , String notes){
         System.out.println("l'appel de la méthode ajouterbons avec  paramètres du formulaire ");
-        DaoBon daoBon = new DaoBon();
-        int res = daoBon.ajouterbon(nombons, dateLivraison,status,adresseLivraison, notes);
-        return res;
-
+        try {
+            BonLivraisonDAO dao = new BonLivraisonDAO();
+            com.stock.model.document.BonLivraison bon = new com.stock.model.document.BonLivraison();
+            bon.setNumero(nombons);
+            bon.setDateLivraison(dateLivraison);
+            bon.setStatut(status);
+            bon.setAdresseLivraison(adresseLivraison);
+            bon.setObservations(notes);
+            dao.create(bon);
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
+    
     public ObservableList<String> getclient(){
-        DaoBon daoBon = new DaoBon();
-        ObservableList<String> liste_noms = daoBon.getallclients();
-        return liste_noms;
+        try {
+            ClientDAO dao = new ClientDAO();
+            List<com.stock.model.partenaire.Client> clients = dao.readAll();
+            ObservableList<String> liste_noms = FXCollections.observableArrayList();
+            for (com.stock.model.partenaire.Client c : clients) {
+                liste_noms.add(c.getNom());
+            }
+            return liste_noms;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
-    // la méthode de supprission d'un bon de  bon dans la base de données
+    
     public void supprimerBon(String numeros) {
         System.out.println("je suis la fonction de supprission ");
-        DaoBon daoBon = new DaoBon();
-        // on doit connaitre le numeros  de bon qu'on dois supprimer.
-        daoBon.supprimerbon(numeros);
-
-
+        try {
+            BonLivraisonDAO dao = new BonLivraisonDAO();
+            com.stock.model.document.BonLivraison bon = dao.findByNumero(numeros);
+            if (bon != null) {
+                dao.delete(bon.getIdBonLivraison());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    // méthode pour la récupération de la liste des bons de sortie
+    
     public ObservableList<String> getbonsortie(){
-        DaoBon daoBon = new DaoBon();
-        ObservableList<String> liste_numeros = daoBon.getbonsortie();
-        return liste_numeros;
+        try {
+            BonSortieDAO dao = new BonSortieDAO();
+            List<com.stock.model.document.BonSortie> bons = dao.readAll();
+            ObservableList<String> liste_numeros = FXCollections.observableArrayList();
+            for (com.stock.model.document.BonSortie b : bons) {
+                liste_numeros.add(b.getNumero());
+            }
+            return liste_numeros;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
-    //méthode pour la récuperation de la liste des factures
+    
     public ObservableList<String> list_factures(){
-        DaoBon daobon = new DaoBon();
-        return daobon.getlistefactures();
+        try {
+            FactureDAO dao = new FactureDAO();
+            List<com.stock.model.document.Facture> factures = dao.readAll();
+            ObservableList<String> list_numeros = FXCollections.observableArrayList();
+            for (com.stock.model.document.Facture f : factures) {
+                list_numeros.add(f.getNumero());
+            }
+            return list_numeros;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
-    //la récupération de la liste de bons de livraison
+    
     public ObservableList<String> liste_numero_bonliv(){
-        DaoBon daobon = new DaoBon();
-        // cette fonction ça va me récuperre la liste de bon de livraison
-        return daobon.getbonslivraison();
+        try {
+            BonLivraisonDAO dao = new BonLivraisonDAO();
+            List<com.stock.model.document.BonLivraison> bons = dao.readAll();
+            ObservableList<String> liste_numeros = FXCollections.observableArrayList();
+            for (com.stock.model.document.BonLivraison b : bons) {
+                liste_numeros.add(b.getNumero());
+            }
+            return liste_numeros;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
 
-    // Méthode pour récupérer tous les bons de livraison
     public ObservableList<com.stock.model.document.BonLivraison> getAllBons(){
-        DaoBon daobon = new DaoBon();
-        return daobon.getallbons();
+        try {
+            BonLivraisonDAO dao = new BonLivraisonDAO();
+            List<com.stock.model.document.BonLivraison> bons = dao.readAll();
+            return FXCollections.observableArrayList(bons);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
-    //méthode pour la récuperation de nombre total de bons
+    
     public int getnombrebons(){
-        DaoBon daobon = new DaoBon();
-        return daobon.gettotalbons();
+        try {
+            BonLivraisonDAO dao = new BonLivraisonDAO();
+            return dao.readAll().size();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 }

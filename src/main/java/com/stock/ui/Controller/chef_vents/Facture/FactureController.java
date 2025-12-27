@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.util.List;
 import com.stock.service.FactureServce;
-import com.stock.model.Facture;
+import com.stock.model.document.Facture;
 
 public class FactureController {
 
@@ -18,10 +18,23 @@ public class FactureController {
 
     @FXML
     public void initialize() {
-        // Cette méthode est appelée automatiquement après le chargement du FXML
         System.out.println("FactureController initialisé !");
-        // Étape suivante : charger les factures
         System.out.println("la fin d'initialisation ");
+    }
+
+    @FXML
+    public void ajouterFacture() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/factures/ajout_facture.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Ajouter une facture");
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'ouverture du formulaire d'ajout: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 
@@ -83,7 +96,7 @@ public class FactureController {
         Text montantTVA = new Text("Montant TVA: " + facture.getMontantTVA());
         Text montantTTC = new Text("Montant TTC: " + facture.getMontantTTC());
         Text statut = new Text("Statut: " + facture.getStatut());
-        Text idClient = new Text("ID Client: " + facture.getIdClient());
+        Text idClient = new Text("Client: " + (facture.getClient() != null ? facture.getClientNom() : "N/A"));
         carte.getChildren().addAll(titre, id,dateFacture,dateEcheance,montantHT,montantTVA,montantTTC,statut,idClient);
         // Appliquer le style bleu à tous les textes
         for (var node : carte.getChildren()) {

@@ -2,7 +2,7 @@ package com.stock.dao.implementation;
 
 import com.stock.dao.interfaces.IFactureDAO;
 import com.stock.model.document.Facture;
-import com.stock.model.DatabaseConnection;
+import com.stock.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;

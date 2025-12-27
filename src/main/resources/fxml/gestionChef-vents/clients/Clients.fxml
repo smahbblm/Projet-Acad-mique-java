@@ -34,7 +34,7 @@
 
         <StackPane>
             <Circle radius="20" style="-fx-fill: #ea580c"/>
-            <Label text="SB" style="-fx-text-fill:white;"/>
+            <Label fx:id="userInitials" text="SB" style="-fx-text-fill:white;"/>
         </StackPane>
     </HBox>
 

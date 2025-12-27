@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 public class siedbarcontroller implements Initializable {
 
-    // Variables FXML pour les éléments de menu
     @FXML private Label dashboardMenu;
     @FXML private Label clientsMenu;
     @FXML private Label livraisons;
@@ -20,35 +19,103 @@ public class siedbarcontroller implements Initializable {
     @FXML private Label disponibilite;
     @FXML private Label deconnexion;
 
+    private MainDashboardController mainController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        // Configuration initiale de la sidebar
         System.out.println("Sidebar initialisée");
+    }
+    
+    public void setMainController(MainDashboardController controller) {
+        this.mainController = controller;
     }
     
     @FXML
     public void affiche_dashboard(MouseEvent event){
         System.out.println("Dashboard menu cliqué");
-        // TODO: Communiquer avec MainDashboardController
+        setActiveMenu(dashboardMenu);
+        if (mainController != null) {
+            mainController.loadDashboard();
+        }
     }
     
     @FXML
     public void affiche_clients(MouseEvent event){
         System.out.println("Clients menu cliqué");
-        // TODO: Communiquer avec MainDashboardController
+        setActiveMenu(clientsMenu);
+        if (mainController != null) {
+            mainController.loadClients();
+        }
     }
     
     @FXML
     public void affiche_livraisons(MouseEvent event){
         System.out.println("Livraisons menu cliqué");
-        // TODO: Communiquer avec MainDashboardController
+        setActiveMenu(livraisons);
+        if (mainController != null) {
+            mainController.loadLivraisons();
+        }
     }
     
-    // Méthode pour gérer l'état actif des menus
+    @FXML
+    public void affiche_factures(MouseEvent event){
+        System.out.println("Factures menu cliqué");
+        setActiveMenu(features);
+        if (mainController != null) {
+            mainController.loadFactures();
+        }
+    }
+    
+    @FXML
+    public void affiche_retours(MouseEvent event){
+        System.out.println("Bons de retour menu cliqué");
+        setActiveMenu(retours);
+        if (mainController != null) {
+            mainController.loadBonsRetour();
+        }
+    }
+    
+    @FXML
+    public void affiche_historique(MouseEvent event){
+        System.out.println("Historique menu cliqué");
+        setActiveMenu(historique);
+        if (mainController != null) {
+            mainController.loadHistorique();
+        }
+    }
+    
+    @FXML
+    public void affiche_disponibilite(MouseEvent event){
+        System.out.println("Disponibilité menu cliqué");
+        setActiveMenu(disponibilite);
+        if (mainController != null) {
+            mainController.loadDisponibilite();
+        }
+    }
+    
+    @FXML
+    public void deconnecter(MouseEvent event){
+        System.out.println("Déconnexion");
+        try {
+            // Invalider la session
+            com.stock.util.SessionManager.getInstance().invalidateSession();
+            
+            // Afficher message de confirmation
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie");
+            alert.setContentText("Vous avez été déconnecté avec succès");
+            alert.showAndWait();
+            
+            // Fermer l'application ou retourner à la page de connexion
+            javafx.application.Platform.exit();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la déconnexion: " + e.getMessage());
+        }
+    }
+    
     private void setActiveMenu(Label activeMenu) {
-        // Réinitialiser tous les menus
         resetMenuStyles();
-        // Marquer le menu actif
         if (activeMenu != null) {
             activeMenu.setStyle("-fx-background-color: rgba(255, 255, 255, 0.2); -fx-background-radius: 5px;");
         }
@@ -58,6 +125,10 @@ public class siedbarcontroller implements Initializable {
         String defaultStyle = "";
         if (dashboardMenu != null) dashboardMenu.setStyle(defaultStyle);
         if (clientsMenu != null) clientsMenu.setStyle(defaultStyle);
-        // TODO: Ajouter les autres menus
+        if (livraisons != null) livraisons.setStyle(defaultStyle);
+        if (features != null) features.setStyle(defaultStyle);
+        if (retours != null) retours.setStyle(defaultStyle);
+        if (historique != null) historique.setStyle(defaultStyle);
+        if (disponibilite != null) disponibilite.setStyle(defaultStyle);
     }
 }

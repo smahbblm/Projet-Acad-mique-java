@@ -25,6 +25,7 @@ public class clientsController implements Initializable {
     @FXML private TableColumn<Client, String> telephoneColumn;
     @FXML private TableColumn<Client, String> adresseColumn;
     @FXML private TableColumn<Client, Void> actionsColumn;
+    @FXML private Label userInitials;
     @FXML private ObservableList<Client> clientsList = FXCollections.observableArrayList();
 
     @Override
@@ -37,22 +38,58 @@ public class clientsController implements Initializable {
         telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
-        // Recherche en temps réel
-        searchField.textProperty().addListener((obs, oldText, newText) -> {
-            if (newText == null || newText.isEmpty()) {
-                clientsTable.setItems(clientsList);
-            } else {
-                ObservableList<Client> filtered = clientsList.filtered(client ->
-                        client.getNom().toLowerCase().contains(newText.toLowerCase()) ||
-                                client.getPrenom().toLowerCase().contains(newText.toLowerCase()) ||
-                                client.getEmail().toLowerCase().contains(newText.toLowerCase())
-                );
-                clientsTable.setItems(filtered);
-            }
-        });
-
         setupActionsColumn();
         loadClients();
+        loadUserInitials();
+        
+        // Recherche en temps réel
+        if (searchField != null) {
+            searchField.textProperty().addListener((obs, oldText, newText) -> {
+                filterClients(newText);
+            });
+        }
+    }
+    
+    private void loadUserInitials() {
+        try {
+            com.stock.util.SessionManager sessionManager = com.stock.util.SessionManager.getInstance();
+            Object userObj = sessionManager.getCurrentUser();
+            
+            if (userObj != null && userInitials != null) {
+                if (userObj instanceof com.stock.model.utilisateur.Utilisateur) {
+                    com.stock.model.utilisateur.Utilisateur user = (com.stock.model.utilisateur.Utilisateur) userObj;
+                    String initials = "";
+                    if (user.getNom() != null && !user.getNom().isEmpty()) {
+                        initials += user.getNom().charAt(0);
+                    }
+                    if (user.getPrenom() != null && !user.getPrenom().isEmpty()) {
+                        initials += user.getPrenom().charAt(0);
+                    }
+                    userInitials.setText(initials.toUpperCase());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement des initiales: " + e.getMessage());
+        }
+    }
+    
+    private void filterClients(String searchText) {
+        if (searchText == null || searchText.isEmpty()) {
+            clientsTable.setItems(clientsList);
+        } else {
+            ObservableList<Client> filtered = FXCollections.observableArrayList();
+            String search = searchText.toLowerCase();
+            for (Client client : clientsList) {
+                String nom = client.getNom() != null ? client.getNom().toLowerCase() : "";
+                String prenom = client.getPrenom() != null ? client.getPrenom().toLowerCase() : "";
+                String email = client.getEmail() != null ? client.getEmail().toLowerCase() : "";
+                
+                if (nom.contains(search) || prenom.contains(search) || email.contains(search)) {
+                    filtered.add(client);
+                }
+            }
+            clientsTable.setItems(filtered);
+        }
     }
 
     private void setupActionsColumn() {
@@ -100,17 +137,29 @@ public class clientsController implements Initializable {
     @FXML
     private void searchClients() {
         String searchTerm = searchField.getText();
-        ClientService clientService = new ClientService();
-        ObservableList<Client> searchResults = FXCollections.observableArrayList(clientService.searchClients(searchTerm));
-        clientsTable.setItems(searchResults);
+        filterClients(searchTerm);
     }
 
     @FXML
     private void addClient() {
-        System.out.println("le button d'ajouter  un client est cliqué  maintenant pour ajouter un client");
-        ClientService clientService = new ClientService();
-        Client nouveauClient = new Client("smahan", "boulmane", "Azilal/hey el wahda", "Azilal/hey el wahda", "123456789", "email@example.com");
-        boolean ajoutReussi = clientService.addClient(nouveauClient);
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/clients/formr_ajout_client.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Ajouter un client");
+            stage.setScene(new javafx.scene.Scene(root));
+            
+            // Recharger les clients après fermeture de la fenêtre
+            stage.setOnHidden(e -> {
+                clientsList.clear();
+                loadClients();
+            });
+            
+            stage.show();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'ouverture du formulaire d'ajout: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void loadClients() {

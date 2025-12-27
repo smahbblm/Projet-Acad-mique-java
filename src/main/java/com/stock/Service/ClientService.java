@@ -28,7 +28,15 @@
 
       public boolean addClient(Client client) {
           System.out.println(" l'appel de la méthode addclient qui va appler apiclient pour envoiyé la requette vers backend pour ajouter les clients ");
-          return false;
+          try {
+              ClientDAO clientDAO = new ClientDAO();
+              clientDAO.create(client);
+              return true;
+          } catch (Exception e) {
+              System.err.println("Erreur lors de l'ajout du client: " + e.getMessage());
+              e.printStackTrace();
+              return false;
+          }
       }
 
        //  Supprimer un client via le backend

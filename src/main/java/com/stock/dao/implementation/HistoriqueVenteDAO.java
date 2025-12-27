@@ -1,7 +1,7 @@
 package com.stock.dao.implementation;
 
-import com.stock.model.HistoriqueVente;
-import com.stock.model.DatabaseConnection;
+import com.stock.model.document.HistoriqueVente;
+import com.stock.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

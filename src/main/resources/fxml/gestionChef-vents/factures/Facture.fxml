@@ -20,7 +20,8 @@
         
         <Button text="+ Nouvelle Facture" 
                 style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;"
-                fx:id="btnNouvelleFacture" />
+                fx:id="btnNouvelleFacture"
+                onAction="#ajouterFacture" />
         <Button fx:id="AfficheFcatures" text="Voir Factures"
                 onAction="#affiche_factures"
                 style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-background-radius: 5;" />

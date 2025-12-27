@@ -1,4 +1,4 @@
-package com.stock.model;
+package com.stock.model.document;
 
 import java.time.LocalDate;
 

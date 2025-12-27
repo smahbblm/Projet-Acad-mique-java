@@ -1,7 +1,7 @@
 package com.stock.ui.Controller.chef_vents.consultation;
 
 import com.stock.dao.implementation.HistoriqueVenteDAO;
-import com.stock.model.HistoriqueVente;
+import com.stock.model.document.HistoriqueVente;
 import com.stock.service.ClientService;
 import com.stock.service.ProduitService;
 import com.stock.model.partenaire.Client;

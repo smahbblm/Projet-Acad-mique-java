@@ -1,6 +1,5 @@
 package com.stock.ui.Controller.chef_vents.Bons;
 
-import com.stock.model.DaoBon;
 import com.stock.model.document.BonLivraison;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

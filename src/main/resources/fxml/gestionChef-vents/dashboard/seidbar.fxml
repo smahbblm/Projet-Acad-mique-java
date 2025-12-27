@@ -61,21 +61,21 @@
                         <VBox spacing="3">
                             <Label fx:id="clientsMenu" text="Clients" styleClass="menu-link" onMouseClicked="#affiche_clients"/>
                             <Label fx:id="livraisons" text="Bons de Livraison" styleClass="menu-link" onMouseClicked="#affiche_livraisons"/>
-                            <Label fx:id="features" text="Features" styleClass="menu-link"/>
-                            <Label fx:id="retours" text="Bons de Retour" styleClass="menu-link"/>
+                            <Label fx:id="features" text="Factures" styleClass="menu-link" onMouseClicked="#affiche_factures"/>
+                            <Label fx:id="retours" text="Bons de Retour" styleClass="menu-link" onMouseClicked="#affiche_retours"/>
                         </VBox>
                     </TitledPane>
 
                     <!-- Section CONSULTATION -->
                     <TitledPane text="CONSULTATION" collapsible="true" expanded="true" styleClass="section-pane">
                         <VBox spacing="3">
-                            <Label fx:id="historique" text="Historique Ventes" styleClass="menu-link"/>
-                            <Label fx:id="disponibilite" text="Disponibilité Produits" styleClass="menu-link"/>
+                            <Label fx:id="historique" text="Historique Ventes" styleClass="menu-link" onMouseClicked="#affiche_historique"/>
+                            <Label fx:id="disponibilite" text="Disponibilité Produits" styleClass="menu-link" onMouseClicked="#affiche_disponibilite"/>
                         </VBox>
                     </TitledPane>
 
                     <!-- Déconnexion -->
-                    <Label fx:id="deconnexion" text="Déconnexion" styleClass="menu-link">
+                    <Label fx:id="deconnexion" text="Déconnexion" styleClass="menu-link" onMouseClicked="#deconnecter">
                         <VBox.margin><Insets top="40"/></VBox.margin>
                     </Label>
 
