@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?import javafx.scene.layout.HBox?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+            <HBox xmlns="http://javafx.com/javafx/11.0.1"
+                  xmlns:fx="http://javafx.com/fxml/1"
+                  fx:controller="com.stock.ui.Controller.chef_vents.clientsController"
+                  styleClass="navbar-clients"
+                  prefHeight="60"
+                  alignment="TOP_RIGHT">
+                <VBox>
+                    <Label text="AppStock" styleClass="style-navbar-clients" />
+                    <Label text="System de  gestion de  stock" style="-fx-text-fill: #A9A9A9; -fx-font-size: 10px"/>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button fx:id="monbutton" text="   Gestion de clients "
+                        style="-fx-font-size: 15px; -fx-background-color:#0000CD"
+                        onAction="#monbutton" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <StackPane>
+                    <Circle radius="20" style="-fx-fill: #0000CD"/>
+                    <Label text="SB" style="-fx-text-fill:white;"/>
+                </StackPane>
+            </HBox>

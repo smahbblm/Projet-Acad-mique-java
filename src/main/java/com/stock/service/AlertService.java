@@ -1,9 +1,9 @@
 package com.stock.service;
 
 public class AlertService {
-    private  CommandeService commandeService;
-    private ProduitService produitService;
-    private InventaireService inventorService;
+    private com.stock.service.CommandeService commandeService;
+    private com.stock.service.ProduitService produitService;
+    private com.stock.service.InventaireService inventorService;
     public AlertService() throws Exception{
         commandeService=new CommandeService();
         produitService=new ProduitService();

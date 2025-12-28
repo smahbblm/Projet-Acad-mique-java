@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.ToolBar?>
+<BorderPane
+    xmlns="http://javafx.com/javafx/21.0.2"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.stock.ui.Controller.chef_vents.content_controller"
+     styleClass="style-borderpane">
+    
+    <!-- Navbar en haut -->
+    <top>
+        <ToolBar  styleClass="style-navbar" >
+
+            <Label text="AppStock" styleClass="style-nomapplication" />
+
+            <Label text="Dashboard Chef des Ventes" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox spacing="15" alignment="CENTER">
+                <!-- Bouton notifications avec badge -->
+                <StackPane>
+                    <Button fx:id="notificationsBtn" text="🔔"
+                            styleClass="button-notification"
+                            onAction="#afficherNotifications"/>
+                    <Label fx:id="badgeNotifications" text="3" 
+                           styleClass="stylenotification"
+                           StackPane.alignment="TOP_RIGHT" translateX="8" translateY="-5"/>
+                </StackPane>
+                
+                <Label text="👤" style="-fx-font-size: 16px;"/>
+                <Label fx:id="nomUtilisateur" text="Smahan Boulmane" style="-fx-font-weight: bold;"/>
+                <Button fx:id="menuProfil" text="⚙" style="-fx-background-color: #f0f0f0; -fx-background-radius: 15; -fx-padding: 5 8;"/>
+            </HBox>
+        </ToolBar>
+    </top>
+    
+    <center>
+        <VBox alignment="CENTER" spacing="30" style="-fx-padding: 20;">
+
+            <!-- Boutons de période -->
+            <HBox alignment="CENTER" spacing="12">
+                <Label text="Période d'analyse :" style="-fx-font-weight: bold; -fx-text-fill: #666; -fx-font-size: 14px;"/>
+                <Button fx:id="aujourdhuit" text="Aujourd'hui" styleClass="style-buttons" 
+                        style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
+                        onAction="#selectPeriod" />
+                <Button fx:id="semaine" text="Semaine" styleClass="style-buttons" 
+                        style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
+                        onAction="#selectPeriod"/>
+                <Button fx:id="mois" text="Mois" styleClass="style-buttons" 
+                        style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
+                        onAction="#selectPeriod"/>
+                <Button fx:id="annee" text="Année" styleClass="style-buttons" 
+                        style="-fx-background-color: #f5f5f5; -fx-text-fill: #333; -fx-padding: 8 15; -fx-background-radius: 20; -fx-border-color: #ddd; -fx-border-radius: 20;"
+                        onAction="#selectPeriod"/>
+            </HBox>
+            
+            <!-- Statistiques simples -->
+            <HBox alignment="CENTER" spacing="30">
+                <VBox alignment="CENTER" spacing="10" styleClass="stat-card" 
+                      style="-fx-background-color: #e3f2fd; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <Label text="📊 Factures" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1976d2;" />
+                    <Label fx:id="facturesJour" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" />
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" styleClass="stat-card"
+                      style="-fx-background-color: #e8f5e8; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <Label text="💰 Chiffre d'affaires" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #388e3c;" />
+                    <Label fx:id="chiffreAffaires" text="0 €" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" />
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" styleClass="stat-card"
+                      style="-fx-background-color: #fff3e0; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <Label text="👥 Clients" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #f57c00;" />
+                    <Label fx:id="clientsActifs" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #ef6c00;" />
+                </VBox>
+            </HBox>
+            
+            <!-- Actions simples -->
+            <VBox alignment="CENTER" spacing="15">
+                <Label text="Actions Rapides" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                <HBox alignment="CENTER" spacing="25">
+                    <Button fx:id="nouvelleVente" text="➕ Nouvelle Vente" styleClass="style-buttons" 
+                            style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-padding: 12 20; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);" 
+                            onAction="#nouvelleVente" />
+                    <Button fx:id="voirFactures" text="📄 Voir Factures" styleClass="style-buttons" 
+                            style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-padding: 12 20; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);" 
+                            onAction="#voirFactures" />
+                    <Button fx:id="rapports" text="📈 Rapports" styleClass="style-buttons" 
+                            style="-fx-background-color: #ff9800; -fx-text-fill: white; -fx-padding: 12 20; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);" />
+                </HBox>
+            </VBox>
+            
+            <!-- Section Diagramme et Historique -->
+            <HBox alignment="CENTER" spacing="25" prefHeight="350">
+                <!-- Colonne gauche : Diagramme -->
+                <VBox alignment="CENTER" spacing="15" prefWidth="420" 
+                      style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                    <Label text="📈 Ventes par Catégories" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                    <StackPane style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;">
+                        <PieChart fx:id="diagrammeCategories" prefWidth="350" prefHeight="280" />
+                    </StackPane>
+                </VBox>
+                
+                <!-- Colonne droite : Historique simplifié -->
+                <VBox alignment="CENTER" spacing="15" prefWidth="420"
+                      style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                    
+                    <Label text="📈 Historique des Ventes" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                    
+                    <VBox spacing="10" style="-fx-padding: 10;">
+                        <!-- Transaction 1 -->
+                        <HBox alignment="CENTER_LEFT" spacing="15" 
+                              style="-fx-background-color: #f8f9fa; -fx-padding: 12; -fx-background-radius: 8;">
+                            <Label text="💰" style="-fx-font-size: 16px;"/>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Vente #VT-001" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                                <Label text="Client: TechnoPlus" style="-fx-font-size: 10px; -fx-text-fill: #666;"/>
+                            </VBox>
+                            <Label text="2,450 €" style="-fx-font-weight: bold; -fx-text-fill: #28a745;"/>
+                        </HBox>
+                        
+                        <!-- Transaction 2 -->
+                        <HBox alignment="CENTER_LEFT" spacing="15" 
+                              style="-fx-background-color: #fff3cd; -fx-padding: 12; -fx-background-radius: 8;">
+                            <Label text="⏳" style="-fx-font-size: 16px;"/>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Vente #VT-002" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                                <Label text="Client: Digital Corp" style="-fx-font-size: 10px; -fx-text-fill: #666;"/>
+                            </VBox>
+                            <Label text="1,200 €" style="-fx-font-weight: bold; -fx-text-fill: #f57c00;"/>
+                        </HBox>
+                        
+                        <!-- Transaction 3 -->
+                        <HBox alignment="CENTER_LEFT" spacing="15" 
+                              style="-fx-background-color: #f8f9fa; -fx-padding: 12; -fx-background-radius: 8;">
+                            <Label text="💰" style="-fx-font-size: 16px;"/>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Vente #VT-003" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                                <Label text="Client: Café Central" style="-fx-font-size: 10px; -fx-text-fill: #666;"/>
+                            </VBox>
+                            <Label text="850 €" style="-fx-font-weight: bold; -fx-text-fill: #28a745;"/>
+                        </HBox>
+                    </VBox>
+                    
+                    <Button text="📄 Voir tout l'historique" 
+                            style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-padding: 8 15; -fx-background-radius: 8; -fx-font-size: 11px;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,17 +1,24 @@
 /* 1. Base : Style principal de la barre latérale */
 .sidebar {
+
     -fx-background-color: linear-gradient(to bottom, #ff6b35, #f7931e); /* Dégradé orange moderne */
     -fx-pref-width: 300px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 3, 0);
+
 }
 /* style principale du titre (nom de l'application) */
 
 .style_Nom_Application {
 
-   -fx-text-fill: white ;
+
+   -fx-text-fill: #B3B3B3 ;
+   -fx-font-size: 20px;
+
+
    -fx-font-size: 22px;
    -fx-font-weight: bold;
    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0, 1, 1);
+
 }
 
 /* 2. Style des TitledPane (sections collapsibles) */
@@ -24,6 +31,18 @@
 }
 
 .sidebar .titled-pane > .title {
+
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Légèrement plus clair */
+    -fx-text-fill: #B3B3B3; /* Gris clair */
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 10px;
+    -fx-background-radius: 5px;
+}
+
+.sidebar .titled-pane > .title:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+
     -fx-background-color: rgba(255, 255, 255, 0.15); /* Blanc transparent */
     -fx-text-fill: white; /* Blanc */
     -fx-font-weight: bold;
@@ -38,6 +57,7 @@
 .sidebar .titled-pane > .title:hover {
     -fx-background-color: rgba(255, 255, 255, 0.25);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 2, 2);
+
 }
 
 /* Contenu du TitledPane */
@@ -64,6 +84,16 @@
 /* 3. Style des liens de menu (Dashboard, Clients, etc.) */
 .menu-link {
      -fx-text-fill: white;
+
+     -fx-font-size: 14px;
+     -fx-padding: 8px 0px 8px 15px;
+     -fx-cursor: hand;
+}
+
+.menu-link:hover {
+     -fx-background-color: rgba(255, 255, 255, 0.1);
+     -fx-background-radius: 5px;
+
      -fx-font-size: 15px;
      -fx-padding: 12px 20px;
      -fx-cursor: hand;
@@ -77,21 +107,28 @@
      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 1, 1);
      -fx-scale-x: 1.02;
      -fx-scale-y: 1.02;
+
 }
 
 /* 4. Style du titre de profil */
 .csstext {
   -fx-text-fill: white;
   -fx-font-weight: bold;
+
+  -fx-font-size: 15px;
+
   -fx-font-size: 16px;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0, 1, 1);
+
 }
 
 /* 5. Style pour le label "Déconnexion" */
 .sidebar .menu-link:last-child {
     -fx-text-fill: white;
+
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: rgba(255, 255, 255, 0.3);
     -fx-border-width: 1px;
     -fx-border-radius: 6px;
+
 }

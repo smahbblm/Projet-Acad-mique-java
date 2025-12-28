@@ -51,7 +51,7 @@ USE stock_management;
 db.driver=com.mysql.cj.jdbc.Driver
 db.url=jdbc:mysql://localhost:3306/stock_management
 db.user=root
-db.password=VOTRE_MOT_DE_PASSE
+db.password=latifa19.
 db.port=3306
 
 # Configuration de l'application

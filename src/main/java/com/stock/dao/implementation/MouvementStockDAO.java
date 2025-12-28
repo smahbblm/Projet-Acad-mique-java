@@ -113,10 +113,47 @@ public class MouvementStockDAO implements IMouvementStockDAO {
         return new ArrayList<>();
     }
 
+
     @Override
     public List<MouvementStock> findByType(String type) throws Exception {
-        return new ArrayList<>();
+        List<MouvementStock> mouvements = new ArrayList<>();
+        String sql = "SELECT ms.*, p.reference, p.designation, u.nom " +
+                "FROM mouvement_stock ms " +
+                "JOIN produits p ON ms.idProduit = p.idProduit " +
+                "LEFT JOIN utilisateurs u ON ms.idUtilisateur = u.idUtilisateur " +
+                "WHERE ms.typeMouvement = ? " +
+                "ORDER BY ms.dateMouvement DESC";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, type);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    MouvementStock mouvement = new MouvementStock(
+                            rs.getString("typeMouvement"),
+                            rs.getInt("quantite"),
+                            rs.getString("reference")
+                    );
+                    mouvement.setIdMouvement(rs.getInt("idMouvement"));
+                    mouvement.setDateMouvement(rs.getObject("dateMouvement", java.time.LocalDate.class));
+                    mouvement.setStockAvant(rs.getInt("stockAvant"));
+                    mouvement.setStockApres(rs.getInt("stockApres"));
+
+                    Produit produit = new Produit(
+                            rs.getString("reference"),
+                            rs.getString("designation"),
+                            0, 0, 0, 0, 0, ""
+                    );
+                    produit.setIdProduit(rs.getInt("idProduit"));
+                    mouvement.setProduit(produit);
+
+                    mouvements.add(mouvement);
+                }
+            }
+        }
+
+        return mouvements;
     }
+
 
     public List<Object[]> chiffreAffairesParMois() throws Exception {
         List<Object[]> result = new ArrayList<>();
