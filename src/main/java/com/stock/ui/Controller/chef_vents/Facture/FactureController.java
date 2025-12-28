@@ -24,6 +24,7 @@ public class FactureController {
 
     @FXML
     public void ajouterFacture() {
+        System.out.println("Bouton Nouvelle Facture cliqué!");
         try {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/factures/ajout_facture.fxml"));
             javafx.scene.Parent root = loader.load();
@@ -31,9 +32,16 @@ public class FactureController {
             stage.setTitle("Ajouter une facture");
             stage.setScene(new javafx.scene.Scene(root));
             stage.show();
+            System.out.println("Formulaire d'ajout ouvert avec succès");
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'ouverture du formulaire d'ajout: " + e.getMessage());
+            System.err.println("ERREUR lors de l'ouverture du formulaire: " + e.getMessage());
             e.printStackTrace();
+            
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Impossible d'ouvrir le formulaire");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 

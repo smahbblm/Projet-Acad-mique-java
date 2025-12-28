@@ -124,25 +124,112 @@ public class AjouterFactureController {
 
     @FXML
     public void genererEtEnregistrerFacture() {
+        System.out.println("=== DÉBUT ENREGISTREMENT FACTURE ===");
         try {
+            String clientSelectionne = clientComboBox.getValue();
+            String numeroFacture = numeroFactureField.getText();
+            LocalDate dateFacture = dateFacturePicker.getValue();
+            LocalDate dateEcheance = dateEcheancePicker.getValue();
+            String statut = statutFactureField.getText();
+            
+            System.out.println("Client: " + clientSelectionne);
+            System.out.println("Numéro: " + numeroFacture);
+            System.out.println("Date facture: " + dateFacture);
+            System.out.println("Date échéance: " + dateEcheance);
+            System.out.println("Statut: " + statut);
+            
+            if (clientSelectionne == null || numeroFacture.isEmpty()) {
+                System.out.println("ERREUR: Champs obligatoires manquants");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setContentText("Veuillez remplir tous les champs obligatoires");
+                alert.showAndWait();
+                return;
+            }
+            
+            // Trouver le client
+            Client client = null;
+            for (Client c : clientsList) {
+                if ((c.getNom() + " " + c.getPrenom()).equals(clientSelectionne)) {
+                    client = c;
+                    break;
+                }
+            }
+            
+            if (client == null) {
+                System.out.println("ERREUR: Client introuvable");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setContentText("Client introuvable");
+                alert.showAndWait();
+                return;
+            }
+            
+            System.out.println("Client trouvé: " + client.getNom() + " (ID: " + client.getIdClient() + ")");
+            
+            // Récupérer les montants
+            String htText = finalMontantHTField.getText().replace(",", ".");
+            String tvaText = finalMontantTVAField.getText().replace(",", ".");
+            String ttcText = finalMontantTTCField.getText().replace(",", ".");
+            
+            System.out.println("Montant HT: " + htText);
+            System.out.println("Montant TVA: " + tvaText);
+            System.out.println("Montant TTC: " + ttcText);
+            
+            float montantHT = Float.parseFloat(htText);
+            float montantTVA = Float.parseFloat(tvaText);
+            float montantTTC = Float.parseFloat(ttcText);
+            
+            // Créer la facture
+            com.stock.model.document.Facture facture = new com.stock.model.document.Facture(
+                numeroFacture, dateEcheance, client
+            );
+            facture.setDateFacture(dateFacture);
+            facture.setMontantHT(montantHT);
+            facture.setMontantTVA(montantTVA);
+            facture.setMontantTTC(montantTTC);
+            facture.setStatut(statut);
+            
+            System.out.println("Facture créée, enregistrement dans la BD...");
+            
+            // Enregistrer dans la base de données
+            com.stock.dao.implementation.FactureDAO factureDAO = new com.stock.dao.implementation.FactureDAO();
+            factureDAO.create(facture);
+            
+            System.out.println("Facture enregistrée avec succès!");
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText("Facture générée");
-            alert.setContentText("La facture a été enregistrée avec succès");
+            alert.setContentText("La facture " + numeroFacture + " a été enregistrée avec succès");
             alert.showAndWait();
             
             fermerFenetre();
+        } catch (NumberFormatException e) {
+            System.out.println("ERREUR: Format de nombre invalide - " + e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez calculer les totaux avant de générer la facture");
+            alert.showAndWait();
         } catch (Exception e) {
+            System.out.println("ERREUR EXCEPTION: " + e.getMessage());
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur lors de la génération");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+        System.out.println("=== FIN ENREGISTREMENT FACTURE ===");
     }
     
     private void fermerFenetre() {
         javafx.stage.Stage stage = (javafx.stage.Stage) annulerButton.getScene().getWindow();
         stage.close();
+    }
+    
+    @FXML
+    public void annuler() {
+        fermerFenetre();
     }
 }
