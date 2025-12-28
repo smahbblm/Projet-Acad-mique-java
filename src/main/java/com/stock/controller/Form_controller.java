@@ -1,4 +1,4 @@
-package com.stock.controller;
+package com.stock.Controller;
 
 import com.stock.service.AuthService;
 import com.stock.exception.AuthenticationException;
@@ -62,7 +62,7 @@ public class Form_controller {
                     openDashboard("/fxml/Dashboard_Administrateur/dashboard.fxml", "Dashboard Admin");
                     break;
                 case "RESPONSABLE_VENTES":
-                    openDashboard("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml", "Dqshboard Chef de Vents");
+                    openDashboard("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml", "Dashboard Chef de Vents");
                     break;
                 case "RESPONSABLE_APPROVISIONNEMENT":
                     openDashboard("/fxml/DashResponsableApprovisionnements/dashboardResApprov.fxml", "Dashboard Approvisionnement");

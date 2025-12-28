@@ -28,6 +28,7 @@ public class content_controller implements Initializable {
     @FXML private Button aujourdhuit, semaine, mois, annee;
     @FXML private Label facturesJour, chiffreAffaires, clientsActifs, panierMoyen;
     @FXML private Label badgeNotifications;
+    @FXML private Label userNameLabel, userRoleLabel, userInitialsLabel;
     @FXML private PieChart diagrammeCategories;
     @FXML private LineChart<String, Number> evolutionCA;
     @FXML private BarChart<String, Number> topProduits;
@@ -45,12 +46,48 @@ public class content_controller implements Initializable {
             clientDAO = new ClientDAO();
             produitDAO = new ProduitDAO();
             
+            chargerInfoUtilisateur();
             chargerStatistiques();
             chargerGraphiques();
             chargerTransactions();
             chargerNotifications();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void chargerInfoUtilisateur() {
+        try {
+            com.stock.util.SessionManager sessionManager = com.stock.util.SessionManager.getInstance();
+            Object userObj = sessionManager.getCurrentUser();
+            
+            if (userObj != null && userObj instanceof com.stock.model.utilisateur.Utilisateur) {
+                com.stock.model.utilisateur.Utilisateur user = (com.stock.model.utilisateur.Utilisateur) userObj;
+                
+                // Nom complet
+                if (userNameLabel != null) {
+                    userNameLabel.setText(user.getNom() + " " + user.getPrenom());
+                }
+                
+                // Rôle
+                if (userRoleLabel != null) {
+                    userRoleLabel.setText(user.getRole());
+                }
+                
+                // Initiales
+                if (userInitialsLabel != null) {
+                    String initials = "";
+                    if (user.getNom() != null && !user.getNom().isEmpty()) {
+                        initials += user.getNom().charAt(0);
+                    }
+                    if (user.getPrenom() != null && !user.getPrenom().isEmpty()) {
+                        initials += user.getPrenom().charAt(0);
+                    }
+                    userInitialsLabel.setText(initials.toUpperCase());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Érreur chargement info utilisateur: " + e.getMessage());
         }
     }
 

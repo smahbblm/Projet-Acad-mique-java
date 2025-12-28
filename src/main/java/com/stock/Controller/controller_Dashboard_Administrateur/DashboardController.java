@@ -1,4 +1,4 @@
-package com.stock.controller.controller_Dashboard_Administrateur;
+package com.stock.Controller.controller_Dashboard_Administrateur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

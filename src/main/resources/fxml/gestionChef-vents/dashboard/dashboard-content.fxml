@@ -34,6 +34,17 @@
                         onAction="#selectPeriod"/>
             </HBox>
             
+            <!-- Info utilisateur -->
+            <HBox spacing="10" alignment="CENTER" style="-fx-background-color: #f1f5f9; -fx-background-radius: 10; -fx-padding: 8 12;">
+                <VBox spacing="2" alignment="CENTER_RIGHT">
+                    <Label fx:id="userNameLabel" text="Utilisateur" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                    <Label fx:id="userRoleLabel" text="Chef de Ventes" style="-fx-font-size: 10px; -fx-text-fill: #64748b;"/>
+                </VBox>
+                <StackPane style="-fx-background-color: #3b82f6; -fx-background-radius: 20; -fx-pref-width: 40; -fx-pref-height: 40;">
+                    <Label fx:id="userInitialsLabel" text="U" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                </StackPane>
+            </HBox>
+            
             <StackPane>
                 <Button text="🔔" style="-fx-background-color: #f1f5f9; -fx-background-radius: 10; -fx-padding: 8 12; -fx-font-size: 14px; -fx-cursor: hand;"
                         onAction="#afficherNotifications"/>

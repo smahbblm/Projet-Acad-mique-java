@@ -116,9 +116,9 @@
 
 
 
-                    <mainClass>com.stock.Main_smahan</mainClass>
+                   <mainClass>com.stock.Main_smahan</mainClass>
 
-                    <mainClass>com.stock.Main</mainClass>
+                    <!--<mainClass>com.stock.Main</mainClass>-->
 
 
 

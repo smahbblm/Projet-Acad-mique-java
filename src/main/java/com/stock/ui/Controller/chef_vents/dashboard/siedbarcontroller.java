@@ -100,17 +100,32 @@ public class siedbarcontroller implements Initializable {
             // Invalider la session
             com.stock.util.SessionManager.getInstance().invalidateSession();
             
-            // Afficher message de confirmation
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-            alert.setTitle("Déconnexion");
-            alert.setHeaderText("Déconnexion réussie");
-            alert.setContentText("Vous avez été déconnecté avec succès");
-            alert.showAndWait();
+            // Charger la page de connexion
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                getClass().getResource("/fxml/form.fxml")
+            );
+            javafx.scene.Parent root = loader.load();
             
-            // Fermer l'application ou retourner à la page de connexion
-            javafx.application.Platform.exit();
+            // Obtenir la fenêtre actuelle
+            javafx.stage.Stage stage = (javafx.stage.Stage) deconnexion.getScene().getWindow();
+            
+            // Changer la scène
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Connexion - Gestion de Stock");
+            stage.show();
+            
+            System.out.println("Redirection vers la page de connexion réussie");
+            
         } catch (Exception e) {
             System.err.println("Erreur lors de la déconnexion: " + e.getMessage());
+            e.printStackTrace();
+            
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.ERROR
+            );
+            alert.setTitle("Erreur");
+            alert.setContentText("Erreur lors de la déconnexion: " + e.getMessage());
+            alert.showAndWait();
         }
     }
     
