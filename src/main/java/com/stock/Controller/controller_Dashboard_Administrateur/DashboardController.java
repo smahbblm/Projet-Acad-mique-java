@@ -13,6 +13,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -232,7 +238,32 @@ public class DashboardController {
 
     @FXML private void handleSettings() { showInfo("Paramètres", "Ouverture des paramètres."); }
     @FXML private void handleLogs() { showInfo("Logs", "Consultation du journal."); }
-    @FXML private void handleLogout() { showInfo("Déconnexion", "Vous êtes déconnecté."); }
+    @FXML
+    private void handleLogout() {
+        try {
+            // Charger la vue de connexion
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/form.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer la fenêtre actuelle
+            Stage stage = (Stage) mainBorderPane.getScene().getWindow();
+
+            // Changer la scène
+            stage.setScene(new Scene(root));
+            stage.setTitle("Connexion");
+
+            showInfo("Déconnexion", "Vous êtes déconnecté.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossible de charger l'écran de connexion.");
+            alert.showAndWait();
+        }
+    }
+
 
     @FXML private void openGlobalStatisticsPage() {
         hideAllSubMenus();

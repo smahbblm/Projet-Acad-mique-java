@@ -1,0 +1,10 @@
+Type: UTILISATEURS
+Période: 01/12/2025 -> 28/12/2025
+
+== Utilisateurs créés ==
+ - Admin Test | Créé le : 2025-12-14
+ - Appro Test | Créé le : 2025-12-14
+ - Ventes Test | Créé le : 2025-12-14
+ - Magasin Test 2 | Créé le : 2025-12-14
+ - test2 test | Créé le : 2025-12-28
+
