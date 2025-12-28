@@ -9,11 +9,9 @@ CREATE TABLE utilisateurs (
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     motDePasse VARCHAR(255) NOT NULL,
-<<<<<<< HEAD
-    role ENUM('ADMINISTRATEUR', 'RESPONSABLE_APPROVISIONNEMENT', 'RESPONSABLE_VENTES', 'MAGASINIER') NOT NULL,
-=======
+
     role ENUM('Administrateur', 'Responsable_Approvisionnement', 'Responsable_Ventes', 'Magasinier') NOT NULL,
->>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
+
     dateCreation DATE NOT NULL,
     actif BOOLEAN DEFAULT TRUE,
     INDEX idx_email (email)
@@ -172,7 +170,8 @@ CREATE TABLE mouvement_stock (
 CREATE TABLE inventaires (
     idInventaire INT PRIMARY KEY AUTO_INCREMENT,
     dateInventaire DATE NOT NULL,
-    statut ENUM('BROUILLON', 'EN_COURS', 'VALIDEE', 'ANNULEE') DEFAULT 'BROUILLON',
+    statut ENUM('En cours', 'En attente', 'Terminé', 'planifiée') DEFAULT 'En attente'
+
     observations TEXT,
     INDEX idx_statut (statut)
 );
