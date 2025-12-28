@@ -18,10 +18,10 @@ public  class Main_smahan extends Application {
 
         // Créer une session utilisateur fictive pour le test
         com.stock.util.SessionManager sessionManager = com.stock.util.SessionManager.getInstance();
-        com.stock.model.utilisateur.ResponsableVentes user = new com.stock.model.utilisateur.ResponsableVentes(
+        com.stock.model.utilisateur.Magasinier user = new com.stock.model.utilisateur.Magasinier(
                 "Boulmane", "Smahan", "smahan@example.com", "password123"
         );
-        sessionManager.createSession(user, "RESPONSABLE_VENTES");
+        sessionManager.createSession(user, "MAGASINIER");
         // ========== DASHBOARD  latifa ==========
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Magasinier/DashboardMagasinier.fxml"));
 

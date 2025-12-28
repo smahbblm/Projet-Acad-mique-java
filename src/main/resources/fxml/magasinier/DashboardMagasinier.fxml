@@ -22,7 +22,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.stock.Controler.TableuController"
-            stylesheets="@/css/StyleMagsinier.css"
+            stylesheets="@../../CSS/StyleMagsinier.css"
             prefWidth="260" >
 
     <fx:include source="menu.fxml"
@@ -52,7 +52,7 @@
                            <ImageView fitHeight="30" fitWidth="30">
                               <Image url="@Img/bell.png" />
                             </ImageView>
-                           <Label text="5"  styleClass="nb-notif"/>
+                           <Label fx:id="nbrNotif" text=" "  styleClass="nb-notif"/>
                        </HBox>
                    </graphic>
                 </Button>
@@ -68,7 +68,7 @@
                      <Image url="@Img/ready-stock.png" />
                    </ImageView>
                 </StackPane>
-                <Label  fx:id="quantitProduits"  text="1,247" styleClass="count"/>
+                <Label  fx:id="quantitProduits"  text=" " styleClass="count"/>
                 <Label text="Produits en Stock" styleClass="label-text"/>
             </VBox>
 
@@ -79,7 +79,7 @@
                      <Image url="@Img/mobility (1).png" />
                    </ImageView>
                 </StackPane>
-                <Label fx:id="nbrMouvements" text="43" styleClass="count"/>
+                <Label fx:id="nbrMouvements" text=" " styleClass="count"/>
                 <Label text="Mouvements Aujourd'hui" styleClass="label-text"/>
             </VBox>
         </HBox>
@@ -93,7 +93,7 @@
                     <Image url="@Img/caution.png" />
                   </ImageView>
                 </StackPane>
-                <Label text="5" styleClass="count"/>
+                <Label fx:id="AlertCritique" text=" " styleClass="count"/>
                 <Label text="Alertes Critiques" styleClass="label-text"/>
             </VBox>
 
@@ -104,7 +104,7 @@
                      <Image url="@Img/deadline.png" />
                    </ImageView>
                 </StackPane>
-                <Label text="12" styleClass="count"/>
+                <Label  fx:id="nbrEnAttente" text=" " styleClass="count"/>
                 <Label text="En Attente Validation" styleClass="label-text"/>
             </VBox>
         </HBox>
@@ -129,7 +129,7 @@
                 <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 15;">
                     <Label text="Stock Minimum"
                            style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                    <Label text="Produit REF-001 sous seuil (5 unités)"
+                    <Label fx:id="Produit_stockMin" text=" "
                            style="-fx-font-size: 12px; -fx-text-fill: #64748b;" />
                 </VBox>
 
@@ -146,7 +146,7 @@
                 <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 15;">
                     <Label text="Validation Requise"
                            style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                    <Label text="3 bons d'entrée en attente"
+                    <Label fx:id="validation" text=" "
                            style="-fx-font-size: 12px; -fx-text-fill: #64748b;" />
                 </VBox>
 
@@ -162,7 +162,7 @@
                 <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 15;">
                     <Label text="Écart Inventaire"
                            style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                    <Label text="Différence détectée - Produit REF-045"
+                    <Label fx:id="EcartInventor" text=" "
                            style="-fx-font-size: 12px; -fx-text-fill: #64748b;" />
                 </VBox>
 
@@ -172,20 +172,7 @@
             </HBox>
 
 
-            <HBox styleClass="alert_card" spacing="0" >
-                <Region styleClass="alert_bar_critique" />
 
-                <VBox spacing="8" HBox.hgrow="ALWAYS" style="-fx-padding: 15;">
-                    <Label text="Péremption Proche"
-                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                    <Label text="Produit REF-089 expire dans 7 jours"
-                           style="-fx-font-size: 12px; -fx-text-fill: #64748b;" />
-                </VBox>
-
-                <VBox alignment="CENTER" style="-fx-padding: 15;">
-                    <Button text="CRITIQUE" styleClass="badge_critique" />
-                </VBox>
-            </HBox>
             <VBox>
                <HBox spacing="960">
                    <HBox spacing="5">
@@ -194,19 +181,19 @@
                    </HBox>
                    <MenuButton text="choisir" styleClass="custom-menu" >
                        <items  >
-                           <MenuItem text="Semaine" styleClass="menu-item" />
-                           <MenuItem text="Mois" styleClass="menu-item" />
-                           <MenuItem text="Année" styleClass="menu-item" />
+                           <MenuItem fx:id="menuSemaine" text="Semaine" styleClass="menu-item" />
+                           <MenuItem fx:id="menuMois" text="Mois" styleClass="menu-item" />
+                           <MenuItem fx:id="menuAnnee" text="Année" styleClass="menu-item" />
                        </items>
                    </MenuButton>
                </HBox>
                 <Separator  prefWidth="35"/>
-                <LineChart>
+                <LineChart fx:id="mouvementChart">
                    <xAxis>
-                       <CategoryAxis label="Date" />
+                       <CategoryAxis fx:id="xAxis" label="Date" />
                    </xAxis>
                     <yAxis >
-                         <NumberAxis label="Quantité" />
+                         <NumberAxis fx:id="yAxis" label="Quantité" />
                     </yAxis>
                 </LineChart>
 

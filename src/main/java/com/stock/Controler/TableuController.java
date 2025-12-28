@@ -205,7 +205,7 @@ public class TableuController {
                 }
             });
 
-// 🟦 Maintenant on met le résultat de la lambda dans setText()
+
             EcartInventor.setText(messageEcart.get());
 
 
