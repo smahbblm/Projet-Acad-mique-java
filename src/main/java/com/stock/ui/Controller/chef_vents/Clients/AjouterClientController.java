@@ -25,6 +25,9 @@ public class AjouterClientController implements Initializable {
     @FXML private DatePicker dateInscription;
     @FXML private Button btnAjouter;
     @FXML private Button btnAnnuler;
+    
+    private Client clientToEdit;
+    private boolean isEditMode = false;
 
     public AjouterClientController(){
         System.out.print("je suis le controlleur forme ajoute client");
@@ -33,6 +36,22 @@ public class AjouterClientController implements Initializable {
     public void initialize(URL url, ResourceBundle  localisation){
         System.out.println("début de chargement de fichier fxml");
         dateInscription.setValue(LocalDate.now());
+    }
+    
+    public void setClientToEdit(Client client) {
+        this.clientToEdit = client;
+        this.isEditMode = true;
+        
+        txtNom.setText(client.getNom());
+        txtPrenom.setText(client.getPrenom());
+        txtAdresse.setText(client.getAdresse());
+        txtTelephone.setText(client.getTelephone());
+        txtEmail.setText(client.getEmail());
+        if (client.getDateInscription() != null) {
+            dateInscription.setValue(client.getDateInscription());
+        }
+        
+        btnAjouter.setText("Modifier");
     }
     
     @FXML
@@ -55,29 +74,49 @@ public class AjouterClientController implements Initializable {
         }
         
         try {
-            Client nouveauClient = new Client(nom, prenom, "", adresse, telephone, email);
             ClientService clientService = new ClientService();
-            boolean ajoutReussi = clientService.addClient(nouveauClient);
             
-            if (ajoutReussi) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Succès");
-                alert.setHeaderText("Client ajouté avec succès");
-                alert.setContentText("Le client " + nom + " " + prenom + " a été ajouté");
-                alert.showAndWait();
+            if (isEditMode) {
+                clientToEdit.setNom(nom);
+                clientToEdit.setPrenom(prenom);
+                clientToEdit.setAdresse(adresse);
+                clientToEdit.setTelephone(telephone);
+                clientToEdit.setEmail(email);
                 
-                fermerFenetre();
+                boolean modifReussie = clientService.updateClient(clientToEdit);
+                
+                if (modifReussie) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Succès");
+                    alert.setHeaderText("Client modifié avec succès");
+                    alert.showAndWait();
+                    fermerFenetre();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setContentText("Impossible de modifier le client");
+                    alert.showAndWait();
+                }
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText("Échec de l'ajout");
-                alert.setContentText("Impossible d'ajouter le client");
-                alert.showAndWait();
+                Client nouveauClient = new Client(nom, prenom, "", adresse, telephone, email);
+                boolean ajoutReussi = clientService.addClient(nouveauClient);
+                
+                if (ajoutReussi) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Succès");
+                    alert.setHeaderText("Client ajouté avec succès");
+                    alert.showAndWait();
+                    fermerFenetre();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setContentText("Impossible d'ajouter le client");
+                    alert.showAndWait();
+                }
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
-            alert.setHeaderText("Erreur lors de l'ajout");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             e.printStackTrace();

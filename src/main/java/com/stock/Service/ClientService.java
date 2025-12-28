@@ -42,16 +42,29 @@
        //  Supprimer un client via le backend
       public boolean deleteClient(int clientId) {
           System.out.println(" l'appel de la méthode deleteclient qui va appler apiclient pour envoiyé la requette vers backend pour supprimer les clients ");
-          return false;
+          try {
+              ClientDAO clientDAO = new ClientDAO();
+              clientDAO.delete(clientId);
+              return true;
+          } catch (Exception e) {
+              System.err.println("Erreur lors de la suppression du client: " + e.getMessage());
+              e.printStackTrace();
+              return false;
+          }
       }
 
-      /*
-         Modifier un client via le backend
       public boolean updateClient(Client client) {
           System.out.println(" l'appel de la méthode updateclient qui va appler apiclient pour envoiyé la requette vers backend pour modifier les clients ");
-          return apiClient.updateClient(client);
+          try {
+              ClientDAO clientDAO = new ClientDAO();
+              clientDAO.update(client);
+              return true;
+          } catch (Exception e) {
+              System.err.println("Erreur lors de la modification du client: " + e.getMessage());
+              e.printStackTrace();
+              return false;
+          }
       }
-      */
 
       //   Rechercher des clients (pour l'instant, récupère tous et filtre localement)
       public List<Client> searchClients(String searchTerm) {

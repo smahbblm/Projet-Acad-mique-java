@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DatabaseConnection {
 
     /*
@@ -17,12 +18,26 @@ public class DatabaseConnection {
     private DatabaseConnection() {}
 
     public static synchronized DatabaseConnection getInstance() {
+>>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
         if (instance == null) {
             instance = new DatabaseConnection();
         }
         return instance;
     }
 
+<<<<<<< HEAD
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+=======
     public Connection getConnection() throws SQLException {
         // Chaque appel crée une NOUVELLE connexion
         return DriverManager.getConnection(URL, USER, PASSWORD);
@@ -56,6 +71,7 @@ public class DatabaseConnection {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 }

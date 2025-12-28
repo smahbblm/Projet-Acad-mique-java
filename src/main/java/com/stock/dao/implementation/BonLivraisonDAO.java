@@ -85,6 +85,14 @@ public class BonLivraisonDAO implements IBonLivraisonDAO {
 
     @Override
     public void delete(int id) throws Exception {
+        // Supprimer d'abord les lignes de livraison
+        String deleteLignes = "DELETE FROM ligne_livraison WHERE idBonLivraison=?";
+        try (PreparedStatement stmt = connection.prepareStatement(deleteLignes)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+        
+        // Supprimer le bon de livraison
         String sql = "DELETE FROM bon_livraison WHERE idBonLivraison=?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);

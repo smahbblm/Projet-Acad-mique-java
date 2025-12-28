@@ -6,17 +6,21 @@ public class UserFactory {
 
         if (role == null) throw new IllegalArgumentException("Rôle non défini");
 
-        switch (role.trim()) {  // on enlève les espaces avant/après
-            case "Administrateur":
+        // .toUpperCase() transforme "Administrateur" en "ADMINISTRATEUR"
+        // .trim() enlève les espaces inutiles
+        String roleNormalise = role.trim().toUpperCase();
+
+        switch (roleNormalise) {
+            case "ADMINISTRATEUR":
                 return new Administrateur(nom, prenom, email, mdp);
 
-            case "Responsable_Approvisionnement":
+            case "RESPONSABLE_APPROVISIONNEMENT":
                 return new ResponsableApprovisionnement(nom, prenom, email, mdp);
 
-            case "Responsable_Ventes":
+            case "RESPONSABLE_VENTES":
                 return new ResponsableVentes(nom, prenom, email, mdp);
 
-            case "Magasinier":
+            case "MAGASINIER":
                 return new Magasinier(nom, prenom, email, mdp);
 
             default:
@@ -24,4 +28,3 @@ public class UserFactory {
         }
     }
 }
-

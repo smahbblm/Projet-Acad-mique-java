@@ -87,6 +87,7 @@ public abstract class Utilisateur {
     }
 
 
+
     public String getPassword() {
         return motDePasse;
     }
@@ -94,6 +95,7 @@ public abstract class Utilisateur {
     public void setPassword(String password) {
         this.motDePasse = password;
     }
+
 
     // Surcharge pour JDBC
     public void setDateCreation(java.sql.Date dateCreation) {

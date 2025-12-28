@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.stock.controller.Form_controller"
+           alignment="CENTER">
+
+    <!-- Grande carte (image + formulaire) -->
+    <HBox spacing="0" alignment="CENTER" styleClass="main-wrapper">
+
+        <!-- =====================
+             PARTIE GAUCHE : IMAGE
+        ====================== -->
+        <StackPane prefWidth="520" styleClass="left-image">
+            <ImageView fitWidth="520" preserveRatio="true" smooth="true">
+                <image>
+                    <Image url="@../images/img.jpg"/>
+                </image>
+            </ImageView>
+        </StackPane>
+
+        <VBox spacing="28" alignment="CENTER" styleClass="form-side"
+              prefWidth="450" maxWidth="450">
+
+            <!-- Header -->
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Gestion De Stock" styleClass="title"/>
+                <Label text="Accédez à Votre espace de Gestion" styleClass="subtitle"/>
+            </VBox>
+
+            <VBox spacing="20" maxWidth="360" prefWidth="360">
+
+                <VBox spacing="8">
+                    <Label text="Email" styleClass="field-label"/>
+                    <TextField fx:id="emailField"
+                               promptText="user@email.com"
+                               styleClass="modern-input"
+                               maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="8">
+                    <Label text="Mot de passe" styleClass="field-label"/>
+                    <PasswordField fx:id="passwordField"
+                                   promptText="•••••••••••••"
+                                   styleClass="modern-input"
+                                   maxWidth="Infinity"/>
+                </VBox>
+
+                <HBox spacing="40" alignment="CENTER_LEFT">
+                    <CheckBox fx:id="rememberMe"
+                              text="Se souvenir de moi"
+                              styleClass="modern-checkbox"/>
+
+                </HBox>
+
+                <Button fx:id="loginBtn"
+                        text="Se connecter"
+                        styleClass="btn-primary"
+                        maxWidth="Infinity"
+                        prefHeight="48"/>
+            </VBox>
+        </VBox>
+    </HBox>
+    <!-- Footer -->
+    <VBox alignment="BOTTOM_CENTER" spacing="10" StackPane.alignment="BOTTOM_CENTER"
+          translateY="40" mouseTransparent="true">
+        <Label text="© 2025 Gestion de Stock — Tous droits réservés" styleClass="footer-text"/>
+    </VBox>
+</StackPane>

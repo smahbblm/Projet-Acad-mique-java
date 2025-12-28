@@ -106,12 +106,41 @@ public class clientsController implements Initializable {
                 
                 editButton.setOnAction(event -> {
                     Client client = getTableView().getItems().get(getIndex());
-                    System.out.println("Modifier: " + client.getNom());
+                    modifierClient(client);
                 });
                 
                 deleteButton.setOnAction(event -> {
                     Client client = getTableView().getItems().get(getIndex());
-                    clientsList.remove(client);
+                    
+                    Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmation.setTitle("Confirmation de suppression");
+                    confirmation.setHeaderText("Supprimer le client");
+                    confirmation.setContentText("Voulez-vous vraiment supprimer " + client.getNom() + " " + client.getPrenom() + " ?");
+                    
+                    confirmation.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK) {
+                            try {
+                                ClientService clientService = new ClientService();
+                                if (clientService.deleteClient(client.getIdClient())) {
+                                    clientsList.remove(client);
+                                    Alert success = new Alert(Alert.AlertType.INFORMATION);
+                                    success.setTitle("Succès");
+                                    success.setContentText("Client supprimé avec succès");
+                                    success.showAndWait();
+                                } else {
+                                    Alert error = new Alert(Alert.AlertType.ERROR);
+                                    error.setTitle("Erreur");
+                                    error.setContentText("Impossible de supprimer le client");
+                                    error.showAndWait();
+                                }
+                            } catch (Exception e) {
+                                Alert error = new Alert(Alert.AlertType.ERROR);
+                                error.setTitle("Erreur");
+                                error.setContentText("Erreur: " + e.getMessage());
+                                error.showAndWait();
+                            }
+                        }
+                    });
                 });
             }
 
@@ -169,6 +198,32 @@ public class clientsController implements Initializable {
             clientsTable.setItems(clientsList);
         } catch (Exception e) {
             System.out.println("Erreur lors du chargement des clients: " + e.getMessage());
+        }
+    }
+    
+    private void modifierClient(Client client) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                getClass().getResource("/fxml/gestionChef-vents/clients/formr_ajout_client.fxml")
+            );
+            javafx.scene.Parent root = loader.load();
+            
+            AjouterClientController controller = loader.getController();
+            controller.setClientToEdit(client);
+            
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Modifier le client");
+            stage.setScene(new javafx.scene.Scene(root));
+            
+            stage.setOnHidden(e -> {
+                clientsList.clear();
+                loadClients();
+            });
+            
+            stage.show();
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'ouverture du formulaire de modification: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

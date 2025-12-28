@@ -1,0 +1,10 @@
+Type: MOUVEMENTS
+Période: 20/12/2025 -> 27/12/2025
+
+== Tous les Mouvements ==
+ - BC-2025-001 | Type: ENTREE | Qté: 20 | Date: 2025-12-27
+ - BL-2025-042 | Type: SORTIE | Qté: 15 | Date: 2025-12-27
+ - CASSE-RAYON-04 | Type: AJUSTEMENT | Qté: 2 | Date: 2025-12-27
+ - INV-2025-DEC | Type: INVENTAIRE | Qté: 5 | Date: 2025-12-27
+ - PROMO-TEST | Type: SORTIE | Qté: 1 | Date: 2025-12-27
+

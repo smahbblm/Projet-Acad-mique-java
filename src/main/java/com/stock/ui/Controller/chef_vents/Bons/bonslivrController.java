@@ -119,10 +119,38 @@ public class bonslivrController {
                 btnSupprimer.setStyle("-fx-font-size: 10px; -fx-padding: 2 5 2 5;");
                 btnExporter.setStyle("-fx-font-size: 10px; -fx-padding: 2 5 2 5;");
                 
-                btnVoir.setOnAction(e -> voirBon(getTableView().getItems().get(getIndex())));
-                btnModifier.setOnAction(e -> modifierBon(getTableView().getItems().get(getIndex())));
-                btnSupprimer.setOnAction(e -> supprimerBonIndividuel(getTableView().getItems().get(getIndex())));
-                btnExporter.setOnAction(e -> exporterBonIndividuel(getTableView().getItems().get(getIndex())));
+                btnVoir.setOnAction(e -> {
+                    try {
+                        BonLivraison bon = getTableView().getItems().get(getIndex());
+                        voirBon(bon);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                btnModifier.setOnAction(e -> {
+                    try {
+                        BonLivraison bon = getTableView().getItems().get(getIndex());
+                        modifierBon(bon);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                btnSupprimer.setOnAction(e -> {
+                    try {
+                        BonLivraison bon = getTableView().getItems().get(getIndex());
+                        supprimerBonIndividuel(bon);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                btnExporter.setOnAction(e -> {
+                    try {
+                        BonLivraison bon = getTableView().getItems().get(getIndex());
+                        exporterBonIndividuel(bon);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
             }
             
             @Override
@@ -272,11 +300,25 @@ public class bonslivrController {
     }
     
     private void modifierBon(BonLivraison bon) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Modifier le bon");
-        alert.setHeaderText("Modification du bon N° " + bon.getNumero());
-        alert.setContentText("Fonctionnalité à implémenter");
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gestionChef-vents/Bons_liv/NouveauBon.fxml"));
+            Parent root = loader.load();
+            
+            // Si vous avez un contrôleur pour le formulaire, passez le bon à modifier
+            // NouveauBonController controller = loader.getController();
+            // controller.setBonToEdit(bon);
+            
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) tablebon.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Impossible d'ouvrir le formulaire de modification: " + e.getMessage());
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
     
     private void supprimerBonIndividuel(BonLivraison bon) {
@@ -287,9 +329,23 @@ public class bonslivrController {
         
         Optional<ButtonType> result = confirmation.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            BonService BonService = new BonService();
-            BonService.supprimerBon(bon.getNumero());
-            chargerBons();
+            try {
+                BonService bonService = new BonService();
+                bonService.supprimerBon(bon.getNumero());
+                
+                Alert success = new Alert(Alert.AlertType.INFORMATION);
+                success.setTitle("Succès");
+                success.setContentText("Bon supprimé avec succès");
+                success.showAndWait();
+                
+                chargerBons();
+            } catch (Exception e) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Erreur");
+                error.setContentText("Impossible de supprimer le bon: " + e.getMessage());
+                error.showAndWait();
+                e.printStackTrace();
+            }
         }
     }
     

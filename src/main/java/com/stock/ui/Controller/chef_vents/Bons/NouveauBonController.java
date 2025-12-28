@@ -48,17 +48,44 @@ public class NouveauBonController {
     @FXML
     public void enregistrer(){
         System.out.println("la fonction enregistrer pour enregistre un bon de la table Bon dans DB");
-        //la récuperation de données de form
+        
         String nombons = numeroidbon.getText();
-        LocalDate  dateLivraison = dateLivraisonBon.getValue();
+        LocalDate dateLivraison = dateLivraisonBon.getValue();
         String status = statutCombo.getValue();
-        String adresseLivraison = observationsField.getText();
+        String adresseLivraison = adresseLivraisonField.getText();
         String notes = observationsField.getText();
-        int res =BonService.ajouterbons( nombons,  dateLivraison ,status, adresseLivraison, notes );
-        if (res > 0){
-            String message = " le bon est bien ajouter à la base  de donées ";
-            TextArea resultArea = new TextArea();
-            resultArea.setText(message);
+        String clientNom = clientCombo.getValue();
+        
+        if (nombons == null || nombons.isEmpty() || clientNom == null) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez remplir tous les champs obligatoires (Numéro et Client)");
+            alert.showAndWait();
+            return;
+        }
+        
+        try {
+            com.stock.dao.implementation.ClientDAO clientDAO = new com.stock.dao.implementation.ClientDAO();
+            com.stock.model.partenaire.Client client = clientDAO.findByNom(clientNom).get(0);
+            
+            com.stock.dao.implementation.BonLivraisonDAO bonDAO = new com.stock.dao.implementation.BonLivraisonDAO();
+            com.stock.model.document.BonLivraison bon = new com.stock.model.document.BonLivraison(nombons, dateLivraison, client);
+            bon.setStatut(status);
+            bon.setAdresseLivraison(adresseLivraison);
+            bon.setObservations(notes);
+            bonDAO.create(bon);
+            
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setContentText("Bon de livraison ajouté avec succès");
+            alert.showAndWait();
+            annuler();
+        } catch (Exception e) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Erreur: " + e.getMessage());
+            alert.showAndWait();
+            e.printStackTrace();
         }
     }
     @FXML

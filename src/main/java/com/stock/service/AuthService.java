@@ -9,15 +9,16 @@ import com.stock.exception.AuthenticationException;
 
 
 
+
 /**
  * Service pour l'authentification et gestion des sessions
  */
 public class AuthService {
     private IUtilisateurDAO utilisateurDAO;
-
     public AuthService() throws Exception {
         this.utilisateurDAO = new UtilisateurDAO();
     }
+
 
     public void login(String email, String motDePasse) throws Exception {
         Utilisateur utilisateur = utilisateurDAO.findByEmail(email);

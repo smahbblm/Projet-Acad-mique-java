@@ -19,6 +19,7 @@
     </properties>
 
 
+
   <dependencies>
     <!-- JavaFX -->
     <dependency>
@@ -114,7 +115,11 @@
 
 
 
+
                     <mainClass>com.stock.Main_smahan</mainClass>
+
+                    <mainClass>com.stock.Main</mainClass>
+
 
 
                 </configuration>

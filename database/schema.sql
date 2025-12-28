@@ -9,7 +9,11 @@ CREATE TABLE utilisateurs (
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     motDePasse VARCHAR(255) NOT NULL,
+<<<<<<< HEAD
+    role ENUM('ADMINISTRATEUR', 'RESPONSABLE_APPROVISIONNEMENT', 'RESPONSABLE_VENTES', 'MAGASINIER') NOT NULL,
+=======
     role ENUM('Administrateur', 'Responsable_Approvisionnement', 'Responsable_Ventes', 'Magasinier') NOT NULL,
+>>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
     dateCreation DATE NOT NULL,
     actif BOOLEAN DEFAULT TRUE,
     INDEX idx_email (email)
@@ -196,13 +200,24 @@ CREATE TABLE rapports (
     INDEX idx_type (type)
 );
 
+<<<<<<< HEAD
+=======
 ALTER TABLE fournisseurs
     ADD COLUMN actif BOOLEAN NOT NULL DEFAULT TRUE;
 
+>>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
 -- Insertion de données de test
 -- Utilisateurs de test
 INSERT INTO utilisateurs (nom, prenom, email, motDePasse, role, dateCreation, actif)
 VALUES
+<<<<<<< HEAD
+('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'ADMINISTRATEUR', NOW(), TRUE),
+('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'RESPONSABLE_APPROVISIONNEMENT', NOW(), TRUE),
+('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'RESPONSABLE_VENTES', NOW(), TRUE),
+('Magasin', 'Test', 'magasin@test.com', 'motdepasse123', 'MAGASINIER', NOW(), TRUE);
+ALTER TABLE fournisseurs
+    ADD COLUMN actif BOOLEAN NOT NULL DEFAULT TRUE;
+=======
     ('Admin', 'Test', 'admin@test.com', 'motdepasse123', 'Administrateur', CURDATE(), TRUE),
     ('Appro', 'Test', 'appro@test.com', 'motdepasse123', 'Responsable_Approvisionnement', CURDATE(), TRUE),
     ('Ventes', 'Test', 'ventes@test.com', 'motdepasse123', 'Responsable_Ventes', CURDATE(), TRUE),
@@ -310,3 +325,4 @@ VALUES
         - Actions recommandées : réapprovisionnement'
     );
 
+>>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
