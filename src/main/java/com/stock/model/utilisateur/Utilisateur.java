@@ -86,8 +86,7 @@ public abstract class Utilisateur {
         this.dateCreation = dateCreation;
     }
 
-<<<<<<< HEAD
-=======
+
 
     public String getPassword() {
         return motDePasse;
@@ -97,7 +96,7 @@ public abstract class Utilisateur {
         this.motDePasse = password;
     }
 
->>>>>>> 5c9be702fdc7672cac1389202f406eb7d8560775
+
     // Surcharge pour JDBC
     public void setDateCreation(java.sql.Date dateCreation) {
         if (dateCreation != null) {

@@ -62,7 +62,7 @@ public class Form_controller {
                     openDashboard("/fxml/Dashboard_Administrateur/dashboard.fxml", "Dashboard Admin");
                     break;
                 case "RESPONSABLE_VENTES":
-                    openDashboard("/fxml/DashboardChef_vents.fxml", "Dashboard Ventes");
+                    openDashboard("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml", "Dqshboard Chef de Vents");
                     break;
                 case "RESPONSABLE_APPROVISIONNEMENT":
                     openDashboard("/fxml/DashResponsableApprovisionnements/dashboardResApprov.fxml", "Dashboard Approvisionnement");
@@ -96,7 +96,10 @@ public class Form_controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            if (fxmlPath.equals("/fxml/gestionChef-vents/dashboard/main-dashboard.fxml")) {
+                scene.getStylesheets().add(getClass().getResource("/CSS/gestionchef-de-vents/css-siedbar.css").toExternalForm());
+            }stage.setScene(scene);
             stage.setTitle(title);
             stage.show();
 
