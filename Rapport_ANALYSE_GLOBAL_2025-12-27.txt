@@ -1,4 +1,0 @@
-Type: ANALYSE_GLOBAL
-Période: 12/12/2025 -> 18/12/2025
-
-Type inconnu
