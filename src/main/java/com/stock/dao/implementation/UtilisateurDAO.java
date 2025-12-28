@@ -4,6 +4,7 @@ package com.stock.dao.implementation;
 import com.stock.dao.interfaces.IUtilisateurDAO;
 import com.stock.model.utilisateur.Utilisateur;
 
+
 import com.stock.model.utilisateur.UserFactory;
 //import com.stock.util.DatabaseConnection;
 
@@ -15,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class UtilisateurDAO implements IUtilisateurDAO {
 
@@ -80,11 +82,13 @@ public class UtilisateurDAO implements IUtilisateurDAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) return mapRowToUtilisateur(rs);
         }
+
         return null;
     }
 
     @Override
     public List<Utilisateur> readAll() throws Exception {
+
         List<Utilisateur> users = new ArrayList<>();
         String sql = "SELECT * FROM utilisateurs";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -110,6 +114,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
             stmt.setString(5, u.getRole());
             stmt.setBoolean(6, u.isActif());
             stmt.setInt(7, u.getIdUtilisateur());
+
             stmt.executeUpdate();
         }
     }
@@ -129,10 +134,14 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
+
+
             if (rs.next()) return mapRowToUtilisateur(rs);
+
         }
         return null;
     }
+
 
     private Utilisateur mapRowToUtilisateur(ResultSet rs) throws Exception {
         String role = rs.getString("role");
@@ -148,5 +157,6 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         u.setActif(rs.getBoolean("actif"));
 
         return u;
+
     }
 }
