@@ -11,7 +11,7 @@
 
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/21.0.0"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.stock.controller.controller_Dashboard_Administrateur.DashboardController"
+            fx:controller="com.stock.Controller.controller_Dashboard_Administrateur.DashboardController"
             style="-fx-background-color:#f4f6f8;"
             prefHeight="500.0" prefWidth="800.0">
 
