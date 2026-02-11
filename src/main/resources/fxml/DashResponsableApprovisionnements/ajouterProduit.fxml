@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.stock.Controller.controllerResponsableApprovisionnements.AjouterProduitController"
+      spacing="20" style="-fx-padding:24; -fx-background-color:white;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Ajouter un produit" style="-fx-font-size:20; -fx-font-weight:bold;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="✕" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-cursor:hand; -fx-font-size:18;"/>
+    </HBox>
+
+    <Label text="Remplissez les informations du nouveau produit" style="-fx-text-fill:#666666;"/>
+
+    <!-- Form -->
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Désignation *"/>
+            <TextField fx:id="txtDesignation" promptText="Ex: Vis M6×20" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Référence *"/>
+            <TextField fx:id="txtReference" promptText="Ex: VIS-M6-20" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Description"/>
+        <TextArea fx:id="txtDescription" promptText="Description du produit" prefRowCount="2" style="-fx-padding:10;"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Catégorie *"/>
+        <ComboBox fx:id="cmbCategorie" promptText="Sélectionner une catégorie" prefWidth="9999" style="-fx-padding:8;"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Prix d'achat (€) *"/>
+            <TextField fx:id="txtPrixAchat" promptText="0.00" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Prix de vente (€) *"/>
+            <TextField fx:id="txtPrixVente" promptText="0.00" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Stock actuel *"/>
+            <TextField fx:id="txtStock" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Seuil min *"/>
+            <TextField fx:id="txtSeuilMin" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Seuil max *"/>
+            <TextField fx:id="txtSeuilMax" promptText="0" style="-fx-padding:10;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnAnnuler" text="Annuler" onAction="#closeWindow" style="-fx-background-color:transparent; -fx-padding:10 20; -fx-cursor:hand;"/>
+        <Button fx:id="btnAjouter" text="Ajouter le produit" onAction="#ajouterProduit" style="-fx-background-color:#2e86de; -fx-text-fill:white; -fx-padding:10 20; -fx-background-radius:6; -fx-cursor:hand;"/>
+    </HBox>
+</VBox>

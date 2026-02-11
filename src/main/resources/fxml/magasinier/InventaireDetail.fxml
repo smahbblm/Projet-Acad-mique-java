@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+</BorderPane>
+    </center>
+        </VBox>
+            </HBox>
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+                <Button text="↩️ Retour" onAction="#handleRetour"
+                <Region HBox.hgrow="ALWAYS"/>
+                        style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
+                <Button text="📊 Générer Rapport" onAction="#handleGenererRapport"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                <Button text="💾 Enregistrer Brouillon" onAction="#handleEnregistrerBrouillon"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 13; -fx-padding: 10 20;"/>
+                <Button text="✔️ Valider Inventaire" onAction="#handleValider"
+            <HBox spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd;" alignment="CENTER_LEFT">
+            <!-- Actions -->
+
+            </HBox>
+                </VBox>
+                    <TextArea fx:id="txtObservations" promptText="Notes inventaire..." prefWidth="250" prefHeight="50"/>
+                    <Label text="Observations:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <VBox spacing="3" alignment="CENTER_RIGHT">
+                <Region HBox.hgrow="ALWAYS"/>
+                </VBox>
+                    <Label fx:id="lblSansEcart" text="0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                    <Label text="Sans écart:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <VBox spacing="3">
+                <Separator orientation="VERTICAL"/>
+                </VBox>
+                    <Label fx:id="lblAvecEcart" text="0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+                    <Label text="Avec écart:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <VBox spacing="3">
+                <Separator orientation="VERTICAL"/>
+                </VBox>
+                    <Label fx:id="lblTotalProduits" text="0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Label text="Total produits:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <VBox spacing="3">
+            <HBox spacing="15" style="-fx-background-color: white; -fx-padding: 12; -fx-border-color: #ddd;">
+            <!-- Résumé -->
+
+            </TableView>
+                </columns>
+                    <TableColumn fx:id="colEtat" text="État" prefWidth="100" editable="false"/>
+                    <TableColumn fx:id="colEcart" text="Écart" prefWidth="80" editable="false"/>
+                    <TableColumn fx:id="colStockReel" text="Stock Réel" prefWidth="100" editable="true"/>
+                    <TableColumn fx:id="colStockTheorique" text="Stock Système" prefWidth="100" editable="false"/>
+                    <TableColumn fx:id="colCategorie" text="Catégorie" prefWidth="120" editable="false"/>
+                    <TableColumn fx:id="colDesignation" text="Désignation" prefWidth="200" editable="false"/>
+                    <TableColumn fx:id="colReference" text="Référence" prefWidth="100" editable="false"/>
+                <columns>
+            <TableView fx:id="tableProduits" VBox.vgrow="ALWAYS" editable="true" style="-fx-font-size: 11;">
+            <!-- Tableau des produits pour inventaire -->
+
+            </HBox>
+                <Button text="♻️ Réinitialiser" onAction="#handleReinitialiser"/>
+                <Button text="🔍 Filtrer" onAction="#handleFiltrer"/>
+                <ComboBox fx:id="comboCategorie" promptText="Catégorie" prefWidth="150"/>
+                <TextField fx:id="txtRecherche" promptText="Rechercher produit (référence, désignation)" HBox.hgrow="ALWAYS"/>
+            <HBox spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd;">
+            <!-- Filtres -->
+
+            </HBox>
+                       style="-fx-text-fill: #856404; -fx-font-size: 12px;" wrapText="true"/>
+                <Label text="ℹ️ Saisissez les quantités réelles pour chaque produit. Les écarts seront calculés automatiquement."
+            <HBox style="-fx-background-color: #fff3cd; -fx-padding: 10; -fx-border-color: #ffc107; -fx-border-radius: 4;">
+            <!-- Instructions -->
+
+        <VBox spacing="12" style="-fx-padding: 15;">
+    <center>
+
+    </top>
+        </VBox>
+                   style="-fx-text-fill: #ecf0f1; -fx-font-size: 12px; -fx-padding: 5 0 0 0;"/>
+            <Label fx:id="lblDateInventaire" text="Date: -"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label text="📋 Inventaire Détaillé"
+        <VBox style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+    <top>
+
+            style="-fx-background-color: #f5f5f5;">
+            fx:controller="com.stock.controller.InventaireDetailController"
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+

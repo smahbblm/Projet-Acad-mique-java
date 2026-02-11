@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox spacing="10" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.stock.controller.MainController">
+    <HBox spacing="10" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+        <Label fx:id="userLabel" text="Bienvenue" style="-fx-font-size: 14;"/>
+        <Button fx:id="logoutButton" text="Déconnexion" style="-fx-padding: 5;"/>
+    </HBox>
+
+    <Label text="Menu Principal" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <Button text="Dashboard Administrateur" style="-fx-padding: 10; -fx-min-width: 200;"/>
+    <Button text="Dashboard Approvisionnement" style="-fx-padding: 10; -fx-min-width: 200;"/>
+    <Button text="Dashboard Ventes" style="-fx-padding: 10; -fx-min-width: 200;"/>
+    <Button text="Dashboard Magasinier" style="-fx-padding: 10; -fx-min-width: 200;"/>
+</VBox>
+
